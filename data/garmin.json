@@ -1,0 +1,102 @@
+{
+ "updated": "2026-11-11T15:38:20Z",
+ "activities": [
+  {
+   "id": 24100807742,
+   "name": "Radnor Running",
+   "type": "running",
+   "start": "2026-08-24 13:50:55",
+   "dist_mi": 2.01,
+   "dur_min": 17.2,
+   "avg_hr": 168.0,
+   "max_hr": 189.0,
+   "cal": 273.0,
+   "elev_ft": 112,
+   "load": null,
+   "te": 3.0,
+   "sets": null,
+   "reps": null
+  }
+ ],
+ "days": [
+  {
+   "date": "2026-11-01",
+   "sleep_h": 3.9,
+   "sleep_score": 30,
+   "hrv": 54,
+   "hrv_status": "NONE"
+  },
+  {
+   "date": "2026-11-02",
+   "sleep_h": 6.1,
+   "sleep_score": 77,
+   "hrv": 94,
+   "hrv_status": "NONE"
+  },
+  {
+   "date": "2026-11-03",
+   "sleep_h": 5.5,
+   "sleep_score": 70,
+   "hrv": 100,
+   "hrv_status": "NONE"
+  },
+  {
+   "date": "2026-11-04",
+   "sleep_h": 7.8,
+   "sleep_score": 91,
+   "hrv": 92,
+   "hrv_status": "BALANCED"
+  },
+  {
+   "date": "2026-11-05",
+   "sleep_h": 6.2,
+   "sleep_score": 73,
+   "hrv": 69,
+   "hrv_status": "BALANCED"
+  },
+  {
+   "date": "2026-11-06",
+   "sleep_h": 7.1,
+   "sleep_score": 79,
+   "hrv": 72,
+   "hrv_status": "BALANCED"
+  },
+  {
+   "date": "2026-11-07",
+   "sleep_h": 6.7,
+   "sleep_score": 70,
+   "hrv": 78,
+   "hrv_status": "BALANCED"
+  },
+  {
+   "date": "2026-11-08",
+   "sleep_h": 3.5,
+   "sleep_score": 43,
+   "hrv": 93,
+   "hrv_status": "BALANCED"
+  },
+  {
+   "date": "2026-11-09",
+   "sleep_h": 8.5,
+   "sleep_score": 94,
+   "hrv": 100,
+   "hrv_status": "BALANCED"
+  },
+  {
+   "date": "2026-11-10",
+   "sleep_h": 6.3,
+   "sleep_score": 78,
+   "hrv": 105,
+   "hrv_status": "BALANCED"
+  },
+  {
+   "date": "2026-11-11",
+   "sleep_h": 5.5,
+   "sleep_score": 73,
+   "hrv": 113,
+   "hrv_status": "BALANCED"
+  }
+ ],
+ "ok": true,
+ "errors": []
+}
