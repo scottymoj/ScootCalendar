@@ -482,7 +482,7 @@ function openSettings() {
     ${fld("GitHub token (stays on this phone)", "token", Sync.token(), "password", 'autocomplete="off" placeholder="github_pat_..."')}
     <p class="hint">Saves your classes, grades and due dates to the repo so the daily overview can read them and your other devices get them. Make a fine-grained token with <b>Contents: Read and write</b> on ScootCalendar only. ${Sync.status ? `<br><b>${esc(Sync.status)}</b>` : ""}</p>
     <div class="h-sec" style="margin-top:22px"><h2>Connections</h2></div>
-    <p class="hint" style="font-size:13px;color:var(--ink2)">${srcLine("outlook", "Outlook")}<br>${srcLine("brightspace", "Brightspace")}<br>Garmin: ${g ? (g.ok ? `updated ${ago(g.updated)}` : `problem: ${esc((g.errors || []).join(", "))}`) : "not connected yet"}<br>Daily overview: ${D.brief ? `last written ${esc(D.brief.date)}` : "not written yet"}</p>
+    <p class="hint" style="font-size:13px;color:var(--ink2)">${srcLine("outlook", "Outlook")}<br>Garmin: ${g ? (g.ok ? `updated ${ago(g.updated)}` : `problem: ${esc((g.errors || []).join(", "))}`) : "not connected yet"}<br>Daily overview: ${D.brief ? `last written ${esc(D.brief.date)}` : "not written yet"}</p>
     <p class="hint">Calendar feeds and Garmin update about once an hour. Set them up with the steps in the README.</p>
     <div class="h-sec" style="margin-top:22px"><h2>Backup</h2></div>
     <div class="btns" style="margin-top:0"><button class="btn sm" data-export>Copy backup</button><button class="btn sm" data-import>Restore backup</button></div>

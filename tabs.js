@@ -73,9 +73,9 @@ VIEWS.school = async (app, parts) => {
   app.innerHTML = `
     <div class="h-sec"><h2>Tests coming up</h2><button class="add" data-add>+ Add</button></div>
     ${tests.length ? `<div class="cd">${tests.map(e => { const n = daysBetween(t, e.start); const c = U.classes.find(x => x.id === e.classId); return `<button class="${n <= 3 ? "soon" : ""}" data-ev="${esc(e.id)}"><div class="d">${n === 0 ? "Today" : n}${n ? `<small>${n === 1 ? "day" : "days"}</small>` : ""}</div><div class="w">${esc(e.title)}<small>${esc([c ? c.code : e.course, fmtDay(e.start)].filter(Boolean).join(" · "))}</small></div></button>`; }).join("")}</div>`
-      : `<div class="empty">No tests in the next 6 weeks. Brightspace quizzes and exams show up here automatically.</div>`}
+      : `<div class="empty">No tests in the next 6 weeks. Quizzes and exams from your class calendars in Outlook show up here automatically.</div>`}
     <div class="h-sec"><h2>Due next 2 weeks</h2><span>${overdue.length ? `<b class="red">${overdue.length} overdue</b>` : ""}</span></div>
-    ${due.length ? due.map(e => evRow(e, { showDay:true, right:`<input type="checkbox" data-chk="${esc(e.id)}" ${e.done ? "checked" : ""} aria-label="Done" style="width:20px;height:20px;accent-color:#121212">` })).join("") : `<div class="empty">Nothing due. Tap + Add for anything Brightspace doesn't have.</div>`}
+    ${due.length ? due.map(e => evRow(e, { showDay:true, right:`<input type="checkbox" data-chk="${esc(e.id)}" ${e.done ? "checked" : ""} aria-label="Done" style="width:20px;height:20px;accent-color:#121212">` })).join("") : `<div class="empty">Nothing due. Tap + Add for anything that isn't on your Outlook calendars.</div>`}
     <div class="h-sec"><h2>Classes</h2><button class="add" data-addc>+ Class</button></div>
     ${U.classes.map(c => {
       const g = gradeMath(c);
@@ -83,7 +83,7 @@ VIEWS.school = async (app, parts) => {
       return `<div class="cls"><a class="cls-h" href="#/school/${c.id}"><div class="nm"><span style="display:inline-block;width:10px;height:10px;background:${esc(c.color || "#121212")};margin-right:8px;vertical-align:2px"></span>${esc(c.name)}<small>${esc([c.code, c.when, next ? `Next: ${next.title}, ${relDay(next.start)}` : ""].filter(Boolean).join(" · "))}</small></div>
         <div class="gr">${g.cur != null ? `${letterFor(g.cur)}<small>${pct(g.cur)}</small>` : `<small>Add grades ›</small>`}</div></a></div>`;
     }).join("")}
-    <div class="updated">Due dates from Brightspace sync about once an hour. Check off items here; it doesn't change Brightspace.</div>`;
+    <div class="updated">Due dates and tests come from your Outlook class calendars about once an hour. Checking them off here doesn't change Outlook.</div>`;
   $("[data-add]", app).onclick = () => editItem();
   $("[data-addc]", app).onclick = () => editClass();
   $$("[data-chk]", app).forEach(b => { b.onclick = ev => ev.stopPropagation(); b.onchange = () => toggleDone(b.dataset.chk); });
@@ -99,7 +99,7 @@ function editClass(c) {
   c = c || { id:uid(), code:"", name:"", prof:"", room:"", when:"", color:"#1f4e9c", target:"B+", cats:[], guides:[] };
   sheet(isNew ? "Add class" : "Edit class", `
     <div class="row2">${fld("Code", "code", c.code, "text", 'placeholder="ECO 2101"')}${fld("Name", "name", c.name)}</div>
-    <p class="hint" style="margin-top:4px">The code is how Brightspace due dates get matched to this class, so use the code Brightspace shows (like PHY 1100).</p>
+    <p class="hint" style="margin-top:4px">Outlook calendars named Physics, Economics, History or Statistics get matched to the class with that code (PHY, ECO, HIS, STAT).</p>
     <div class="row2">${fld("Professor", "prof", c.prof)}${fld("Room", "room", c.room)}</div>
     ${fld("Meets", "when", c.when, "text", 'placeholder="TR 10:00–11:15"')}
     <div class="row2">${sel("Target grade", "target", LETTERS.map(l => l[0]), c.target)}${sel("Color", "color", [["#1f4e9c", "Blue"], ["#0f7c8c", "Teal"], ["#7a3db8", "Purple"], ["#b06a00", "Orange"], ["#1a7f45", "Green"], ["#c22a2a", "Red"], ["#121212", "Black"]], c.color)}</div>
