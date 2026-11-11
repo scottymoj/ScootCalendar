@@ -6,7 +6,7 @@ Runs in GitHub Actions about every hour and writes:
   data/conditions.json  Weather for Scott's places + Stone Harbor surf, for the daily AI overview
 
 Secrets (GitHub repo -> Settings -> Secrets and variables -> Actions):
-  OUTLOOK_ICS        Outlook "Publish a calendar" ICS link
+  OUTLOOK_ICS        Outlook "Publish a calendar" ICS links, one per line (as many calendars as you want)
   BRIGHTSPACE_ICS    Brightspace Calendar "Subscribe" link
   GARMIN_API_KEY     Garmin Connect personal API key
 Any secret that is missing is skipped, and the old file is kept.
@@ -94,6 +94,7 @@ def read_ics(url: str, source: str) -> list[dict]:
 
     url = url.strip().replace("webcal://", "https://", 1)
     cal = icalendar.Calendar.from_ical(fetch(url, timeout=60))
+    cal_name = clean_text(cal.get("X-WR-CALNAME"), 60)
     today = datetime.now(ET).date()
     start, end = today - timedelta(days=21), today + timedelta(days=150)
     out = []
@@ -121,6 +122,8 @@ def read_ics(url: str, source: str) -> list[dict]:
             "location": clean_text(ev.get("LOCATION"), 160),
             "notes": clean_text(ev.get("DESCRIPTION"), 500),
         }
+        if cal_name and source == "outlook":
+            item["cal"] = cal_name
         cats = ev.get("CATEGORIES")
         if cats is not None:
             try:
@@ -143,20 +146,28 @@ def build_calendar() -> None:
     old = load("calendar.json") or {}
     result = {"updated": now_utc(), "events": [], "sources": {}}
     for source, env in (("outlook", "OUTLOOK_ICS"), ("brightspace", "BRIGHTSPACE_ICS")):
-        url = os.environ.get(env, "").strip()
-        if not url:
+        urls = [u for u in re.split(r"[\s,]+", os.environ.get(env, "")) if u.startswith(("http", "webcal", "file"))]
+        if not urls:
             result["sources"][source] = {"ok": False, "note": f"{env} secret not set"}
             continue
-        try:
-            evs = read_ics(url, source)
-            result["events"] += evs
-            result["sources"][source] = {"ok": True, "count": len(evs), "at": now_utc()}
-        except Exception as e:  # keep the last good copy of this feed
-            print(f"{source} feed failed: {e}", file=sys.stderr)
-            kept = [x for x in old.get("events", []) if x.get("src") == source]
-            result["events"] += kept
-            prev = (old.get("sources") or {}).get(source, {})
-            result["sources"][source] = {"ok": False, "note": f"feed failed: {type(e).__name__}", "count": len(kept), "at": prev.get("at")}
+        evs, failed, seen = [], 0, set()
+        for i, url in enumerate(urls):
+            try:
+                for e in read_ics(url, source):
+                    e["feed"] = f"{source}#{i}"
+                    if e["id"] not in seen:
+                        seen.add(e["id"]); evs.append(e)
+            except Exception as e:  # keep the last good copy of this one calendar
+                failed += 1
+                print(f"{source} feed {i + 1} failed: {e}", file=sys.stderr)
+                key = f"{source}#{i}"
+                evs += [x for x in old.get("events", []) if x.get("feed") == key]
+                continue
+        result["events"] += evs
+        prev = (old.get("sources") or {}).get(source, {})
+        result["sources"][source] = {"ok": failed == 0, "count": len(evs), "feeds": len(urls), "at": now_utc() if failed < len(urls) else prev.get("at")}
+        if failed:
+            result["sources"][source]["note"] = f"{failed} of {len(urls)} calendars failed to load"
     result["events"].sort(key=lambda x: x["start"])
     save("calendar.json", result)
 

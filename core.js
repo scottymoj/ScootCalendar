@@ -140,6 +140,20 @@ function classFor(text) {
   const t = String(text || "").toUpperCase().replace(/\s+/g, "");
   return U.classes.find(c => c.code && t.includes(c.code.toUpperCase().replace(/\s+/g, "")));
 }
+/* an Outlook calendar named after a subject ("Physics", "Economics") belongs to that class */
+const SUBJECT = { physics:"PHY", history:"HIS", economics:"ECO", econ:"ECO", macro:"ECO", statistics:"STAT", statitsics:"STAT", stats:"STAT", finance:"FIN", accounting:"ACC", marketing:"MKT", math:"MAT", calculus:"MAT" };
+/* class meetings on the main calendar are titled by subject ("World History", "Macroeconomics") */
+function classForTitle(title) {
+  const t = String(title || "").toLowerCase();
+  const key = Object.keys(SUBJECT).find(k => new RegExp(`\\b${k}`).test(t));
+  return key ? U.classes.find(c => (c.code || "").toUpperCase().replace(/\s+/g, "").startsWith(SUBJECT[key])) || null : null;
+}
+function classForCal(name) {
+  const n = String(name || "").toLowerCase().trim();
+  if (!n || n === "calendar") return null;
+  const code = SUBJECT[n];
+  return U.classes.find(c => (code && (c.code || "").toUpperCase().replace(/\s+/g, "").startsWith(code)) || (c.name || "").toLowerCase() === n || (c.code || "").toLowerCase() === n) || null;
+}
 function allEvents() {
   const out = [];
   for (const e of (D.cal && D.cal.events) || []) {
@@ -147,6 +161,17 @@ function allEvents() {
     let end = e.end ? parseStart(e.end) : null;
     if (e.allDay && end) end = addDays(end, -1);
     const ev = { ...e, start, end };
+    if (e.src === "outlook") {
+      const fromCal = classForCal(e.cal);
+      const c = fromCal || classFor(e.title) || classForTitle(e.title);
+      if (c) ev.classId = c.id;
+      // items on a class calendar (Physics, Economics...) are assignments and tests
+      if (fromCal) {
+        if (/\b(exam|test|quiz|midterm|final)\b/i.test(e.title)) ev.kind = "test";
+        else if (e.allDay || /\b(homework|hw|problem set|assignment|essay|paper|due|reading|response|lab|project|worksheet|unit)\b/i.test(e.title)) ev.kind = "due";
+        if (ev.kind) ev.done = !!U.doneIds[e.id];
+      }
+    }
     if (e.src === "brightspace") {
       const c = classFor(`${e.course || ""} ${e.title} ${e.notes || ""}`);
       if (c) ev.classId = c.id;
@@ -171,7 +196,7 @@ function eventsOn(evs, day) {
     return false;
   });
 }
-const isDue = e => e.src === "brightspace" || e.src === "school";
+const isDue = e => e.src === "brightspace" || e.src === "school" || (e.src === "outlook" && !!e.kind);
 const srcClass = e => `c-${e.src}`;
 const srcName = { outlook:"Outlook", brightspace:"Brightspace", school:"Added by you" };
 
@@ -448,7 +473,7 @@ const area = (label, name, val = "", ph = "") => `<label class="fld"><span>${lab
 /* ---------------- settings ---------------- */
 function openSettings() {
   const cal = D.cal && D.cal.sources ? D.cal.sources : {};
-  const srcLine = (k, n) => { const s = cal[k]; return s ? (s.ok ? `${n}: ${s.count} events, updated ${ago(s.at)}` : `${n}: ${esc(s.note || "not connected")}`) : `${n}: not connected yet`; };
+  const srcLine = (k, n) => { const s = cal[k]; return s ? `${n}: ${s.count || 0} events${s.feeds > 1 ? ` from ${s.feeds} calendars` : ""}, updated ${ago(s.at)}${s.note ? ` (${esc(s.note)})` : ""}` : `${n}: not connected yet`; };
   const g = D.garmin;
   sheet("Settings", `
     ${sel("Weather location", "place", [["auto", "Use my location"], ...allPlaces().map(p => [p.id, p.name])], U.place)}

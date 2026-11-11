@@ -64,7 +64,7 @@ function editItem(it, classId) {
 
 VIEWS.school = async (app, parts) => {
   if (parts[0]) return classPage(app, parts[0]);
-  const evs = allEvents().filter(e => e.src === "brightspace" || e.src === "school");
+  const evs = allEvents().filter(e => isDue(e));
   const t = today0();
   const tests = evs.filter(e => e.kind === "test" && !e.done && e.start >= t && e.start < addDays(t, 45));
   const due = evs.filter(e => e.kind !== "test" && e.start >= addDays(t, -3) && e.start < addDays(t, 15) && (!e.done || e.start >= t));

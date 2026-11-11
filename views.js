@@ -16,11 +16,12 @@ function evTime(e) {
 }
 function evRow(e, opts = {}) {
   const c = e.classId ? U.classes.find(x => x.id === e.classId) : null;
-  const sub = [c ? c.code || c.name : (e.course || ""), e.location].filter(Boolean).join(" · ");
+  const calName = e.cal && e.cal.toLowerCase() !== "calendar" && !c ? e.cal : "";
+  const sub = [c ? c.code || c.name : (e.course || ""), calName, e.location].filter(Boolean).join(" · ");
   const tm = opts.showDay
     ? `${relDay(e.start)}${e.allDay ? "" : `<small>${fmtTime(e.start)}</small>`}`
     : `${evTime(e)}${!e.allDay && e.end ? `<small>${fmtTime(e.end)}</small>` : ""}`;
-  return `<button class="ev ${srcClass(e)}${e.done ? " done" : ""}" data-ev="${esc(e.id)}">
+  return `<button class="ev ${srcClass(e)}${e.done ? " done" : ""}" data-ev="${esc(e.id)}"${c && c.color ? ` style="--cc:${esc(c.color)}"` : ""}>
     <div class="tm">${tm}</div>
     <div class="ti">${e.kind === "test" ? `<span class="tag2" style="color:var(--live)">Test</span>` : ""}${esc(e.title)}${sub ? `<small>${esc(sub)}</small>` : ""}</div>
     <div class="rt">${opts.right || ""}</div></button>`;
@@ -45,14 +46,14 @@ function openEvent(e, W) {
     if (!wx) { const d = wxDays(W)[dkey(e.start)]; if (d) wx = `High ${d.hi}°, low ${d.lo}°, ${wmoText(d.code).toLowerCase()}${d.rain >= 20 ? `, ${d.rain}% rain` : ""}`; }
     if (wx && HERE) wx += ` <span class="muted">(${esc(HERE.name)})</span>`;
   }
-  const canDone = e.src === "brightspace" || e.src === "school";
+  const canDone = e.src === "brightspace" || e.src === "school" || (e.src === "outlook" && !!e.kind);
   sheet(e.title, `
     <div class="kv"><span>When</span><div>${when}</div></div>
     ${e.location ? `<div class="kv"><span>Where</span><div>${esc(e.location)}</div></div>` : ""}
     ${c || e.course ? `<div class="kv"><span>Class</span><div>${esc(c ? `${c.code} ${c.name}` : e.course)}</div></div>` : ""}
     ${wx ? `<div class="kv"><span>Weather</span><div>${wx}</div></div>` : ""}
     ${e.notes ? `<div class="kv"><span>Notes</span><div class="pre">${esc(e.notes)}</div></div>` : ""}
-    <div class="kv"><span>From</span><div>${srcName[e.src] || e.src}</div></div>
+    <div class="kv"><span>From</span><div>${srcName[e.src] || e.src}${e.cal ? ` · ${esc(e.cal)}` : ""}</div></div>
     <div class="btns">
       ${canDone ? `<button class="btn pri" data-done>${e.done ? "Mark not done" : "Mark done"}</button>` : ""}
       ${e.src === "school" ? `<button class="btn" data-edit>Edit</button>` : ""}
@@ -60,7 +61,7 @@ function openEvent(e, W) {
   el => {
     const d = $("[data-done]", el);
     if (d) d.onclick = () => {
-      if (e.src === "brightspace") { if (e.done) delete U.doneIds[e.id]; else U.doneIds[e.id] = true; }
+      if (e.src !== "school") { if (e.done) delete U.doneIds[e.id]; else U.doneIds[e.id] = true; }
       else { const it = U.items.find(x => x.id === e.mid); if (it) it.done = !it.done; }
       touch(); closeSheet(); route();
     };
@@ -193,7 +194,7 @@ VIEWS.calendar = async app => {
     let cells = DOW.map(x => `<div class="dow">${x[0]}</div>`).join("");
     for (let i = 0; i < weeks * 7; i++) {
       const d = addDays(start, i), k = dkey(d), list = eventsOn(evs, d);
-      const dots = list.slice(0, 5).map(e => `<i class="${srcClass(e)}"></i>`).join("") + (list.length > 5 ? `<em>+${list.length - 5}</em>` : "");
+      const dots = list.slice(0, 5).map(e => { const c = e.classId && U.classes.find(x => x.id === e.classId); return `<i class="${srcClass(e)}"${c && c.color ? ` style="--cc:${esc(c.color)}"` : ""}></i>`; }).join("") + (list.length > 5 ? `<em>+${list.length - 5}</em>` : "");
       cells += `<button class="c${d.getMonth() !== first.getMonth() ? " out" : ""}${k === dkey(t) ? " today" : ""}${CS.sel === k ? " sel" : ""}" data-day="${k}">
         <span class="n"><span>${d.getDate()}</span></span><span class="dots">${dots}</span></button>`;
     }
