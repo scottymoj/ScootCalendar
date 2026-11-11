@@ -174,6 +174,10 @@ def build_calendar() -> None:
 
 # ---------------------------------------------------------------- garmin
 GARMIN = "https://personal.connectapi.garmin.com"
+# never saved (public repo): identity fields and anything that can place him on a map
+DROP_KEY = re.compile(r"(^lat$|^lon$|^lng$|latitude|longitude|polyline|geopoint|location|uuid|userprofile|ownerid|deviceid|"
+                      r"displayname|fullname|email|birth|gender|ownerprofile|username|userid|profileimage|"
+                      r"^pk$|unitid|serial|macaddress)", re.I)
 
 
 def garmin_get(token: str, path: str, params: dict | None = None):
@@ -182,9 +186,56 @@ def garmin_get(token: str, path: str, params: dict | None = None):
     return json.loads(raw) if raw.strip() else None
 
 
-def pick(d: dict, *keys):
+def scrub(o, depth=0):
+    """Copy of a Garmin response without identity/location fields and with long arrays cut short."""
+    if isinstance(o, dict):
+        return {k: scrub(v, depth + 1) for k, v in o.items() if not DROP_KEY.search(k)}
+    if isinstance(o, list):
+        return [scrub(v, depth + 1) for v in o[:3]] + ([f"... {len(o) - 3} more"] if len(o) > 3 else [])
+    return o
+
+
+def flat(o, prefix="", out=None, depth=0):
+    """Flatten numbers/short strings into {"a.b.c": value}; skips arrays (time series) and identity fields."""
+    out = {} if out is None else out
+    if depth > 5:
+        return out
+    if isinstance(o, dict):
+        for k, v in o.items():
+            if DROP_KEY.search(k):
+                continue
+            flat(v, f"{prefix}.{k}" if prefix else k, out, depth + 1)
+    elif isinstance(o, bool) or o is None:
+        pass
+    elif isinstance(o, (int, float)):
+        out[prefix] = round(o, 2) if isinstance(o, float) else o
+    elif isinstance(o, str) and len(o) <= 40:
+        out[prefix] = o
+    return out
+
+
+def as_list(r, *keys):
+    if isinstance(r, list):
+        return r
+    if isinstance(r, dict):
+        for k in keys + ("data", "values", "summaries", "items"):
+            if isinstance(r.get(k), list):
+                return r[k]
+        return [r]
+    return []
+
+
+def day_of(d):
+    for k in ("calendarDate", "date", "summaryDate", "startDate"):
+        v = d.get(k) if isinstance(d, dict) else None
+        if v:
+            return str(v)[:10]
+    return ""
+
+
+def first(d: dict, *keys):
     for k in keys:
-        if isinstance(d, dict) and d.get(k) is not None:
+        if d.get(k) is not None:
             return d[k]
     return None
 
@@ -195,31 +246,133 @@ def build_garmin() -> None:
         print("GARMIN_API_KEY not set, skipping Garmin")
         return
     old = load("garmin.json") or {}
-    out = {"updated": now_utc(), "activities": old.get("activities", []), "days": old.get("days", []), "ok": True, "errors": []}
+    out = {"updated": now_utc(), "ok": True, "errors": [], "activities": old.get("activities", []), "days": old.get("days", []),
+           "weight": old.get("weight", []), "profile": old.get("profile", {})}
     try:
-        token = fetch(
-            GARMIN + "/personalapitoken-service/personal-api/personal-api-key/token",
-            headers={"Authorization": f"ApiKey {key}"}, data=b"", method="POST",
-        ).decode().strip()
+        token = fetch(GARMIN + "/personalapitoken-service/personal-api/personal-api-key/token",
+                      headers={"Authorization": f"ApiKey {key}"}, data=b"", method="POST").decode().strip()
+        if token.startswith("{"):
+            j = json.loads(token)
+            token = j.get("access_token") or j.get("accessToken") or j.get("token") or token
     except Exception as e:
         out["ok"] = False
         out["errors"].append(f"token: {type(e).__name__} {getattr(e, 'code', '')}".strip())
-        out["activities"], out["days"] = old.get("activities", []), old.get("days", [])
         save("garmin.json", out)
         return
 
     today = datetime.now(ET).date()
-    # activities: last ~120 days, newest first. Start location is dropped on purpose (public repo).
-    try:
-        acts = []
-        for page in range(4):
-            batch = garmin_get(token, "/activitylist-service/activities/search/activities", {
-                "start": page * 40, "limit": 40,
-                "startDate": (today - timedelta(days=120)).isoformat(), "endDate": today.isoformat(),
-            }) or []
-            acts += batch
-            if len(batch) < 40:
+    start = today - timedelta(days=29)
+    raw = {}
+
+    def call(name, path, params=None):
+        try:
+            r = garmin_get(token, path, params)
+            raw[name] = scrub(r)
+            return r
+        except Exception as e:
+            out["errors"].append(f"{name}: {type(e).__name__} {getattr(e, 'code', '')}".strip())
+            raw[name] = f"error {getattr(e, 'code', type(e).__name__)}"
+            return None
+
+    days: dict[str, dict] = {}
+    put = lambda dy, k, v: v is not None and days.setdefault(dy, {}).__setitem__(k, v)
+
+    # ---- daily summaries: steps, calories, distance, floors, intensity minutes, stress, heart rate, body battery, SpO2, respiration...
+    ds = call("daily_summaries", "/usersummary-service/v2/dailysummaries", {"startDate": start.isoformat(), "endDate": today.isoformat()})
+    for d in as_list(ds, "dailySummaries"):
+        dy = day_of(d)
+        if dy:
+            days.setdefault(dy, {})["all"] = flat(d)
+
+    # ---- the per-stat endpoints (some fill in what the summary lacks)
+    for name, path in (("steps", "steps"), ("stress", "stress"), ("hydration", "hydration")):
+        r = call(name, f"/usersummary-service/stats/{path}/daily/{start.isoformat()}/{today.isoformat()}")
+        for d in as_list(r):
+            dy = day_of(d)
+            if dy:
+                days.setdefault(dy, {})[f"{name}_stats"] = flat(d.get("values", d))
+
+    # ---- sleep: summaries for the range, full detail (stages, score) for each night
+    sl = call("sleep_summaries", "/sleep-service/sleep/dailySleepSummariesByDate", {"startDate": start.isoformat(), "endDate": today.isoformat()})
+    for d in as_list(sl, "dailySleepSummaries"):
+        dto = d.get("dailySleepDTO", d) if isinstance(d, dict) else {}
+        dy = day_of(dto) or day_of(d)
+        if dy:
+            days.setdefault(dy, {})["sleep"] = flat(d)
+    for n in range(7):
+        dy = (today - timedelta(days=n)).isoformat()
+        r = call("sleep_detail" if n == 0 else f"_sleep_{n}", "/sleep-service/sleep/dailySleep", {"date": dy})
+        if isinstance(r, dict):
+            days.setdefault(dy, {})["sleep_detail"] = flat(r.get("dailySleepDTO", r))
+            if r.get("dailySleepDTO") is not None:
+                for k in ("avgOvernightHrv", "restingHeartRate", "bodyBatteryChange", "avgSleepStress"):
+                    if r.get(k) is not None:
+                        days[dy]["sleep_detail"][k] = r[k]
+    for k in [k for k in raw if k.startswith("_sleep_")]:
+        raw.pop(k)
+
+    # ---- body battery, HRV
+    bb = call("body_battery", "/wellness-service/wellness/bodyBattery/reports/daily", {"startDate": start.isoformat(), "endDate": today.isoformat()})
+    for d in as_list(bb):
+        dy = day_of(d)
+        if dy:
+            days.setdefault(dy, {})["bb"] = flat(d)
+    hv = call("hrv", f"/hrv-service/hrv/daily/{start.isoformat()}/{today.isoformat()}")
+    for d in as_list(hv, "hrvSummaries"):
+        dy = day_of(d)
+        if dy:
+            days.setdefault(dy, {})["hrv_detail"] = flat(d)
+
+    # ---- today only: heart rate, SpO2, fitness age
+    hr = call("heart_rate_today", "/wellness-service/wellness/dailyHeartRate", {"date": today.isoformat()})
+    if isinstance(hr, dict):
+        days.setdefault(today.isoformat(), {})["hr"] = flat(hr)
+    sp = call("spo2_today", f"/wellness-service/wellness/daily/spo2acclimation/{today.isoformat()}")
+    if isinstance(sp, (dict, list)):
+        days.setdefault(today.isoformat(), {})["spo2"] = flat(sp if isinstance(sp, dict) else (sp[0] if sp else {}))
+    fa = call("fitness_age", f"/fitnessage-service/fitnessage/v2/{today.isoformat()}")
+    zones = call("hr_zones", "/biometric-service/heartRateZones/v2")
+    prof = call("profile_settings", "/userprofile-service/userprofile/settings")
+    profile = {}
+    if isinstance(fa, dict):
+        profile["fitness_age"] = flat(fa)
+    if zones is not None:
+        profile["hr_zones"] = [flat(z) for z in as_list(zones)][:4]
+    if isinstance(prof, dict):
+        # only fitness numbers, nothing that identifies him
+        f = flat(prof)
+        profile["fitness"] = {k: v for k, v in f.items() if re.search(r"vo2|lactate|threshold|maxhr|restinghr|ftp|trainingstatus", k, re.I)}
+    out["profile"] = profile or out["profile"]
+
+    # ---- weight
+    wt = call("weight", f"/weight-service/weight/range/{(today - timedelta(days=180)).isoformat()}/{today.isoformat()}", {"includeAll": "true"})
+    ws = []
+    for d in as_list(wt, "dailyWeightSummaries", "dateWeightList"):
+        f = flat(d)
+        dy = day_of(d) or str(f.get("summaryDate") or "")[:10]
+        lbs = None
+        for k, v in f.items():
+            if re.search(r"(^|\.)weight$", k, re.I) and isinstance(v, (int, float)) and v > 1000:  # grams
+                lbs = round(v / 453.592, 1)
                 break
+        if dy and lbs:
+            ws.append({"date": dy, "lbs": lbs, "all": f})
+    if wt is not None:
+        out["weight"] = sorted(ws, key=lambda x: x["date"])
+
+    # ---- wellness activity summaries
+    call("wellness_activities", f"/wellnessactivity-service/activity/summary/range/{start.isoformat()}/{today.isoformat()}")
+
+    # ---- activities (no maps or GPS)
+    acts = []
+    for page in range(5):
+        batch = call("activities" if page == 0 else "_acts", "/activitylist-service/activities/search/activities", {"start": page * 50, "limit": 50})
+        batch = as_list(batch, "activityList", "activities")
+        acts += [a for a in batch if isinstance(a, dict)]
+        if len(batch) < 50:
+            break
+    raw.pop("_acts", None)
+    if acts or not out["activities"]:
         out["activities"] = [{
             "id": a.get("activityId"),
             "name": a.get("activityName"),
@@ -233,75 +386,45 @@ def build_garmin() -> None:
             "elev_ft": round((a.get("elevationGain") or 0) * 3.28084) if a.get("elevationGain") else None,
             "load": a.get("activityTrainingLoad"),
             "te": a.get("aerobicTrainingEffect"),
+            "te_an": a.get("anaerobicTrainingEffect"),
             "sets": a.get("totalSets"),
             "reps": a.get("totalReps"),
+            "steps": a.get("steps"),
+            "cadence": a.get("averageRunningCadenceInStepsPerMinute"),
+            "vo2": a.get("vO2MaxValue"),
+            "all": flat(a),
         } for a in acts]
-    except Exception as e:
-        out["errors"].append(f"activities: {type(e).__name__} {getattr(e, 'code', '')}".strip())
 
-    # daily stats for the last 14 days
-    days: dict[str, dict] = {}
-    start = today - timedelta(days=13)
-    try:
-        ds = garmin_get(token, "/usersummary-service/v2/dailysummaries", {"startDate": start.isoformat(), "endDate": today.isoformat()}) or []
-        if isinstance(ds, dict):
-            ds = ds.get("dailySummaries") or ds.get("summaries") or [ds]
-        for d in ds:
-            day = str(pick(d, "calendarDate", "date") or "")[:10]
-            if not day:
-                continue
-            hr = d.get("heartRate") if isinstance(d.get("heartRate"), dict) else {}
-            st = d.get("steps") if isinstance(d.get("steps"), dict) else {}
-            bb = d.get("bodyBattery") if isinstance(d.get("bodyBattery"), dict) else {}
-            stress = d.get("stress") if isinstance(d.get("stress"), dict) else {}
-            days.setdefault(day, {})
-            days[day].update({k: v for k, v in {
-                "steps": pick(d, "totalSteps") or pick(st, "value", "totalSteps", "total"),
-                "rhr": pick(d, "restingHeartRate") or pick(hr, "restingValue", "restingHeartRate"),
-                "bb_high": pick(d, "bodyBatteryHighestValue") or pick(bb, "maxValue", "highest"),
-                "bb_low": pick(d, "bodyBatteryLowestValue") or pick(bb, "minValue", "lowest"),
-                "stress": pick(d, "averageStressLevel") or pick(stress, "avgStressLevel", "averageStressLevel"),
-            }.items() if v is not None})
-    except Exception as e:
-        out["errors"].append(f"daily summaries: {type(e).__name__} {getattr(e, 'code', '')}".strip())
-    try:
-        ss = garmin_get(token, "/sleep-service/sleep/dailySleepSummariesByDate", {"startDate": start.isoformat(), "endDate": today.isoformat()}) or []
-        if isinstance(ss, dict):
-            ss = ss.get("dailySleepSummaries") or ss.get("summaries") or [ss]
-        for s in ss:
-            dto = s.get("dailySleepDTO") if isinstance(s.get("dailySleepDTO"), dict) else s
-            day = str(pick(dto, "calendarDate", "date") or "")[:10]
-            secs = pick(dto, "sleepTimeSeconds", "totalSleepSeconds", "durationInSeconds")
-            if not day or not secs:
-                continue
-            score = pick(dto, "sleepScore", "overallSleepScore")
-            if isinstance(score, dict):
-                score = pick(score, "value", "overall")
-            sc = dto.get("sleepScores") if isinstance(dto.get("sleepScores"), dict) else {}
-            if score is None and isinstance(sc.get("overall"), dict):
-                score = sc["overall"].get("value")
-            days.setdefault(day, {})
-            days[day]["sleep_h"] = round(secs / 3600, 1)
-            if score is not None:
-                days[day]["sleep_score"] = score
-    except Exception as e:
-        out["errors"].append(f"sleep: {type(e).__name__} {getattr(e, 'code', '')}".strip())
-    try:
-        hv = garmin_get(token, f"/hrv-service/hrv/daily/{start.isoformat()}/{today.isoformat()}") or {}
-        for h in (hv.get("hrvSummaries") if isinstance(hv, dict) else hv) or []:
-            day = str(h.get("calendarDate") or "")[:10]
-            if day and h.get("lastNightAvg") is not None:
-                days.setdefault(day, {})
-                days[day]["hrv"] = h.get("lastNightAvg")
-                if h.get("status"):
-                    days[day]["hrv_status"] = h.get("status")
-    except Exception as e:
-        out["errors"].append(f"hrv: {type(e).__name__} {getattr(e, 'code', '')}".strip())
-
-    if days:
-        out["days"] = [dict(date=k, **v) for k, v in sorted(days.items())]
+    # ---- simple fields the rest of the app (and the morning brief) already use
+    for dy, d in days.items():
+        a, sd, sm = d.get("all", {}), d.get("sleep_detail", {}), d.get("sleep", {})
+        pick = lambda src, *pats: None if not isinstance(src, dict) else next((v for k, v in src.items() for p in pats if re.search(p, k, re.I) and isinstance(v, (int, float))), None)
+        secs = sd.get("sleepTimeSeconds") or pick(sm, r"sleepTimeSeconds$")
+        if secs:
+            d["sleep_h"] = round(secs / 3600, 1)
+        sc = pick(sd, r"sleepScores\.overall\.value$") or pick(sm, r"overall\.value$", r"sleepScore$")
+        if sc is not None:
+            d["sleep_score"] = sc
+        for out_k, pats in (("steps", [r"(^|\.)totalSteps$", r"movement\.steps$", r"(^|\.)steps$"]),
+                            ("rhr", [r"restingHeartRate$", r"restingValue$"]),
+                            ("bb_high", [r"bodyBattery.*(highest|max|charged)", r"bodyBatteryHighestValue$"]),
+                            ("bb_low", [r"bodyBattery.*(lowest|min)", r"bodyBatteryLowestValue$"]),
+                            ("stress", [r"(averageStressLevel|avgStressLevel|stress\.avg|overallStressLevel)$"]),
+                            ("cal", [r"(totalKilocalories|calories\.total|totalCalories)$"]),
+                            ("active_cal", [r"(activeKilocalories|calories\.active|activeCalories)$"])):
+            v = None
+            for src in (a, d.get("steps_stats", {}), d.get("stress_stats", {}), d.get("bb", {}), d.get("hr", {}), sd):
+                v = v if v is not None else pick(src, *pats)
+            if v is not None:
+                d[out_k] = v
+        h = d.get("hrv_detail", {})
+        if h.get("lastNightAvg") is not None:
+            d["hrv"] = h.get("lastNightAvg")
+            d["hrv_status"] = h.get("status")
+    out["days"] = [dict(date=k, **v) for k, v in sorted(days.items()) if k] or out["days"]
     out["ok"] = not out["errors"]
     save("garmin.json", out)
+    save("garmin_raw.json", {"updated": now_utc(), "note": "One-time sample of what Garmin sends, used to build the Fitness tab. Safe to delete.", "responses": raw})
 
 
 # ---------------------------------------------------------------- conditions (for the AI overview)
