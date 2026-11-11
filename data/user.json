@@ -1,0 +1,62 @@
+{
+ "v": 1,
+ "updatedAt": 1794412236948,
+ "place": "auto",
+ "places": [],
+ "here": {
+  "name": "Villanova",
+  "at": "2026-11-11"
+ },
+ "classes": [
+  {
+   "id": "wwy5cyoqfu",
+   "code": "PHY",
+   "name": "Physics",
+   "prof": "",
+   "room": "",
+   "when": "",
+   "color": "#1f4e9c",
+   "target": "B+",
+   "cats": [],
+   "guides": []
+  },
+  {
+   "id": "g20m60pqfu",
+   "code": "STAT 1430",
+   "name": "Business Statistics",
+   "prof": "",
+   "room": "",
+   "when": "",
+   "color": "#0f7c8c",
+   "target": "B+",
+   "cats": [],
+   "guides": []
+  },
+  {
+   "id": "3buiyk4qfu",
+   "code": "HIS 1165",
+   "name": "War and Society",
+   "prof": "",
+   "room": "",
+   "when": "",
+   "color": "#7a3db8",
+   "target": "B+",
+   "cats": [],
+   "guides": []
+  },
+  {
+   "id": "bojua99qfu",
+   "code": "ECO 2101",
+   "name": "Macroeconomic Theory",
+   "prof": "",
+   "room": "",
+   "when": "",
+   "color": "#b06a00",
+   "target": "B+",
+   "cats": [],
+   "guides": []
+  }
+ ],
+ "items": [],
+ "doneIds": {}
+}
