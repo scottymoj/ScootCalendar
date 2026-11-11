@@ -284,14 +284,6 @@ def build_garmin() -> None:
         if dy:
             days.setdefault(dy, {})["all"] = flat(d)
 
-    # ---- the per-stat endpoints (some fill in what the summary lacks)
-    for name, path in (("steps", "steps"), ("stress", "stress"), ("hydration", "hydration")):
-        r = call(name, f"/usersummary-service/stats/{path}/daily/{start.isoformat()}/{today.isoformat()}")
-        for d in as_list(r):
-            dy = day_of(d)
-            if dy:
-                days.setdefault(dy, {})[f"{name}_stats"] = flat(d.get("values", d))
-
     # ---- sleep: summaries for the range, full detail (stages, score) for each night
     sl = call("sleep_summaries", "/sleep-service/sleep/dailySleepSummariesByDate", {"startDate": start.isoformat(), "endDate": today.isoformat()})
     for d in as_list(sl, "dailySleepSummaries"):
@@ -332,16 +324,20 @@ def build_garmin() -> None:
         days.setdefault(today.isoformat(), {})["spo2"] = flat(sp if isinstance(sp, dict) else (sp[0] if sp else {}))
     fa = call("fitness_age", f"/fitnessage-service/fitnessage/v2/{today.isoformat()}")
     zones = call("hr_zones", "/biometric-service/heartRateZones/v2")
-    prof = call("profile_settings", "/userprofile-service/userprofile/settings")
     profile = {}
     if isinstance(fa, dict):
-        profile["fitness_age"] = flat(fa)
-    if zones is not None:
-        profile["hr_zones"] = [flat(z) for z in as_list(zones)][:4]
-    if isinstance(prof, dict):
-        # only fitness numbers, nothing that identifies him
-        f = flat(prof)
-        profile["fitness"] = {k: v for k, v in f.items() if re.search(r"vo2|lactate|threshold|maxhr|restinghr|ftp|trainingstatus", k, re.I)}
+        comp = fa.get("components") or {}
+        g = lambda k, f="value": (comp.get(k) or {}).get(f)
+        profile["fitness_age"] = {k: v for k, v in {
+            "fitness_age": fa.get("fitnessAge"), "age": fa.get("chronologicalAge"), "previous": fa.get("previousFitnessAge"),
+            "vig_days": g("vigorousDaysAvg"), "vig_days_target": g("vigorousDaysAvg", "targetValue"),
+            "vig_min": g("vigorousMinutesAvg"), "vig_min_target": g("vigorousMinutesAvg", "targetValue"),
+            "rhr": g("rhr"), "bmi": g("bmi"), "bmi_target": g("bmi", "targetValue"),
+        }.items() if v is not None}
+    z = as_list(zones)
+    if z and isinstance(z[0], dict):
+        z0 = next((x for x in z if x.get("sport") == "DEFAULT"), z[0])
+        profile["hr_zones"] = {"floors": [z0.get(f"zone{i}Floor") for i in range(1, 6)], "max": z0.get("maxHeartRateUsed"), "rest": z0.get("restingHeartRateUsed")}
     out["profile"] = profile or out["profile"]
 
     # ---- weight
@@ -356,12 +352,9 @@ def build_garmin() -> None:
                 lbs = round(v / 453.592, 1)
                 break
         if dy and lbs:
-            ws.append({"date": dy, "lbs": lbs, "all": f})
+            ws.append({"date": dy, "lbs": lbs})
     if wt is not None:
         out["weight"] = sorted(ws, key=lambda x: x["date"])
-
-    # ---- wellness activity summaries
-    call("wellness_activities", f"/wellnessactivity-service/activity/summary/range/{start.isoformat()}/{today.isoformat()}")
 
     # ---- activities (no maps or GPS)
     acts = []
@@ -392,39 +385,71 @@ def build_garmin() -> None:
             "steps": a.get("steps"),
             "cadence": a.get("averageRunningCadenceInStepsPerMinute"),
             "vo2": a.get("vO2MaxValue"),
-            "all": flat(a),
+            "elapsed_min": round((a.get("elapsedDuration") or 0) / 60, 1) or None,
+            "speed_mph": round(a["averageSpeed"] * 2.23694, 2) if a.get("averageSpeed") else None,
+            "max_speed_mph": round(a["maxSpeed"] * 2.23694, 2) if a.get("maxSpeed") else None,
+            "elev_loss_ft": round(a["elevationLoss"] * 3.28084) if a.get("elevationLoss") else None,
+            "max_cadence": a.get("maxRunningCadenceInStepsPerMinute"),
+            "power": a.get("avgPower"), "max_power": a.get("maxPower"), "norm_power": a.get("normPower"),
+            "stride_m": round(a["avgStrideLength"] / 100, 2) if a.get("avgStrideLength") else None,
+            "gct_ms": round(a["avgGroundContactTime"]) if a.get("avgGroundContactTime") else None,
+            "vert_osc_cm": round(a["avgVerticalOscillation"], 1) if a.get("avgVerticalOscillation") else None,
+            "vert_ratio": round(a["avgVerticalRatio"], 1) if a.get("avgVerticalRatio") else None,
+            "temp_f": round(a["maxTemperature"] * 9 / 5 + 32) if a.get("maxTemperature") is not None else None,
+            "pr": a.get("isPR"),
+            "bmr_cal": a.get("bmrCalories"),
         } for a in acts]
 
-    # ---- simple fields the rest of the app (and the morning brief) already use
+    # ---- one clean record per day (field names match what the Fitness tab and the morning brief read)
+    def clock(ms):
+        try:
+            return datetime.fromtimestamp(ms / 1000, timezone.utc).strftime("%H:%M")  # Garmin "Local" stamps are local time stored as UTC
+        except Exception:
+            return None
+    mins = lambda secs: round(secs / 60) if isinstance(secs, (int, float)) else None
+    clean = {}
     for dy, d in days.items():
-        a, sd, sm = d.get("all", {}), d.get("sleep_detail", {}), d.get("sleep", {})
-        pick = lambda src, *pats: None if not isinstance(src, dict) else next((v for k, v in src.items() for p in pats if re.search(p, k, re.I) and isinstance(v, (int, float))), None)
-        secs = sd.get("sleepTimeSeconds") or pick(sm, r"sleepTimeSeconds$")
-        if secs:
-            d["sleep_h"] = round(secs / 3600, 1)
-        sc = pick(sd, r"sleepScores\.overall\.value$") or pick(sm, r"overall\.value$", r"sleepScore$")
-        if sc is not None:
-            d["sleep_score"] = sc
-        for out_k, pats in (("steps", [r"(^|\.)totalSteps$", r"movement\.steps$", r"(^|\.)steps$"]),
-                            ("rhr", [r"restingHeartRate$", r"restingValue$"]),
-                            ("bb_high", [r"bodyBattery.*(highest|max|charged)", r"bodyBatteryHighestValue$"]),
-                            ("bb_low", [r"bodyBattery.*(lowest|min)", r"bodyBatteryLowestValue$"]),
-                            ("stress", [r"(averageStressLevel|avgStressLevel|stress\.avg|overallStressLevel)$"]),
-                            ("cal", [r"(totalKilocalories|calories\.total|totalCalories)$"]),
-                            ("active_cal", [r"(activeKilocalories|calories\.active|activeCalories)$"])):
-            v = None
-            for src in (a, d.get("steps_stats", {}), d.get("stress_stats", {}), d.get("bb", {}), d.get("hr", {}), sd):
-                v = v if v is not None else pick(src, *pats)
-            if v is not None:
-                d[out_k] = v
-        h = d.get("hrv_detail", {})
-        if h.get("lastNightAvg") is not None:
-            d["hrv"] = h.get("lastNightAvg")
-            d["hrv_status"] = h.get("status")
-    out["days"] = [dict(date=k, **v) for k, v in sorted(days.items()) if k] or out["days"]
+        a, sl, bb, hv, hr = d.get("all", {}), d.get("sleep_detail") or d.get("sleep") or {}, d.get("bb", {}), d.get("hrv_detail", {}), d.get("hr", {})
+        g = lambda src, k: src.get(k)
+        r = {
+            "steps": g(a, "movement.steps.value"), "steps_goal": g(a, "movement.steps.goal"),
+            "dist_mi": round(a["movement.steps.distanceInMeters"] / 1609.344, 2) if a.get("movement.steps.distanceInMeters") else None,
+            "floors": g(a, "movement.floorsAscended.value"), "floors_goal": g(a, "movement.floorsAscended.goal"), "floors_down": g(a, "movement.floorsDescended.value"),
+            "cal": g(a, "calories.burnedTotal"), "cal_active": g(a, "calories.burnedActive"), "cal_rest": g(a, "calories.burnedResting"),
+            "hr_min": g(a, "heartRate.minValue") or g(hr, "minHeartRate"), "hr_max": g(a, "heartRate.maxValue") or g(hr, "maxHeartRate"),
+            "rhr": g(a, "heartRate.restingValue") or g(hr, "restingHeartRate"), "rhr_7d": g(hr, "lastSevenDaysAvgRestingHeartRate"),
+            "im_mod": g(a, "intensityMinutes.moderate"), "im_vig": g(a, "intensityMinutes.vigorous"), "im_goal": g(a, "intensityMinutes.goal"),
+            "stress": g(a, "stress.avgLevel"), "stress_max": g(a, "stress.maxLevel"), "stress_q": g(a, "stress.qualifier"),
+            "stress_rest_m": mins((a.get("stress.restDurationInMillis") or 0) / 1000) if a.get("stress.restDurationInMillis") else None,
+            "stress_low_m": mins((a.get("stress.lowStressDurationInMillis") or 0) / 1000) if a.get("stress.lowStressDurationInMillis") else None,
+            "stress_med_m": mins((a.get("stress.mediumStressDurationInMillis") or 0) / 1000) if a.get("stress.mediumStressDurationInMillis") else None,
+            "stress_high_m": mins((a.get("stress.highStressDurationInMillis") or 0) / 1000) if a.get("stress.highStressDurationInMillis") else None,
+            "stress_act_m": mins((a.get("stress.activityDurationInMillis") or 0) / 1000) if a.get("stress.activityDurationInMillis") else None,
+            "bb_high": g(a, "bodyBattery.maxValue"), "bb_low": g(a, "bodyBattery.minValue"), "bb_now": g(a, "bodyBattery.latestValue"),
+            "bb_charged": g(a, "bodyBattery.chargedValue") or g(bb, "charged"), "bb_drained": g(a, "bodyBattery.drainedValue") or g(bb, "drained"),
+            "bb_feedback": g(a, "bodyBattery.endOfDayDynamicFeedbackEvent.feedbackShortType") or g(a, "bodyBattery.dynamicFeedbackEvent.feedbackShortType"),
+            "resp": g(a, "respiration.avgValue"), "resp_min": g(a, "respiration.minValue"), "resp_max": g(a, "respiration.maxValue"),
+            "spo2": g(d.get("spo2", {}), "averageSpO2"), "spo2_low": g(d.get("spo2", {}), "lowestSpO2"),
+            "sleep_h": round(sl["sleepTimeSeconds"] / 3600, 1) if sl.get("sleepTimeSeconds") else None,
+            "sleep_score": g(sl, "sleepScores.overall.value"), "sleep_q": g(sl, "sleepScores.overall.qualifierKey"),
+            "deep_m": mins(sl.get("deepSleepSeconds")), "light_m": mins(sl.get("lightSleepSeconds")), "rem_m": mins(sl.get("remSleepSeconds")), "awake_m": mins(sl.get("awakeSleepSeconds")),
+            "nap_m": mins(sl.get("napTimeSeconds")) or None, "awake_count": g(sl, "awakeCount"),
+            "bed": clock(sl["sleepStartTimestampLocal"]) if sl.get("sleepStartTimestampLocal") else None,
+            "wake": clock(sl["sleepEndTimestampLocal"]) if sl.get("sleepEndTimestampLocal") else None,
+            "sleep_hr": g(sl, "avgHeartRate"), "sleep_resp": g(sl, "averageRespirationValue"), "sleep_stress": g(sl, "avgSleepStress"),
+            "sleep_need_m": g(sl, "sleepNeed.actual"), "sleep_feedback": g(sl, "sleepScoreFeedback"),
+            "rem_q": g(sl, "sleepScores.remPercentage.qualifierKey"), "deep_q": g(sl, "sleepScores.deepPercentage.qualifierKey"),
+            "light_q": g(sl, "sleepScores.lightPercentage.qualifierKey"), "restless_q": g(sl, "sleepScores.restlessness.qualifierKey"),
+            "hrv": g(hv, "lastNightAvg"), "hrv_week": g(hv, "weeklyAvg"), "hrv_high": g(hv, "lastNight5MinHigh"), "hrv_status": g(hv, "status"),
+            "hrv_base_low": g(hv, "baseline.balancedLow"), "hrv_base_high": g(hv, "baseline.balancedUpper"),
+        }
+        r = {k: v for k, v in r.items() if v is not None}
+        if r:
+            clean[dy] = r
+    out["days"] = [dict(date=k, **v) for k, v in sorted(clean.items()) if k] or out["days"]
     out["ok"] = not out["errors"]
     save("garmin.json", out)
-    save("garmin_raw.json", {"updated": now_utc(), "note": "One-time sample of what Garmin sends, used to build the Fitness tab. Safe to delete.", "responses": raw})
+    (DATA / "garmin_raw.json").unlink(missing_ok=True)
 
 
 # ---------------------------------------------------------------- conditions (for the AI overview)
