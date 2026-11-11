@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11T15:38:22Z",
+ "updated": "2026-11-11T16:12:21Z",
  "places": {
   "villanova": {
    "name": "Villanova",
@@ -8,10 +8,10 @@
      "date": "2026-11-11",
      "hi": 62,
      "lo": 42,
-     "rain_pct": 3,
+     "rain_pct": 2,
      "rain_in": 0.0,
      "code": 3,
-     "wind_max_mph": 5,
+     "wind_max_mph": 6,
      "rain_hours": []
     },
     {
@@ -93,7 +93,7 @@
    "days": [
     {
      "date": "2026-11-11",
-     "hi": 61,
+     "hi": 62,
      "lo": 42,
      "rain_pct": 2,
      "rain_in": 0.0,
@@ -206,7 +206,7 @@
      "rain_pct": 1,
      "rain_in": 0.0,
      "code": 3,
-     "wind_max_mph": 10,
+     "wind_max_mph": 9,
      "rain_hours": []
     },
     {
