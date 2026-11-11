@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11T16:15:37Z",
+ "updated": "2026-11-11T22:36:45Z",
  "events": [
   {
    "id": "ob48befb57c",
@@ -530,6 +530,18 @@
    "feed": "outlook#2"
   },
   {
+   "id": "o9d26b72f9f",
+   "src": "outlook",
+   "title": "Stock Pitch",
+   "start": "2026-11-10",
+   "end": "2026-11-11",
+   "allDay": true,
+   "location": "",
+   "notes": "",
+   "cal": "Wildcat Fund",
+   "feed": "outlook#8"
+  },
+  {
    "id": "oa4d50431e0",
    "src": "outlook",
    "title": "Physics Lab",
@@ -564,6 +576,18 @@
    "notes": "",
    "cal": "Calendar",
    "feed": "outlook#2"
+  },
+  {
+   "id": "oaffc2b4549",
+   "src": "outlook",
+   "title": "Bank of America Bank Visit",
+   "start": "2026-11-10T17:30-05:00",
+   "end": "2026-11-10T19:30-05:00",
+   "allDay": false,
+   "location": "Bartley Exchange",
+   "notes": "",
+   "cal": "Event",
+   "feed": "outlook#3"
   },
   {
    "id": "o9a7b110ce7",
@@ -662,18 +686,6 @@
    "feed": "outlook#2"
   },
   {
-   "id": "ofaf9acc03f",
-   "src": "outlook",
-   "title": "Bank of America Bank Visit",
-   "start": "2026-11-12T18:00-05:00",
-   "end": "2026-11-12T19:30-05:00",
-   "allDay": false,
-   "location": "Driscoll Hall 134",
-   "notes": "",
-   "cal": "Event",
-   "feed": "outlook#3"
-  },
-  {
    "id": "o54ebf15954",
    "src": "outlook",
    "title": "World History",
@@ -714,10 +726,10 @@
    "src": "outlook",
    "title": "Mr. Dowd Coffee Chat",
    "start": "2026-11-16T16:00-05:00",
-   "end": "2026-11-16T16:30-05:00",
+   "end": "2026-11-16T17:00-05:00",
    "allDay": false,
    "location": "",
-   "notes": "",
+   "notes": "https://alliancebernstein.zoom.us/j/95610452241?pwd=lWpko7XcvUduSiFSaWxDOycucHH3gC.1&from=addon\n\nmeeting ID: 956 1045 2241\nPasscode: 022886",
    "cal": "Coffee Chats",
    "feed": "outlook#11"
   },
@@ -966,7 +978,7 @@
    "src": "outlook",
    "title": "Mr. Artiglere Coffee Chat",
    "start": "2026-11-28T09:45-05:00",
-   "end": "2026-11-28T10:30-05:00",
+   "end": "2026-11-28T10:45-05:00",
    "allDay": false,
    "location": "Dunkin' Hickory Tree",
    "notes": "",
@@ -1226,6 +1238,18 @@
    "feed": "outlook#2"
   },
   {
+   "id": "o885e72a9b2",
+   "src": "outlook",
+   "title": "Mr. Brandmeyer Coffee Chat",
+   "start": "2026-12-09T15:00-05:00",
+   "end": "2026-12-09T16:00-05:00",
+   "allDay": false,
+   "location": "",
+   "notes": "https://goldmansachs.zoom.us/j/3340277701?pwd=V0w1S2x5a0xPVVRXVFd6Mm5PdEcxQT09&omn=97846133845&from=addon\n\nMeeting ID: 334 027 7701\nPasscode: 537033",
+   "cal": "Coffee Chats",
+   "feed": "outlook#11"
+  },
+  {
    "id": "o95e823b0f6",
    "src": "outlook",
    "title": "Business Statitsics",
@@ -1322,6 +1346,18 @@
    "feed": "outlook#5"
   },
   {
+   "id": "o22307429bf",
+   "src": "outlook",
+   "title": "Business Statistics Final Exam",
+   "start": "2026-12-15T11:30-05:00",
+   "end": "2026-12-15T14:00-05:00",
+   "allDay": false,
+   "location": "",
+   "notes": "",
+   "cal": "Statistics",
+   "feed": "outlook#10"
+  },
+  {
    "id": "oe6f467384f",
    "src": "outlook",
    "title": "Economics Final Exam",
@@ -1349,9 +1385,9 @@
  "sources": {
   "outlook": {
    "ok": true,
-   "count": 112,
+   "count": 115,
    "feeds": 12,
-   "at": "2026-11-11T16:15:43Z"
+   "at": "2026-11-11T22:36:56Z"
   },
   "brightspace": {
    "ok": false,
