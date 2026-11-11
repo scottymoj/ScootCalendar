@@ -333,52 +333,167 @@ function actKind(type) {
 const FIT_SVG = { ...ACT_SVG, Bike:`<svg viewBox="0 0 24 24"><circle cx="6" cy="16" r="3.5"/><circle cx="18" cy="16" r="3.5"/><path d="M6 16l4-7h5l3 7M10 9l2 7M14 5h2"/></svg>`, Walk:`<svg viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="2"/><path d="M9 21l2-6 3 3v3M8 12l2-4h3l2 3h2M11 15l-1-4"/></svg>` };
 const pace = (min, mi) => { if (!mi) return ""; const p = min / mi; return `${Math.floor(p)}:${pad(Math.round((p % 1) * 60) % 60)}/mi`; };
 const parseG = s => new Date(String(s).replace(" ", "T"));
+const num = (v, d = 0) => v == null ? "—" : Number(v).toLocaleString("en-US", { maximumFractionDigits:d, minimumFractionDigits:d });
+const hm = m => m == null ? "—" : `${Math.floor(m / 60)}h ${pad(Math.round(m % 60))}m`;
+const clock12 = t => { if (!t) return "—"; const [h, m] = t.split(":").map(Number); return fmtTime(new Date(2000, 0, 1, h, m)); };
+const garminWords = s => !s ? "" : String(s).replace(/^(POSITIVE|NEGATIVE|NEUTRAL|MOD|STRESS)_/, "").replace(/_/g, " ").toLowerCase().replace(/^./, c => c.toUpperCase());
+const qual = q => q && !/^unknown$/i.test(q) ? String(q).toLowerCase().replace(/_/g, " ").replace(/^./, c => c.toUpperCase()) : "";
+const FS = { day:null, metric: lsGet("sp_fitmetric", "steps") };
+const TRENDS = [
+  ["steps", "Steps", d => d.steps, 0], ["sleep_h", "Sleep", d => d.sleep_h, 1], ["sleep_score", "Sleep score", d => d.sleep_score, 0],
+  ["rhr", "Resting HR", d => d.rhr, 0], ["hrv", "HRV", d => d.hrv, 0], ["stress", "Stress", d => d.stress, 0],
+  ["bb_high", "Body Battery", d => d.bb_high, 0], ["cal", "Calories", d => d.cal, 0], ["im", "Intensity min", d => (d.im_mod || 0) + 2 * (d.im_vig || 0) || null, 0],
+  ["floors", "Floors", d => d.floors, 0], ["resp", "Respiration", d => d.resp, 0],
+];
+function segBar(parts) {
+  const tot = parts.reduce((a, p) => a + (p[1] || 0), 0);
+  if (!tot) return "";
+  return `<div class="segbar">${parts.filter(p => p[1]).map(p => `<i style="width:${p[1] / tot * 100}%;background:${p[2]}"></i>`).join("")}</div>
+    <div class="seglegend">${parts.filter(p => p[1]).map(p => `<span><i style="background:${p[2]}"></i>${p[0]} <b>${p[3] || hm(p[1])}</b></span>`).join("")}</div>`;
+}
+function trendChart(days, fn, dec) {
+  const pts = days.map(d => ({ d, v:fn(d) }));
+  const vals = pts.filter(p => p.v != null).map(p => p.v);
+  if (!vals.length) return `<div class="empty">No data yet</div>`;
+  const mx = Math.max(...vals) * 1.1, mn = 0, W = 300, H = 120, bw = W / pts.length;
+  const avg = vals.reduce((a, b) => a + b, 0) / vals.length;
+  const y = v => 100 - (v - mn) / (mx - mn) * 92;
+  return `<svg class="chart" viewBox="0 0 ${W} ${H}">${pts.map((p, i) => p.v == null ? "" : `<rect class="b${i === pts.length - 1 ? " cur" : ""}" x="${(i * bw + bw * .15).toFixed(1)}" y="${y(p.v).toFixed(1)}" width="${(bw * .7).toFixed(1)}" height="${(100 - y(p.v)).toFixed(1)}"/>`).join("")}
+    <line x1="0" x2="${W}" y1="${y(avg)}" y2="${y(avg)}" stroke="#c22a2a" stroke-width="1" stroke-dasharray="3 3"/>
+    <text x="0" y="116">${esc(fmtDay(fromKey(pts[0].d.date)).split(", ")[1])}</text><text x="${W}" y="116" text-anchor="end">${esc(fmtDay(fromKey(pts[pts.length - 1].d.date)).split(", ")[1])}</text></svg>
+    <p class="hint" style="margin-top:2px"><span style="color:#c22a2a">- - -</span> ${days.length}-day average: <b>${num(avg, dec)}</b> · high ${num(Math.max(...vals), dec)} · low ${num(Math.min(...vals), dec)}</p>`;
+}
+function openActivity(a) {
+  const k = actKind(a.type);
+  const row = (l, v) => v == null || v === "" ? "" : `<div class="kv"><span>${l}</span><div>${v}</div></div>`;
+  sheet(a.name || k, `
+    ${row("When", `${fmtLong(a.d)}, ${fmtTime(a.d)}`)}
+    ${row("Type", esc(String(a.type || "").replace(/_/g, " ")))}
+    ${row("Distance", a.dist_mi >= 0.05 ? `${a.dist_mi.toFixed(2)} mi` : null)}
+    ${row("Time", `${hm(a.dur_min)}${a.elapsed_min ? ` <span class="muted">(${hm(a.elapsed_min)} total)</span>` : ""}`)}
+    ${row("Pace", k === "Run" && a.dist_mi ? pace(a.dur_min, a.dist_mi) : null)}
+    ${row("Speed", a.speed_mph ? `${a.speed_mph} mph avg, ${a.max_speed_mph} max` : null)}
+    ${row("Heart rate", a.avg_hr ? `${Math.round(a.avg_hr)} avg, ${Math.round(a.max_hr)} max` : null)}
+    ${row("Calories", a.cal ? `${num(a.cal)}` : null)}
+    ${row("Elevation", a.elev_ft ? `+${a.elev_ft} ft / -${a.elev_loss_ft || 0} ft` : null)}
+    ${row("Cadence", a.cadence ? `${Math.round(a.cadence)} spm avg, ${Math.round(a.max_cadence)} max` : null)}
+    ${row("Stride", a.stride_m ? `${a.stride_m} m` : null)}
+    ${row("Ground contact", a.gct_ms ? `${a.gct_ms} ms` : null)}
+    ${row("Vertical osc.", a.vert_osc_cm ? `${a.vert_osc_cm} cm (ratio ${a.vert_ratio}%)` : null)}
+    ${row("Power", a.power ? `${a.power} W avg, ${a.max_power} max, ${a.norm_power} normalized` : null)}
+    ${row("Training effect", a.te ? `Aerobic ${a.te.toFixed(1)}, anaerobic ${(a.te_an || 0).toFixed(1)}` : null)}
+    ${row("Training load", a.load ? Math.round(a.load) : null)}
+    ${row("Sets / reps", a.sets ? `${a.sets} sets${a.reps ? `, ${a.reps} reps` : ""}` : null)}
+    ${row("Steps", a.steps ? num(a.steps) : null)}
+    ${row("Temperature", a.temp_f != null ? `${a.temp_f}°F (watch sensor)` : null)}
+    ${row("Personal record", a.pr ? "Yes" : null)}`);
+}
 VIEWS.fitness = async app => {
   const G = D.garmin;
   if (!G || (!G.activities.length && !G.days.length)) {
-    app.innerHTML = `<div class="brief-hero"><div class="kicker">Fitness</div><h1>Connect your Garmin</h1><p>Your runs, lifts, sleep and recovery show up here once your Garmin key is added. It also makes the Home activity pick smarter.</p></div>
-      <ol class="blist num" style="margin-top:10px">
-        <li>On a computer, sign in at connect.garmin.com and go to Settings, then Personal API Key (connect.garmin.com/app/settings/personalApiToken).</li>
-        <li>Create a key, accept the terms, pick 1 year, and copy it. Garmin only shows it once.</li>
-        <li>In GitHub, open ScootCalendar, then Settings, Secrets and variables, Actions. Add a new secret named GARMIN_API_KEY and paste the key.</li>
-        <li>Go to Actions, open "Update calendar data", and tap Run workflow. Your data shows up here in a minute or two.</li></ol>
-      ${G && G.errors && G.errors.length ? `<div class="err"><b>Garmin problem:</b> ${esc(G.errors.join(", "))}</div>` : ""}
-      <p class="hint">Don't paste the key into a chat or anywhere else. Your activities are saved to the public repo without maps or GPS locations.</p>`;
+    app.innerHTML = `<div class="brief-hero"><div class="kicker">Fitness</div><h1>Connect your Garmin</h1><p>Your Garmin data shows up here once the GARMIN_API_KEY secret is added in GitHub.</p></div>
+      ${G && G.errors && G.errors.length ? `<div class="err"><b>Garmin problem:</b> ${esc(G.errors.join(", "))}</div>` : ""}`;
     return;
   }
   const t = today0();
-  const wk0 = addDays(t, -((t.getDay() + 6) % 7)); // Monday
+  const days = (G.days || []).filter(d => d.date);
+  const keys = days.map(d => d.date);
+  if (!FS.day || !keys.includes(FS.day)) FS.day = [...days].reverse().find(d => d.steps != null || d.sleep_h != null)?.date || keys[keys.length - 1];
+  const i = keys.indexOf(FS.day), d = days[i] || {};
+  const dd = d.date ? fromKey(d.date) : t;
+  const isToday = d.date === dkey(t);
+  const P = G.profile || {}, FA = P.fitness_age, Z = P.hr_zones;
+
+  // this week (Mon-Sun)
+  const wk0 = addDays(t, -((t.getDay() + 6) % 7));
+  const wkDays = days.filter(x => fromKey(x.date) >= wk0);
+  const imWeek = wkDays.reduce((a, x) => a + (x.im_mod || 0) + 2 * (x.im_vig || 0), 0);
+  const imGoal = (days[days.length - 1] || {}).im_goal || 150;
   const acts = G.activities.map(a => ({ ...a, d:parseG(a.start), k:actKind(a.type) })).filter(a => !isNaN(a.d));
   const thisWk = acts.filter(a => a.d >= wk0);
-  const miles = thisWk.filter(a => a.k === "Run").reduce((s, a) => s + (a.dist_mi || 0), 0);
-  const mins = thisWk.reduce((s, a) => s + (a.dur_min || 0), 0);
-  // last 8 weeks of running miles
-  const weeks = [...Array(8).keys()].reverse().map(n => { const s = addDays(wk0, -7 * n), e = addDays(s, 7); return { s, mi:acts.filter(a => a.k === "Run" && a.d >= s && a.d < e).reduce((x, a) => x + (a.dist_mi || 0), 0), n:acts.filter(a => a.d >= s && a.d < e).length }; });
-  const mx = Math.max(5, ...weeks.map(w => w.mi));
-  const bw = 300 / 8;
-  const chart = `<svg class="chart" viewBox="0 0 300 130">${weeks.map((w, i) => { const h = w.mi / mx * 95; return `<rect class="b${i === 7 ? " cur" : ""}" x="${i * bw + 6}" y="${108 - h}" width="${bw - 12}" height="${Math.max(1, h)}"/><text class="vl" x="${i * bw + bw / 2}" y="${102 - h}" text-anchor="middle">${w.mi ? w.mi.toFixed(1) : ""}</text><text x="${i * bw + bw / 2}" y="124" text-anchor="middle">${i === 7 ? "This wk" : `${MON[w.s.getMonth()]} ${w.s.getDate()}`}</text>`; }).join("")}</svg>`;
-  const days = G.days || [];
-  const last = [...days].reverse().find(d => d.sleep_h || d.rhr) || {};
-  const lastRhr = [...days].reverse().find(d => d.rhr);
-  const lastBB = [...days].reverse().find(d => d.bb_high);
-  const lastHrv = [...days].reverse().find(d => d.hrv);
-  const sleeps = days.slice(-7);
-  const sm = Math.max(9, ...sleeps.map(d => d.sleep_h || 0));
-  const sleepChart = sleeps.length ? `<svg class="chart" viewBox="0 0 300 110">${sleeps.map((d, i) => { const w = 300 / sleeps.length, h = (d.sleep_h || 0) / sm * 75; const dt = fromKey(d.date); return `<rect class="b${(d.sleep_h || 0) >= 7 ? " cur" : ""}" x="${i * w + 8}" y="${88 - h}" width="${w - 16}" height="${Math.max(1, h)}"/><text class="vl" x="${i * w + w / 2}" y="${82 - h}" text-anchor="middle">${d.sleep_h ? d.sleep_h.toFixed(1) : ""}</text><text x="${i * w + w / 2}" y="104" text-anchor="middle">${DOW[dt.getDay()]}</text>`; }).join("")}</svg>` : "";
+  const weeks = [...Array(8).keys()].reverse().map(n => { const s = addDays(wk0, -7 * n), e = addDays(s, 7); return { s, mi:acts.filter(a => a.k === "Run" && a.d >= s && a.d < e).reduce((x, a) => x + (a.dist_mi || 0), 0) }; });
+  const mxw = Math.max(5, ...weeks.map(w => w.mi)), bw = 300 / 8;
+  const runChart = `<svg class="chart" viewBox="0 0 300 130">${weeks.map((w, n) => { const h = w.mi / mxw * 95; return `<rect class="b${n === 7 ? " cur" : ""}" x="${n * bw + 6}" y="${108 - h}" width="${bw - 12}" height="${Math.max(1, h)}"/><text class="vl" x="${n * bw + bw / 2}" y="${102 - h}" text-anchor="middle">${w.mi ? w.mi.toFixed(1) : ""}</text><text x="${n * bw + bw / 2}" y="124" text-anchor="middle">${n === 7 ? "This wk" : `${MON[w.s.getMonth()]} ${w.s.getDate()}`}</text>`; }).join("")}</svg>`;
+  const tr = TRENDS.find(x => x[0] === FS.metric) || TRENDS[0];
+  const stepPct = d.steps && d.steps_goal ? Math.min(100, d.steps / d.steps_goal * 100) : 0;
+  const hrvPos = d.hrv && d.hrv_base_low && d.hrv_base_high ? (() => { const lo = d.hrv_base_low * .7, hi = d.hrv_base_high * 1.3; return { p:Math.max(0, Math.min(100, (d.hrv - lo) / (hi - lo) * 100)), a:(d.hrv_base_low - lo) / (hi - lo) * 100, b:(d.hrv_base_high - lo) / (hi - lo) * 100 }; })() : null;
+  const lastW = (G.weight || []).slice(-1)[0];
+
   app.innerHTML = `
-    <div class="h-sec" style="margin-top:16px"><h2>This week</h2><span>Since Monday</span></div>
-    <div class="stats3"><div><b>${miles.toFixed(1)}</b><span>Miles run</span></div><div><b>${thisWk.length}</b><span>Workouts</span></div><div><b>${(mins / 60).toFixed(1)}</b><span>Hours</span></div></div>
-    <div class="h-sec"><h2>Running miles</h2><span>Last 8 weeks</span></div>${chart}
-    <div class="h-sec"><h2>Recovery</h2><span>${last.date ? relDay(fromKey(last.date)) : ""}</span></div>
-    <div class="grid2">
-      <div><div class="k">Sleep</div><div class="v">${last.sleep_h ? last.sleep_h.toFixed(1) : "—"}<small>hrs</small></div><div class="s">${last.sleep_score ? `Score ${last.sleep_score}` : ""}</div></div>
-      <div><div class="k">Resting HR</div><div class="v">${lastRhr ? lastRhr.rhr : "—"}<small>bpm</small></div></div>
-      <div><div class="k">HRV</div><div class="v">${lastHrv ? lastHrv.hrv : "—"}<small>ms</small></div><div class="s">${lastHrv && lastHrv.hrv_status ? esc(String(lastHrv.hrv_status).toLowerCase()) : ""}</div></div>
-      <div><div class="k">Body Battery</div><div class="v">${lastBB ? lastBB.bb_high : "—"}<small>high</small></div><div class="s">${lastBB && lastBB.bb_low != null ? `Low ${lastBB.bb_low}` : ""}</div></div>
+    <div class="datebar"><button data-fd="-1" ${i <= 0 ? "disabled style='opacity:.25'" : ""} aria-label="Previous day">‹</button><div class="d">${isToday ? "Today" : fmtDay(dd)}<small>${isToday ? fmtDay(dd) : relDay(dd)}</small></div><button data-fd="1" ${i >= keys.length - 1 ? "disabled style='opacity:.25'" : ""} aria-label="Next day">›</button></div>
+
+    <div class="h-sec"><h2>Steps</h2><span>${d.steps_goal ? `Goal ${num(d.steps_goal)}` : ""}</span></div>
+    <div class="bigline"><b>${num(d.steps)}</b><span>${d.dist_mi != null ? `${d.dist_mi.toFixed(2)} mi` : ""}</span></div>
+    ${d.steps_goal ? `<div class="prog" style="margin-top:8px;height:6px"><i style="width:${stepPct}%;background:var(--c-fit)"></i></div>` : ""}
+    <div class="stats3">
+      <div><b>${num(d.cal)}</b><span>Calories</span></div>
+      <div><b>${num((d.im_mod || 0) + 2 * (d.im_vig || 0))}</b><span>Intensity min</span></div>
+      <div><b>${num(d.floors)}</b><span>Floors up</span></div>
     </div>
-    ${sleepChart ? `<div class="h-sec"><h2>Sleep</h2><span>Last 7 nights</span></div>${sleepChart}` : ""}
-    <div class="h-sec"><h2>Recent activities</h2></div>
-    ${acts.slice(0, 20).map(a => `<div class="acty"><div class="ic">${FIT_SVG[a.k] || FIT_SVG.Other}</div><div class="nm">${esc(a.name || a.k)}<small>${esc(relDay(a.d))} · ${fmtTime(a.d)}${a.avg_hr ? ` · ${a.avg_hr} bpm avg` : ""}</small></div>
-      <div class="rt">${a.dist_mi >= 0.1 ? `<b>${a.dist_mi.toFixed(2)} mi</b>${a.k === "Run" ? pace(a.dur_min, a.dist_mi) : `${Math.round(a.dur_min)} min`}` : `<b>${Math.round(a.dur_min)} min</b>${a.sets ? `${a.sets} sets` : a.cal ? `${Math.round(a.cal)} cal` : ""}`}</div></div>`).join("") || `<div class="empty">No activities yet</div>`}
+    <div class="grid2">
+      <div><div class="k">Active calories</div><div class="v">${num(d.cal_active)}</div><div class="s">${num(d.cal_rest)} resting</div></div>
+      <div><div class="k">Intensity minutes</div><div class="v">${num(d.im_mod)}<small>mod</small> ${num(d.im_vig)}<small>vig</small></div><div class="s">Vigorous counts double</div></div>
+      <div><div class="k">Resting heart rate</div><div class="v">${num(d.rhr)}<small>bpm</small></div><div class="s">${d.rhr_7d ? `7-day avg ${d.rhr_7d}` : ""}</div></div>
+      <div><div class="k">Heart rate range</div><div class="v">${num(d.hr_min)}–${num(d.hr_max)}<small>bpm</small></div></div>
+      <div><div class="k">Stress</div><div class="v">${num(d.stress)}<small>avg</small></div><div class="s">${[qual(d.stress_q), d.stress_max ? `max ${d.stress_max}` : ""].filter(Boolean).join(", ")}</div></div>
+      <div><div class="k">Body Battery</div><div class="v">${num(d.bb_high)}<small>high</small></div><div class="s">Low ${num(d.bb_low)}${d.bb_now != null && isToday ? `, now ${d.bb_now}` : ""}</div></div>
+      <div><div class="k">Charged / drained</div><div class="v"><span style="color:var(--pos)">+${num(d.bb_charged)}</span> <span style="color:var(--neg)">−${num(d.bb_drained)}</span></div></div>
+      <div><div class="k">Respiration</div><div class="v">${num(d.resp)}<small>brpm</small></div><div class="s">${d.resp_min ? `${d.resp_min}–${d.resp_max}` : ""}</div></div>
+      <div><div class="k">Floors down</div><div class="v">${num(d.floors_down)}</div><div class="s">${d.floors_goal ? `Goal ${d.floors_goal} up` : ""}</div></div>
+      <div><div class="k">Pulse Ox</div><div class="v">${d.spo2 != null ? `${d.spo2}<small>%</small>` : "—"}</div><div class="s">${d.spo2_low ? `Low ${d.spo2_low}%` : "Turn on Pulse Ox on your watch to track"}</div></div>
+    </div>
+    ${d.stress_rest_m != null ? `<div class="card"><h4><span>Stress breakdown</span><span>${qual(d.stress_q)}</span></h4>${segBar([["Rest", d.stress_rest_m, "#1f4e9c"], ["Low", d.stress_low_m, "#8fb4dd"], ["Medium", d.stress_med_m, "#e3a43c"], ["High", d.stress_high_m, "#c22a2a"], ["Activity", d.stress_act_m, "#1a7f45"]])}</div>` : ""}
+    ${d.bb_feedback ? `<p class="hint">Body Battery: ${esc(garminWords(d.bb_feedback))}</p>` : ""}
+
+    <div class="h-sec"><h2>Sleep</h2><span>${d.bed ? `${clock12(d.bed)} – ${clock12(d.wake)}` : ""}</span></div>
+    ${d.sleep_h != null ? `
+    <div class="bigline"><b>${hm(d.sleep_h * 60)}</b><span>${d.sleep_score != null ? `Score <b>${d.sleep_score}</b> ${qual(d.sleep_q)}` : ""}</span></div>
+    <div class="card">${segBar([["Deep", d.deep_m, "#1f4e9c", `${hm(d.deep_m)}${d.deep_q ? ` · ${qual(d.deep_q)}` : ""}`], ["Light", d.light_m, "#8fb4dd", `${hm(d.light_m)}${d.light_q ? ` · ${qual(d.light_q)}` : ""}`], ["REM", d.rem_m, "#7a3db8", `${hm(d.rem_m)}${d.rem_q ? ` · ${qual(d.rem_q)}` : ""}`], ["Awake", d.awake_m, "#c9c6bf"]])}</div>
+    <div class="grid2">
+      <div><div class="k">Sleep need</div><div class="v">${d.sleep_need_m ? hm(d.sleep_need_m) : "—"}</div><div class="s">${d.sleep_need_m && d.sleep_h ? (d.sleep_h * 60 >= d.sleep_need_m ? "Met it" : `${hm(d.sleep_need_m - d.sleep_h * 60)} short`) : ""}</div></div>
+      <div><div class="k">Sleep heart rate</div><div class="v">${num(d.sleep_hr)}<small>bpm</small></div></div>
+      <div><div class="k">Sleep respiration</div><div class="v">${num(d.sleep_resp)}<small>brpm</small></div></div>
+      <div><div class="k">Sleep stress</div><div class="v">${num(d.sleep_stress)}</div></div>
+      <div><div class="k">Times awake</div><div class="v">${num(d.awake_count)}</div><div class="s">${d.restless_q ? `Restlessness: ${qual(d.restless_q)}` : ""}</div></div>
+      <div><div class="k">Naps</div><div class="v">${d.nap_m ? hm(d.nap_m) : "None"}</div></div>
+    </div>
+    ${d.sleep_feedback ? `<p class="hint">Garmin says: ${esc(garminWords(d.sleep_feedback))}</p>` : ""}` : `<div class="empty">No sleep recorded for this night</div>`}
+
+    <div class="h-sec"><h2>HRV</h2><span>${qual(d.hrv_status)}</span></div>
+    ${d.hrv != null ? `<div class="grid2">
+      <div><div class="k">Last night</div><div class="v">${d.hrv}<small>ms</small></div></div>
+      <div><div class="k">7-day average</div><div class="v">${num(d.hrv_week)}<small>ms</small></div></div>
+      <div><div class="k">5-min high</div><div class="v">${num(d.hrv_high)}<small>ms</small></div></div>
+      <div><div class="k">Your baseline</div><div class="v">${num(d.hrv_base_low)}–${num(d.hrv_base_high)}<small>ms</small></div></div></div>
+      ${hrvPos ? `<div class="range"><i class="band" style="left:${hrvPos.a}%;width:${hrvPos.b - hrvPos.a}%"></i><i class="dot" style="left:${hrvPos.p}%"></i></div><p class="hint">Green band is your normal range. The dot is last night.</p>` : ""}` : `<div class="empty">No HRV reading for this night</div>`}
+
+    <div class="h-sec"><h2>This week</h2><span>Since Monday</span></div>
+    <div class="stats3"><div><b>${num(wkDays.reduce((a, x) => a + (x.steps || 0), 0))}</b><span>Steps</span></div><div><b>${thisWk.length}</b><span>Workouts</span></div><div><b>${num(imWeek)}</b><span>Intensity min</span></div></div>
+    <div class="prog" style="height:6px;margin-top:10px"><i style="width:${Math.min(100, imWeek / imGoal * 100)}%;background:var(--c-fit)"></i></div>
+    <p class="hint">${num(imWeek)} of ${imGoal} intensity minutes this week</p>
+
+    <div class="h-sec"><h2>Trends</h2><span>Last ${days.length} days</span></div>
+    <div class="chips" style="margin-top:0">${TRENDS.map(x => `<button class="chip ${x[0] === tr[0] ? "on" : ""}" data-m="${x[0]}">${x[1]}</button>`).join("")}</div>
+    ${trendChart(days, tr[2], tr[3])}
+
+    ${FA ? `<div class="h-sec"><h2>Fitness age</h2><span>You're ${FA.age}</span></div>
+    <div class="bigline"><b>${num(FA.fitness_age)}</b><span>${FA.fitness_age < FA.age ? `${num(FA.age - FA.fitness_age)} years younger than your age` : FA.fitness_age > FA.age ? `${num(FA.fitness_age - FA.age)} years older than your age` : "Same as your age"}</span></div>
+    <div class="catrow" style="grid-template-columns:1fr 90px 90px"><div class="muted" style="font-size:12px;font-weight:700">WHAT COUNTS</div><div class="r muted" style="font-size:12px">YOU</div><div class="r muted" style="font-size:12px">TARGET</div></div>
+    ${[["Vigorous days / week", FA.vig_days, FA.vig_days_target, 1], ["Vigorous minutes / week", FA.vig_min, FA.vig_min_target, 0], ["Resting heart rate", FA.rhr, null, 0], ["BMI", FA.bmi, FA.bmi_target, 1]].filter(r => r[1] != null).map(r => `<div class="catrow" style="grid-template-columns:1fr 90px 90px"><div>${r[0]}</div><div class="r">${num(r[1], r[3])}</div><div class="r" style="font-weight:500">${r[2] != null ? num(r[2], r[3]) : "—"}</div></div>`).join("")}` : ""}
+
+    ${Z ? `<div class="h-sec"><h2>Heart rate zones</h2><span>Max ${Z.max} bpm</span></div>
+    ${Z.floors.map((f, n) => `<div class="catrow" style="grid-template-columns:44px 1fr 110px"><div><span class="zone z${n + 1}">Z${n + 1}</span></div><div>${["Warm up", "Easy", "Aerobic", "Threshold", "Maximum"][n]}</div><div class="r">${f}–${n < 4 ? Z.floors[n + 1] - 1 : Z.max} bpm</div></div>`).join("")}` : ""}
+
+    <div class="h-sec"><h2>Activities</h2><span>${acts.length} recorded</span></div>
+    ${weeks.some(w => w.mi) ? `<p class="hint" style="margin-top:0">Running miles, last 8 weeks</p>${runChart}` : ""}
+    ${acts.slice(0, 30).map((a, n) => `<button class="acty" data-a="${n}" style="width:100%;text-align:left"><div class="ic">${FIT_SVG[a.k] || FIT_SVG.Other}</div><div class="nm">${esc(a.name || a.k)}${a.pr ? ` <span class="st good">PR</span>` : ""}<small>${esc(relDay(a.d))} · ${fmtTime(a.d)}${a.avg_hr ? ` · ${Math.round(a.avg_hr)} bpm` : ""}</small></div>
+      <div class="rt">${a.dist_mi >= 0.1 ? `<b>${a.dist_mi.toFixed(2)} mi</b>${a.k === "Run" ? pace(a.dur_min, a.dist_mi) : hm(a.dur_min)}` : `<b>${hm(a.dur_min)}</b>${a.sets ? `${a.sets} sets` : a.cal ? `${Math.round(a.cal)} cal` : ""}`}</div></button>`).join("") || `<div class="empty">No activities yet. Record one on your watch and it shows up here within an hour.</div>`}
+
+    ${lastW ? `<div class="h-sec"><h2>Weight</h2><span>${relDay(fromKey(lastW.date))}</span></div><div class="bigline"><b>${lastW.lbs}</b><span>lbs, last logged ${fmtDay(fromKey(lastW.date))}</span></div>` : ""}
+
     <div class="updated">From Garmin Connect, updated ${ago(G.updated)}${G.errors && G.errors.length ? `<br>Some data didn't load: ${esc(G.errors.join(", "))}` : ""}</div>`;
+
+  $$("[data-fd]", app).forEach(b => b.onclick = () => { const j = i + +b.dataset.fd; if (keys[j]) { FS.day = keys[j]; route(); } });
+  $$("[data-m]", app).forEach(b => b.onclick = () => { FS.metric = b.dataset.m; lsSet("sp_fitmetric", FS.metric); route(); });
+  $$("[data-a]", app).forEach(b => b.onclick = () => openActivity(acts[+b.dataset.a]));
 };

@@ -295,3 +295,19 @@ main{max-width:760px;margin:0 auto;padding:0 16px 32px}
   .brief-hero h1{font-size:36px}
   .month .c{min-height:96px}
 }
+
+/* ---------- fitness (full Garmin) ---------- */
+.bigline{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.bigline b{font-size:44px;font-weight:800;letter-spacing:-1.8px;line-height:1}
+.bigline span{font-size:14px;color:var(--ink2)}
+.segbar{display:flex;height:14px;overflow:hidden;background:var(--rule)}
+.segbar i{display:block;height:100%}
+.seglegend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;font-size:12px;color:var(--ink2)}
+.seglegend span{display:inline-flex;align-items:center;gap:5px}
+.seglegend i{width:9px;height:9px;display:inline-block}
+.range{position:relative;height:12px;background:var(--rule);margin:14px 0 4px}
+.range .band{position:absolute;top:0;bottom:0;background:rgba(26,127,69,.35)}
+.range .dot{position:absolute;top:-4px;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:var(--ink);border:3px solid #fff;box-shadow:0 0 0 1px var(--ink)}
+.zone{display:inline-block;font-size:11px;font-weight:800;color:#fff;padding:2px 6px}
+.zone.z1{background:#8f8c86}.zone.z2{background:#1f4e9c}.zone.z3{background:#1a7f45}.zone.z4{background:#e3a43c}.zone.z5{background:#c22a2a}
+.datebar button[disabled]{pointer-events:none}
