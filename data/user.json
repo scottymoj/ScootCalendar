@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794506533812,
+ "updatedAt": 1794506867210,
  "place": "auto",
  "places": [],
  "here": {
@@ -233,7 +233,13 @@
      "id": "rfomatmi18",
      "name": "Quiz 1",
      "weight": "20",
-     "scores": []
+     "scores": [
+      {
+       "name": "Quiz 1",
+       "pts": "91",
+       "max": "100"
+      }
+     ]
     },
     {
      "id": "po712vvovt",
