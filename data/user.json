@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794504964535,
+ "updatedAt": 1794504999216,
  "place": "auto",
  "places": [],
  "here": {
@@ -56,9 +56,15 @@
    "cats": [
     {
      "id": "6kfhd6qqj3",
-     "name": "Presentations",
+     "name": "Presentation",
      "weight": "10",
-     "scores": []
+     "scores": [
+      {
+       "name": "Presentation",
+       "pts": "91",
+       "max": "100"
+      }
+     ]
     },
     {
      "id": "rzogyz00w0",
