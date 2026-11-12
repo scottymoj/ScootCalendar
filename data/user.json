@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794505165503,
+ "updatedAt": 1794505172908,
  "place": "auto",
  "places": [],
  "here": {
@@ -63,6 +63,12 @@
     {
      "id": "p15ibbo7tg",
      "name": "Unit 9 Data Collection / Exam 4",
+     "weight": "20",
+     "scores": []
+    },
+    {
+     "id": "su0y4q9l3g",
+     "name": "Homework",
      "weight": "20",
      "scores": []
     }
