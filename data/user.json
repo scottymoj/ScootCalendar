@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794506347632,
+ "updatedAt": 1794506491725,
  "place": "auto",
  "places": [],
  "here": {
@@ -22,7 +22,58 @@
      "id": "yt97a6xok8",
      "name": "Quizzes",
      "weight": "22.2222",
-     "scores": []
+     "scores": [
+      {
+       "name": "Quiz 1",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Quiz 2",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Quiz 3",
+       "pts": "90",
+       "max": "100"
+      },
+      {
+       "name": "Quiz 4",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Quiz 5",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Quiz 6",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Quiz 7",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Quiz 8",
+       "pts": "90",
+       "max": "100"
+      },
+      {
+       "name": "Quiz 9",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Quiz 10",
+       "pts": "100",
+       "max": "100"
+      }
+     ]
     },
     {
      "id": "5fdpb31zwn",
