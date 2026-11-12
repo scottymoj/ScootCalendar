@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794505203755,
+ "updatedAt": 1794505209398,
  "place": "auto",
  "places": [],
  "here": {
@@ -33,6 +33,12 @@
     {
      "id": "m7ey0mm95k",
      "name": "Exam 1",
+     "weight": "20",
+     "scores": []
+    },
+    {
+     "id": "obzpqj0dzw",
+     "name": "Exam 2",
      "weight": "20",
      "scores": []
     }
