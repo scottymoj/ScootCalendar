@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11T22:36:45Z",
+ "updated": "2026-11-12T03:44:02Z",
  "events": [
   {
    "id": "ob48befb57c",
@@ -636,6 +636,18 @@
    "notes": "",
    "cal": "Economics",
    "feed": "outlook#9"
+  },
+  {
+   "id": "o51adddb569",
+   "src": "outlook",
+   "title": "Send Emails",
+   "start": "2026-11-12",
+   "end": "2026-11-13",
+   "allDay": true,
+   "location": "",
+   "notes": "",
+   "cal": "Coffee Chats",
+   "feed": "outlook#11"
   },
   {
    "id": "o2ee872ff1c",
@@ -1385,9 +1397,9 @@
  "sources": {
   "outlook": {
    "ok": true,
-   "count": 115,
+   "count": 116,
    "feeds": 12,
-   "at": "2026-11-11T22:36:56Z"
+   "at": "2026-11-12T03:44:14Z"
   },
   "brightspace": {
    "ok": false,
