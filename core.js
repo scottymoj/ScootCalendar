@@ -57,7 +57,17 @@ async function getJSON(url, opts) {
   if (!r.ok) throw new Error(`${r.status}`);
   return r.json();
 }
-const repoJSON = name => getJSON(`data/${name}?t=${Date.now()}`).catch(() => null);
+const repoJSON = async name => {
+  const tok = lsGet("sp_token", "");
+  if (tok) {
+    try {
+      const r = await fetch(`https://api.github.com/repos/${REPO}/contents/data/${name}?t=${Date.now()}`, { headers:{ Authorization:`Bearer ${tok}`, Accept:"application/vnd.github.raw+json" }, cache:"no-store" });
+      if (r.ok) return await r.json();
+      if (r.status === 404) return null;
+    } catch {}
+  }
+  return getJSON(`data/${name}?t=${Date.now()}`).catch(() => null);
+};
 function lsGet(k, def) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : def; } catch { return def; } }
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
 
@@ -128,6 +138,37 @@ const Sync = {
 
 /* ---------------- repo data ---------------- */
 const D = { cal:null, garmin:null, brief:null };
+/* GitHub's hourly schedule is unreliable on small repos, so the app starts the updater itself
+   when the data is more than 30 minutes old (at most once every 15 minutes). Needs the token
+   to have Actions: Read and write. */
+const Refresh = { status:"", busy:false };
+async function requestRefresh(force) {
+  const tok = lsGet("sp_token", "");
+  if (!tok || Refresh.busy) return false;
+  const newest = Math.max(...[D.garmin && D.garmin.updated, D.cal && D.cal.updated].filter(Boolean).map(x => +new Date(x)), 0);
+  if (!force && Date.now() - newest < 30 * 6e4) return false;
+  if (!force && Date.now() - lsGet("sp_refresh", 0) < 15 * 6e4) return false;
+  Refresh.busy = true;
+  try {
+    const r = await fetch(`https://api.github.com/repos/${REPO}/actions/workflows/update.yml/dispatches`, {
+      method:"POST", headers:{ Authorization:`Bearer ${tok}`, Accept:"application/vnd.github+json", "Content-Type":"application/json" }, body:JSON.stringify({ ref:"main" }) });
+    if (!r.ok) { Refresh.status = r.status === 403 || r.status === 404 ? "needs-permission" : `error ${r.status}`; Refresh.busy = false; return false; }
+    lsSet("sp_refresh", Date.now());
+    Refresh.status = "running";
+    const before = newest;
+    // the updater takes about a minute; check for new data a few times
+    for (const wait of [60, 30, 30, 30, 60]) {
+      await new Promise(res => setTimeout(res, wait * 1000));
+      await loadRepoData();
+      const now = Math.max(...[D.garmin && D.garmin.updated, D.cal && D.cal.updated].filter(Boolean).map(x => +new Date(x)), 0);
+      if (now > before) { Refresh.status = "done"; break; }
+    }
+    if (Refresh.status === "running") Refresh.status = "";
+    if (!$("#veil")) route();
+  } catch { Refresh.status = ""; }
+  Refresh.busy = false;
+  return true;
+}
 async function loadRepoData() {
   const [cal, garmin, brief] = await Promise.all([repoJSON("calendar.json"), repoJSON("garmin.json"), repoJSON("brief.json")]);
   Object.assign(D, { cal, garmin, brief });
@@ -561,12 +602,14 @@ async function boot() {
   window.addEventListener("hashchange", route);
   await Promise.all([loadRepoData(), Sync.pull()]);
   route();
+  requestRefresh(false);
   // refresh when the app comes back to the front
   document.addEventListener("visibilitychange", async () => {
     if (document.visibilityState !== "visible") return;
     mastDate();
     await Promise.all([loadRepoData(), Sync.pull()]);
     if (!$("#veil")) route();
+    requestRefresh(false);
   });
 }
 window.addEventListener("DOMContentLoaded", boot);

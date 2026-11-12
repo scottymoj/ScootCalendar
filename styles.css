@@ -311,3 +311,7 @@ main{max-width:760px;margin:0 auto;padding:0 16px 32px}
 .zone{display:inline-block;font-size:11px;font-weight:800;color:#fff;padding:2px 6px}
 .zone.z1{background:#8f8c86}.zone.z2{background:#1f4e9c}.zone.z3{background:#1a7f45}.zone.z4{background:#e3a43c}.zone.z5{background:#c22a2a}
 .datebar button[disabled]{pointer-events:none}
+
+.refresh{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;color:var(--muted);padding:12px 0 0}
+.refresh button{font-size:12px;font-weight:700;color:var(--ink);border:1px solid var(--ink);padding:5px 10px}
+.refresh b{font-weight:700;color:var(--ink)}

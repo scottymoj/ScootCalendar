@@ -419,7 +419,9 @@ VIEWS.fitness = async app => {
   const hrvPos = d.hrv && d.hrv_base_low && d.hrv_base_high ? (() => { const lo = d.hrv_base_low * .7, hi = d.hrv_base_high * 1.3; return { p:Math.max(0, Math.min(100, (d.hrv - lo) / (hi - lo) * 100)), a:(d.hrv_base_low - lo) / (hi - lo) * 100, b:(d.hrv_base_high - lo) / (hi - lo) * 100 }; })() : null;
   const lastW = (G.weight || []).slice(-1)[0];
 
-  app.innerHTML = `
+  const rs = Refresh.status;
+  const refreshLine = `<div class="refresh"><span>Updated ${ago(G.updated)}</span>${rs === "running" || Refresh.busy ? `<b>Getting new data… about a minute</b>` : rs === "needs-permission" ? `<b class="red">Token needs Actions permission</b>` : `<button data-refresh>Refresh now</button>`}</div>`;
+  app.innerHTML = `${refreshLine}
     <div class="datebar"><button data-fd="-1" ${i <= 0 ? "disabled style='opacity:.25'" : ""} aria-label="Previous day">‹</button><div class="d">${isToday ? "Today" : fmtDay(dd)}<small>${isToday ? fmtDay(dd) : relDay(dd)}</small></div><button data-fd="1" ${i >= keys.length - 1 ? "disabled style='opacity:.25'" : ""} aria-label="Next day">›</button></div>
 
     <div class="h-sec"><h2>Steps</h2><span>${d.steps_goal ? `Goal ${num(d.steps_goal)}` : ""}</span></div>
@@ -491,9 +493,11 @@ VIEWS.fitness = async app => {
 
     ${lastW ? `<div class="h-sec"><h2>Weight</h2><span>${relDay(fromKey(lastW.date))}</span></div><div class="bigline"><b>${lastW.lbs}</b><span>lbs, last logged ${fmtDay(fromKey(lastW.date))}</span></div>` : ""}
 
-    <div class="updated">From Garmin Connect, updated ${ago(G.updated)}${G.errors && G.errors.length ? `<br>Some data didn't load: ${esc(G.errors.join(", "))}` : ""}</div>`;
+    <div class="updated">From Garmin Connect, updated ${ago(G.updated)}${G.errors && G.errors.length ? `<br>Some data didn't load: ${esc(G.errors.join(", "))}` : ""}<br>Garmin only has what your watch has synced to the Garmin Connect app.</div>`;
 
   $$("[data-fd]", app).forEach(b => b.onclick = () => { const j = i + +b.dataset.fd; if (keys[j]) { FS.day = keys[j]; route(); } });
   $$("[data-m]", app).forEach(b => b.onclick = () => { FS.metric = b.dataset.m; lsSet("sp_fitmetric", FS.metric); route(); });
   $$("[data-a]", app).forEach(b => b.onclick = () => openActivity(acts[+b.dataset.a]));
+  const rb = $("[data-refresh]", app);
+  if (rb) rb.onclick = () => { if (!lsGet("sp_token", "")) return alertSheet("Add your token first", "Tap ⚙ and paste your GitHub token to use Refresh."); requestRefresh(true); setTimeout(route, 300); };
 };
