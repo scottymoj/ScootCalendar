@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794504689795,
+ "updatedAt": 1794504700135,
  "place": "auto",
  "places": [],
  "here": {
@@ -64,6 +64,12 @@
      "id": "rzogyz00w0",
      "name": "Problem Sets",
      "weight": "15",
+     "scores": []
+    },
+    {
+     "id": "9878qgxdq8",
+     "name": "Midterm Exam 1",
+     "weight": "20",
      "scores": []
     }
    ],
