@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794504999216,
+ "updatedAt": 1794505015148,
  "place": "auto",
  "places": [],
  "here": {
@@ -70,7 +70,13 @@
      "id": "rzogyz00w0",
      "name": "Problem Sets",
      "weight": "15",
-     "scores": []
+     "scores": [
+      {
+       "name": "Problem Set 1",
+       "pts": "100",
+       "max": "100"
+      }
+     ]
     },
     {
      "id": "9878qgxdq8",
