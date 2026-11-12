@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794505330332,
+ "updatedAt": 1794505342875,
  "place": "auto",
  "places": [],
  "here": {
@@ -40,6 +40,12 @@
      "id": "9u6355crke",
      "name": "MSE Project",
      "weight": "11.11",
+     "scores": []
+    },
+    {
+     "id": "tgtldu240i",
+     "name": "Final Exam",
+     "weight": "22.22",
      "scores": []
     }
    ],
