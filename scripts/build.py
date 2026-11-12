@@ -93,7 +93,7 @@ def read_ics(url: str, source: str) -> list[dict]:
     import recurring_ical_events
 
     url = url.strip().replace("webcal://", "https://", 1)
-    cal = icalendar.Calendar.from_ical(fetch(url, timeout=60))
+    cal = icalendar.Calendar.from_ical(fetch(url, timeout=20))
     cal_name = clean_text(cal.get("X-WR-CALNAME"), 60)
     today = datetime.now(ET).date()
     start, end = today - timedelta(days=21), today + timedelta(days=150)
@@ -151,18 +151,29 @@ def build_calendar() -> None:
             result["sources"][source] = {"ok": False, "note": f"{env} secret not set"}
             continue
         evs, failed, seen = [], 0, set()
-        for i, url in enumerate(urls):
-            try:
-                for e in read_ics(url, source):
-                    e["feed"] = f"{source}#{i}"
-                    if e["id"] not in seen:
-                        seen.add(e["id"]); evs.append(e)
-            except Exception as e:  # keep the last good copy of this one calendar
+
+        def get(i_url):
+            i, url = i_url
+            for attempt in range(2):  # Outlook sometimes drops connections; try twice
+                try:
+                    return i, read_ics(url, source), None
+                except Exception as e:
+                    err = e
+            return i, None, err
+
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(max_workers=6) as pool:
+            results = sorted(pool.map(get, enumerate(urls)), key=lambda r: r[0])
+        for i, got, err in results:
+            key = f"{source}#{i}"
+            if got is None:  # keep the last good copy of this one calendar
                 failed += 1
-                print(f"{source} feed {i + 1} failed: {e}", file=sys.stderr)
-                key = f"{source}#{i}"
-                evs += [x for x in old.get("events", []) if x.get("feed") == key]
-                continue
+                print(f"{source} feed {i + 1} failed: {err}", file=sys.stderr)
+                got = [x for x in old.get("events", []) if x.get("feed") == key]
+            for e in got:
+                e["feed"] = key
+                if e["id"] not in seen:
+                    seen.add(e["id"]); evs.append(e)
         result["events"] += evs
         prev = (old.get("sources") or {}).get(source, {})
         result["sources"][source] = {"ok": failed == 0, "count": len(evs), "feeds": len(urls), "at": now_utc() if failed < len(urls) else prev.get("at")}
@@ -574,7 +585,9 @@ def build_conditions() -> None:
 
 
 if __name__ == "__main__":
-    for fn in (build_calendar, build_garmin, build_conditions):
+    import socket
+    socket.setdefaulttimeout(30)  # nothing can hang the whole run
+    for fn in (build_garmin, build_conditions, build_calendar):
         try:
             fn()
         except Exception as e:  # one broken piece never stops the others
