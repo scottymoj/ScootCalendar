@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794493108201,
+ "updatedAt": 1794504672846,
  "place": "auto",
  "places": [],
  "here": {
@@ -53,7 +53,14 @@
    "when": "",
    "color": "#b06a00",
    "target": "B+",
-   "cats": [],
+   "cats": [
+    {
+     "id": "6kfhd6qqj3",
+     "name": "Presentations",
+     "weight": "10",
+     "scores": []
+    }
+   ],
    "guides": []
   }
  ],
