@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794505476086,
+ "updatedAt": 1794505485263,
  "place": "auto",
  "places": [],
  "here": {
@@ -125,6 +125,12 @@
     {
      "id": "7g3ljeg3i6",
      "name": "Quiz 4",
+     "weight": "20",
+     "scores": []
+    },
+    {
+     "id": "vq1lghb9ab",
+     "name": "Final Exam",
      "weight": "20",
      "scores": []
     }
