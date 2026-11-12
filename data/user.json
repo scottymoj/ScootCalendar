@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794505460871,
+ "updatedAt": 1794505469342,
  "place": "auto",
  "places": [],
  "here": {
@@ -113,6 +113,12 @@
     {
      "id": "po712vvovt",
      "name": "Quiz 2",
+     "weight": "20",
+     "scores": []
+    },
+    {
+     "id": "2e072b5wfu",
+     "name": "Quiz 3",
      "weight": "20",
      "scores": []
     }
