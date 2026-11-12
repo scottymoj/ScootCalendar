@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794506090376,
+ "updatedAt": 1794506116385,
  "place": "auto",
  "places": [],
  "here": {
@@ -95,7 +95,13 @@
      "id": "yc4rnfk1co",
      "name": "Homework",
      "weight": "20",
-     "scores": []
+     "scores": [
+      {
+       "name": "Unit 1",
+       "pts": "100",
+       "max": "100"
+      }
+     ]
     }
    ],
    "guides": []
