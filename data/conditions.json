@@ -1,19 +1,18 @@
 {
- "updated": "2026-11-12T12:31:25Z",
+ "updated": "2026-11-12T21:46:57Z",
  "places": {
   "villanova": {
    "name": "Villanova",
    "days": [
     {
      "date": "2026-11-12",
-     "hi": 62,
+     "hi": 61,
      "lo": 49,
-     "rain_pct": 81,
-     "rain_in": 0.425,
+     "rain_pct": 89,
+     "rain_in": 0.343,
      "code": 63,
-     "wind_max_mph": 16,
+     "wind_max_mph": 11,
      "rain_hours": [
-      "12:00",
       "13:00",
       "14:00",
       "15:00"
@@ -21,71 +20,71 @@
     },
     {
      "date": "2026-11-13",
-     "hi": 50,
-     "lo": 36,
-     "rain_pct": 83,
-     "rain_in": 0.706,
-     "code": 73,
-     "wind_max_mph": 16,
+     "hi": 49,
+     "lo": 32,
+     "rain_pct": 82,
+     "rain_in": 1.591,
+     "code": 75,
+     "wind_max_mph": 17,
      "rain_hours": [
-      "02:00",
+      "01:00",
       "05:00",
       "06:00",
       "07:00",
-      "08:00",
       "09:00",
       "10:00",
       "11:00",
       "12:00",
       "13:00",
-      "14:00"
+      "14:00",
+      "15:00"
      ]
     },
     {
      "date": "2026-11-14",
-     "hi": 46,
-     "lo": 35,
-     "rain_pct": 29,
-     "rain_in": 0.008,
-     "code": 51,
+     "hi": 44,
+     "lo": 32,
+     "rain_pct": 8,
+     "rain_in": 0.028,
+     "code": 73,
      "wind_max_mph": 12,
      "rain_hours": []
     },
     {
      "date": "2026-11-15",
-     "hi": 47,
-     "lo": 35,
+     "hi": 48,
+     "lo": 38,
      "rain_pct": 0,
      "rain_in": 0.0,
      "code": 3,
-     "wind_max_mph": 13,
+     "wind_max_mph": 12,
      "rain_hours": []
     },
     {
      "date": "2026-11-16",
-     "hi": 50,
+     "hi": 49,
      "lo": 37,
-     "rain_pct": 1,
+     "rain_pct": 0,
      "rain_in": 0.0,
-     "code": 0,
+     "code": 1,
      "wind_max_mph": 10,
      "rain_hours": []
     },
     {
      "date": "2026-11-17",
-     "hi": 51,
-     "lo": 36,
-     "rain_pct": 1,
+     "hi": 52,
+     "lo": 37,
+     "rain_pct": 0,
      "rain_in": 0.0,
      "code": 0,
-     "wind_max_mph": 4,
+     "wind_max_mph": 6,
      "rain_hours": []
     },
     {
      "date": "2026-11-18",
-     "hi": 54,
-     "lo": 38,
-     "rain_pct": 1,
+     "hi": 57,
+     "lo": 40,
+     "rain_pct": 0,
      "rain_in": 0.0,
      "code": 0,
      "wind_max_mph": 4,
@@ -98,11 +97,11 @@
    "days": [
     {
      "date": "2026-11-12",
-     "hi": 60,
+     "hi": 58,
      "lo": 46,
-     "rain_pct": 94,
-     "rain_in": 0.531,
-     "code": 65,
+     "rain_pct": 87,
+     "rain_in": 0.429,
+     "code": 63,
      "wind_max_mph": 13,
      "rain_hours": [
       "14:00",
@@ -111,19 +110,19 @@
       "17:00",
       "18:00",
       "19:00",
-      "20:00"
+      "20:00",
+      "21:00"
      ]
     },
     {
      "date": "2026-11-13",
      "hi": 46,
-     "lo": 38,
-     "rain_pct": 99,
-     "rain_in": 0.626,
-     "code": 71,
-     "wind_max_mph": 15,
+     "lo": 36,
+     "rain_pct": 89,
+     "rain_in": 0.728,
+     "code": 73,
+     "wind_max_mph": 14,
      "rain_hours": [
-      "00:00",
       "01:00",
       "02:00",
       "03:00",
@@ -137,14 +136,16 @@
       "11:00",
       "12:00",
       "13:00",
-      "19:00"
+      "14:00",
+      "15:00",
+      "16:00"
      ]
     },
     {
      "date": "2026-11-14",
-     "hi": 44,
-     "lo": 37,
-     "rain_pct": 25,
+     "hi": 42,
+     "lo": 33,
+     "rain_pct": 7,
      "rain_in": 0.0,
      "code": 3,
      "wind_max_mph": 11,
@@ -152,8 +153,8 @@
     },
     {
      "date": "2026-11-15",
-     "hi": 46,
-     "lo": 38,
+     "hi": 45,
+     "lo": 39,
      "rain_pct": 0,
      "rain_in": 0.0,
      "code": 3,
@@ -162,32 +163,32 @@
     },
     {
      "date": "2026-11-16",
-     "hi": 49,
+     "hi": 50,
      "lo": 38,
      "rain_pct": 0,
      "rain_in": 0.0,
-     "code": 0,
+     "code": 3,
      "wind_max_mph": 9,
      "rain_hours": []
     },
     {
      "date": "2026-11-17",
-     "hi": 52,
-     "lo": 36,
+     "hi": 54,
+     "lo": 38,
      "rain_pct": 0,
      "rain_in": 0.0,
      "code": 0,
-     "wind_max_mph": 5,
+     "wind_max_mph": 6,
      "rain_hours": []
     },
     {
      "date": "2026-11-18",
-     "hi": 57,
-     "lo": 40,
-     "rain_pct": 1,
+     "hi": 58,
+     "lo": 41,
+     "rain_pct": 0,
      "rain_in": 0.0,
-     "code": 0,
-     "wind_max_mph": 5,
+     "code": 1,
+     "wind_max_mph": 6,
      "rain_hours": []
     }
    ]
@@ -197,75 +198,75 @@
    "days": [
     {
      "date": "2026-11-12",
-     "hi": 64,
+     "hi": 63,
      "lo": 50,
-     "rain_pct": 34,
+     "rain_pct": 28,
+     "rain_in": 0.0,
+     "code": 3,
+     "wind_max_mph": 18,
+     "rain_hours": []
+    },
+    {
+     "date": "2026-11-13",
+     "hi": 52,
+     "lo": 35,
+     "rain_pct": 51,
+     "rain_in": 0.469,
+     "code": 73,
+     "wind_max_mph": 15,
+     "rain_hours": [
+      "11:00",
+      "12:00"
+     ]
+    },
+    {
+     "date": "2026-11-14",
+     "hi": 47,
+     "lo": 35,
+     "rain_pct": 18,
+     "rain_in": 0.031,
+     "code": 51,
+     "wind_max_mph": 18,
+     "rain_hours": []
+    },
+    {
+     "date": "2026-11-15",
+     "hi": 50,
+     "lo": 40,
+     "rain_pct": 0,
      "rain_in": 0.0,
      "code": 3,
      "wind_max_mph": 14,
      "rain_hours": []
     },
     {
-     "date": "2026-11-13",
-     "hi": 51,
-     "lo": 40,
-     "rain_pct": 54,
-     "rain_in": 0.213,
-     "code": 63,
-     "wind_max_mph": 15,
-     "rain_hours": [
-      "09:00",
-      "10:00"
-     ]
-    },
-    {
-     "date": "2026-11-14",
-     "hi": 48,
-     "lo": 37,
-     "rain_pct": 15,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 15,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-15",
-     "hi": 49,
-     "lo": 39,
-     "rain_pct": 1,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 16,
-     "rain_hours": []
-    },
-    {
      "date": "2026-11-16",
      "hi": 51,
-     "lo": 37,
+     "lo": 36,
      "rain_pct": 0,
      "rain_in": 0.0,
      "code": 0,
-     "wind_max_mph": 11,
+     "wind_max_mph": 10,
      "rain_hours": []
     },
     {
      "date": "2026-11-17",
      "hi": 52,
-     "lo": 36,
-     "rain_pct": 1,
+     "lo": 35,
+     "rain_pct": 0,
      "rain_in": 0.0,
      "code": 0,
-     "wind_max_mph": 6,
+     "wind_max_mph": 8,
      "rain_hours": []
     },
     {
      "date": "2026-11-18",
-     "hi": 55,
-     "lo": 38,
-     "rain_pct": 1,
+     "hi": 56,
+     "lo": 40,
+     "rain_pct": 0,
      "rain_in": 0.0,
      "code": 0,
-     "wind_max_mph": 6,
+     "wind_max_mph": 7,
      "rain_hours": []
     }
    ]
@@ -279,11 +280,11 @@
     "best": {
      "score": 2,
      "label": "Poor",
-     "hour": "12:00",
+     "hour": "15:00",
      "ft": 2.4,
      "period_s": 4,
-     "wind_mph": 6,
-     "wind": "onshore"
+     "wind_mph": 7,
+     "wind": "cross"
     },
     "max_ft": 2.4,
     "sunrise": "06:38",
@@ -314,7 +315,7 @@
      "hour": "06:00",
      "ft": 3.7,
      "period_s": 6,
-     "wind_mph": 12,
+     "wind_mph": 10,
      "wind": "offshore"
     },
     "max_ft": 3.7,
@@ -346,7 +347,7 @@
      "hour": "06:00",
      "ft": 1.9,
      "period_s": 4,
-     "wind_mph": 9,
+     "wind_mph": 10,
      "wind": "offshore"
     },
     "max_ft": 1.9,
@@ -379,7 +380,7 @@
      "ft": 0.9,
      "period_s": 5,
      "wind_mph": 6,
-     "wind": "light"
+     "wind": "offshore"
     },
     "max_ft": 0.9,
     "sunrise": "06:45",
