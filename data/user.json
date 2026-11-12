@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794504672846,
+ "updatedAt": 1794504689795,
  "place": "auto",
  "places": [],
  "here": {
@@ -58,6 +58,12 @@
      "id": "6kfhd6qqj3",
      "name": "Presentations",
      "weight": "10",
+     "scores": []
+    },
+    {
+     "id": "rzogyz00w0",
+     "name": "Problem Sets",
+     "weight": "15",
      "scores": []
     }
    ],
