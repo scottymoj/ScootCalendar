@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794505086684,
+ "updatedAt": 1794505131375,
  "place": "auto",
  "places": [],
  "here": {
@@ -41,7 +41,14 @@
    "when": "",
    "color": "#7a3db8",
    "target": "B+",
-   "cats": [],
+   "cats": [
+    {
+     "id": "ee10gugkn6",
+     "name": "Exam 1",
+     "weight": "20",
+     "scores": []
+    }
+   ],
    "guides": []
   },
   {
