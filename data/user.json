@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794412236948,
+ "updatedAt": 1794443681833,
  "place": "auto",
  "places": [],
  "here": {
@@ -58,5 +58,7 @@
   }
  ],
  "items": [],
- "doneIds": {}
+ "doneIds": {
+  "obf56a81ac6": true
+ }
 }
