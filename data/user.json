@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794505060277,
+ "updatedAt": 1794505086684,
  "place": "auto",
  "places": [],
  "here": {
@@ -102,7 +102,13 @@
      "id": "9878qgxdq8",
      "name": "Midterm Exam 1",
      "weight": "20",
-     "scores": []
+     "scores": [
+      {
+       "name": "Midterm Exam 1",
+       "pts": "80.20",
+       "max": "100"
+      }
+     ]
     },
     {
      "id": "ejvwrlals8",
