@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794505172908,
+ "updatedAt": 1794505185534,
  "place": "auto",
  "places": [],
  "here": {
@@ -41,38 +41,7 @@
    "when": "",
    "color": "#7a3db8",
    "target": "B+",
-   "cats": [
-    {
-     "id": "ee10gugkn6",
-     "name": "Exam 1",
-     "weight": "20",
-     "scores": []
-    },
-    {
-     "id": "bcnknd3uii",
-     "name": "Exam 2",
-     "weight": "20",
-     "scores": []
-    },
-    {
-     "id": "5tssvij0tc",
-     "name": "Exam 3",
-     "weight": "20",
-     "scores": []
-    },
-    {
-     "id": "p15ibbo7tg",
-     "name": "Unit 9 Data Collection / Exam 4",
-     "weight": "20",
-     "scores": []
-    },
-    {
-     "id": "su0y4q9l3g",
-     "name": "Homework",
-     "weight": "20",
-     "scores": []
-    }
-   ],
+   "cats": [],
    "guides": []
   },
   {
