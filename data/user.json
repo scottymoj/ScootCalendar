@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794505399063,
+ "updatedAt": 1794505450852,
  "place": "auto",
  "places": [],
  "here": {
@@ -103,7 +103,14 @@
    "when": "",
    "color": "#7a3db8",
    "target": "B+",
-   "cats": [],
+   "cats": [
+    {
+     "id": "rfomatmi18",
+     "name": "Quiz 1",
+     "weight": "20",
+     "scores": []
+    }
+   ],
    "guides": []
   },
   {
