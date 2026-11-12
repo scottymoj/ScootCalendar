@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794506116385,
+ "updatedAt": 1794506347632,
  "place": "auto",
  "places": [],
  "here": {
@@ -97,7 +97,57 @@
      "weight": "20",
      "scores": [
       {
-       "name": "Unit 1",
+       "name": "Unit 1 Homework",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Unit 2 Homework",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Unit 3 Homework",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Unit 4A Homework",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Unit 4B Homework",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Unit 5 Homework",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Unit 6 Homework",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Unit 7 Homework",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Unit 8 Homework",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Unit 9 Homework",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Unit 10 Homework",
        "pts": "100",
        "max": "100"
       }
