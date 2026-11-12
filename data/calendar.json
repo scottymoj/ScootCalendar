@@ -1,42 +1,6 @@
 {
- "updated": "2026-11-12T03:44:02Z",
+ "updated": "2026-11-12T12:31:12Z",
  "events": [
-  {
-   "id": "ob48befb57c",
-   "src": "outlook",
-   "title": "World History",
-   "start": "2026-10-21T11:45-04:00",
-   "end": "2026-10-21T12:35-04:00",
-   "allDay": false,
-   "location": "Tolentine Hall 212",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
-  {
-   "id": "ob9ef3eecaa",
-   "src": "outlook",
-   "title": "Business Statitsics",
-   "start": "2026-10-21T16:45-04:00",
-   "end": "2026-10-21T18:00-04:00",
-   "allDay": false,
-   "location": "Mendel Hall 258",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
-  {
-   "id": "o0151ce5b59",
-   "src": "outlook",
-   "title": "VIA Meeting",
-   "start": "2026-10-21T18:30-04:00",
-   "end": "2026-10-21T19:30-04:00",
-   "allDay": false,
-   "location": "",
-   "notes": "",
-   "cal": "Wildcat Fund",
-   "feed": "outlook#8"
-  },
   {
    "id": "o0d62df131b",
    "src": "outlook",
@@ -1397,9 +1361,9 @@
  "sources": {
   "outlook": {
    "ok": true,
-   "count": 116,
+   "count": 113,
    "feeds": 12,
-   "at": "2026-11-12T03:44:14Z"
+   "at": "2026-11-12T12:31:21Z"
   },
   "brightspace": {
    "ok": false,
