@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794505395689,
+ "updatedAt": 1794505399063,
  "place": "auto",
  "places": [],
  "here": {
@@ -45,7 +45,7 @@
     {
      "id": "tgtldu240i",
      "name": "Final Exam",
-     "weight": "22.222",
+     "weight": "22.2222",
      "scores": []
     }
    ],
