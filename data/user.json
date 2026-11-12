@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794505015148,
+ "updatedAt": 1794505060277,
  "place": "auto",
  "places": [],
  "here": {
@@ -73,6 +73,26 @@
      "scores": [
       {
        "name": "Problem Set 1",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Problem Set 2",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Problem Set 3",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Problem Set 4",
+       "pts": "100",
+       "max": "100"
+      },
+      {
+       "name": "Problem Set 5",
        "pts": "100",
        "max": "100"
       }
