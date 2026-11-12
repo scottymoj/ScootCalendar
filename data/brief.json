@@ -1,36 +1,39 @@
 {
-  "date": "2026-11-11",
-  "written_at": "2026-11-11T16:04:07Z",
-  "headline": "Finish Problem Set 5 tonight; Physics Quiz 9 is tomorrow",
-  "summary": "Light class day with a free afternoon until Stats at 4:45 PM, then the VIA meeting. Use the gap to lock in tomorrow's PS5 and quiz, because next Thursday is stacked.",
+  "date": "2026-11-12",
+  "written_at": "2026-11-12T11:33:08Z",
+  "headline": "Physics Quiz 9 at 11:30 AM, then Macro and Stats",
+  "summary": "Three classes back to back from 11:30 AM to 4:50 PM, with Quiz 9 in Physics first. Your morning is free, so use it to review and get a run in before the 1 PM rain.",
   "today": [
-    "11:45 AM World History, Tolentine Hall 212",
-    "4:45 PM Business Statistics, Mendel Hall 258",
-    "6:30 PM Wildcat Fund VIA Meeting",
-    "Tonight: Economics Problem Set 5 due Thu"
+    "Morning: free until class, review for Quiz 9",
+    "11:30 AM Physics (Quiz 9), John Berry Hall 213",
+    "2:30 PM Macroeconomics, Bartley Hall 2044",
+    "4:00 PM Business Statistics, Tolentine Hall 303B",
+    "Today: Coffee Chats reminder to send emails"
   ],
   "heads_up": [
-    "Problem Set 4 and Unit 7 Homework (due Nov 5) are not checked off in the app",
-    "Thu: heavy rain 11 AM to 2 PM (about 1 inch), right over Physics; bring a jacket",
-    "Thu Nov 19 has three tests: Physics Quiz 10, Econ Exam 2, Stats Exam 3"
+    "Problem Set 4 and Unit 7 Homework (due Nov 5) are still not checked off in the app",
+    "Light rain 1 PM to 3 PM today, winds up to 18 mph; bring a jacket",
+    "Fri: snow forecast 3 AM to 1 PM, high 47F, falls right on your 11:45 AM History class",
+    "Thu Nov 19 has three tests in one day: Physics Quiz 10, Econ Exam 2, Stats Exam 3"
   ],
   "upcoming": [
-    "Thu Nov 12: Physics Quiz 9, Problem Set 5 due, BofA Bank Visit 6:00 PM",
+    "Fri Nov 13: Good surf at Stone Harbor, 3.7 ft offshore around 4:00 PM",
+    "Sat Nov 14 and Sun Nov 15: Fun surf, 2 to 3 ft offshore at 6 AM, 58F water",
     "Mon Nov 16: Stats Unit 8 Homework due, Mr. Dowd Coffee Chat 4:00 PM",
+    "Wed Nov 18: Wildcat Fund VIA Meeting 6:30 PM",
     "Thu Nov 19: Physics Quiz 10, Economics Exam 2, Statistics Exam 3",
-    "Fri Nov 20: History Quiz 5",
-    "Sat Nov 14 and Sun Nov 15: Fun surf at Stone Harbor, 2 to 4 ft, offshore, 58F water"
+    "Fri Nov 20: History Quiz 5"
   ],
   "recommendations": [
-    "Finish and submit Economics Problem Set 5 this afternoon before Stats",
-    "Spend an hour tonight after VIA reviewing for Physics Quiz 9",
-    "Check PS4 and Unit 7 Homework were submitted, then mark them done in the app",
+    "Spend 60 to 90 minutes this morning on Physics Quiz 9 material before 11:30 AM",
+    "Send the coffee chat emails today; prep questions for Mr. Dowd (Mon 4:00 PM)",
+    "Confirm PS4 and Unit 7 Homework were submitted, then mark them done in the app",
     "Start Nov 19 prep this weekend: Econ Exam 2 first, then Stats Exam 3, then Physics",
-    "Add your grade categories and scores in the app so grade risk can be tracked"
+    "Do Stats Unit 8 Homework by Sunday so Monday stays free for review"
   ],
   "activity": {
     "pick": "Run",
-    "title": "Easy 3-mile run between 12:35 and 4:00 PM",
-    "why": "Dry, 62F and a free afternoon, rain hits tomorrow, and no run is logged since August."
+    "title": "Easy 3-mile run before 10:00 AM",
+    "why": "It stays dry until 1 PM, your day is packed after 11:30, and with 5.5 hours of sleep keep it easy."
   }
 }
