@@ -93,7 +93,13 @@ def read_ics(url: str, source: str) -> list[dict]:
     import recurring_ical_events
 
     url = url.strip().replace("webcal://", "https://", 1)
-    cal = icalendar.Calendar.from_ical(fetch(url, timeout=20))
+    # curl's --max-time is a hard cap on the whole download (Python's timeout is per server address,
+    # and Outlook has many, so a bad connection could hang for minutes)
+    import subprocess
+    r = subprocess.run(["curl", "-sSfL", "--max-time", "25", "--connect-timeout", "10", "-A", UA, url], capture_output=True, timeout=40)
+    if r.returncode != 0 or not r.stdout.strip():
+        raise RuntimeError(f"curl exit {r.returncode}: {r.stderr.decode(errors='ignore').strip()[:120]}")
+    cal = icalendar.Calendar.from_ical(r.stdout)
     cal_name = clean_text(cal.get("X-WR-CALNAME"), 60)
     today = datetime.now(ET).date()
     start, end = today - timedelta(days=21), today + timedelta(days=150)
