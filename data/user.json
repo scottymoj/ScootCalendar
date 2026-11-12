@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1794505313962,
+ "updatedAt": 1794505330332,
  "place": "auto",
  "places": [],
  "here": {
@@ -34,6 +34,12 @@
      "id": "zrv8em6lk6",
      "name": "Exam 2",
      "weight": "22.22",
+     "scores": []
+    },
+    {
+     "id": "9u6355crke",
+     "name": "MSE Project",
+     "weight": "11.11",
      "scores": []
     }
    ],
