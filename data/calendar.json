@@ -1,66 +1,6 @@
 {
- "updated": "2026-11-13T09:28:38Z",
+ "updated": "2026-11-13T13:28:35Z",
  "events": [
-  {
-   "id": "o0d62df131b",
-   "src": "outlook",
-   "title": "Unit 6 Homework",
-   "start": "2026-10-22",
-   "end": "2026-10-23",
-   "allDay": true,
-   "location": "",
-   "notes": "",
-   "cal": "Statistics",
-   "feed": "outlook#10"
-  },
-  {
-   "id": "of2db95fbf8",
-   "src": "outlook",
-   "title": "Physics",
-   "start": "2026-10-22T11:30-04:00",
-   "end": "2026-10-22T12:45-04:00",
-   "allDay": false,
-   "location": "John Berry Hall 213",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
-  {
-   "id": "o526f7e5475",
-   "src": "outlook",
-   "title": "Quiz 7",
-   "start": "2026-10-22T11:30-04:00",
-   "end": "2026-10-22T12:45-04:00",
-   "allDay": false,
-   "location": "",
-   "notes": "",
-   "cal": "Physics",
-   "feed": "outlook#6"
-  },
-  {
-   "id": "o30e601fb0c",
-   "src": "outlook",
-   "title": "Macroeconomics",
-   "start": "2026-10-22T14:30-04:00",
-   "end": "2026-10-22T15:45-04:00",
-   "allDay": false,
-   "location": "Bartley Hall 2044",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
-  {
-   "id": "o19f472f246",
-   "src": "outlook",
-   "title": "Business Statistics",
-   "start": "2026-10-22T16:00-04:00",
-   "end": "2026-10-22T16:50-04:00",
-   "allDay": false,
-   "location": "Tolentine Hall 303B",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
   {
    "id": "o05af8945fa",
    "src": "outlook",
@@ -722,18 +662,6 @@
    "feed": "outlook#2"
   },
   {
-   "id": "oc8f10ba3e2",
-   "src": "outlook",
-   "title": "Physics Lab",
-   "start": "2026-11-17T08:30-05:00",
-   "end": "2026-11-17T11:20-05:00",
-   "allDay": false,
-   "location": "Mendel Hall 247",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
-  {
    "id": "ob4cd77677e",
    "src": "outlook",
    "title": "Physics",
@@ -914,18 +842,6 @@
    "feed": "outlook#2"
   },
   {
-   "id": "o857606109b",
-   "src": "outlook",
-   "title": "Physics Lab",
-   "start": "2026-11-24T08:30-05:00",
-   "end": "2026-11-24T11:20-05:00",
-   "allDay": false,
-   "location": "Mendel Hall 247",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
-  {
    "id": "oa924cd8ea1",
    "src": "outlook",
    "title": "Physics",
@@ -998,18 +914,6 @@
    "feed": "outlook#2"
   },
   {
-   "id": "ob94b2e28df",
-   "src": "outlook",
-   "title": "Physics Lab",
-   "start": "2026-12-01T08:30-05:00",
-   "end": "2026-12-01T11:20-05:00",
-   "allDay": false,
-   "location": "Mendel Hall 247",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
-  {
    "id": "o0d0b4e6cc7",
    "src": "outlook",
    "title": "Physics",
@@ -1032,6 +936,18 @@
    "notes": "",
    "cal": "Calendar",
    "feed": "outlook#2"
+  },
+  {
+   "id": "o82be21e353",
+   "src": "outlook",
+   "title": "Make up Lab",
+   "start": "2026-12-02",
+   "end": "2026-12-03",
+   "allDay": true,
+   "location": "Mendel Hall 4th Floor Observatory",
+   "notes": "8:00 PM to 10:00 PM\n\nObserve at least 3 objects\n\n3–5-page paper, double-spaced, on the observed objects",
+   "cal": "Physics",
+   "feed": "outlook#6"
   },
   {
    "id": "of152e5a6ac",
@@ -1161,18 +1077,6 @@
    "end": "2026-12-07T18:00-05:00",
    "allDay": false,
    "location": "Mendel Hall 258",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
-  {
-   "id": "o69d744965a",
-   "src": "outlook",
-   "title": "Physics Lab",
-   "start": "2026-12-08T08:30-05:00",
-   "end": "2026-12-08T11:20-05:00",
-   "allDay": false,
-   "location": "Mendel Hall 247",
    "notes": "",
    "cal": "Calendar",
    "feed": "outlook#2"
@@ -1360,11 +1264,10 @@
  ],
  "sources": {
   "outlook": {
-   "ok": false,
-   "count": 113,
+   "ok": true,
+   "count": 105,
    "feeds": 12,
-   "at": "2026-11-12T12:31:21Z",
-   "note": "12 of 12 calendars failed to load"
+   "at": "2026-11-13T13:28:38Z"
   },
   "brightspace": {
    "ok": false,
