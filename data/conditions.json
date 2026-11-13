@@ -1,240 +1,32 @@
 {
- "updated": "2026-11-13T02:05:09Z",
+ "updated": "2026-11-13T09:27:17Z",
  "places": {
-  "villanova": {
-   "name": "Villanova",
+  "stoneharbor": {
+   "name": "Stone Harbor",
    "days": [
     {
-     "date": "2026-11-12",
-     "hi": 61,
-     "lo": 48,
-     "rain_pct": 89,
-     "rain_in": 0.343,
-     "code": 63,
-     "wind_max_mph": 10,
-     "rain_hours": [
-      "13:00",
-      "14:00",
-      "15:00"
-     ]
-    },
-    {
      "date": "2026-11-13",
-     "hi": 48,
-     "lo": 32,
-     "rain_pct": 78,
-     "rain_in": 1.602,
-     "code": 75,
-     "wind_max_mph": 14,
-     "rain_hours": [
-      "00:00",
-      "01:00",
-      "02:00",
-      "06:00",
-      "07:00",
-      "08:00",
-      "09:00",
-      "10:00",
-      "11:00",
-      "12:00",
-      "13:00",
-      "14:00",
-      "15:00",
-      "16:00",
-      "18:00",
-      "19:00",
-      "21:00"
-     ]
+     "hi": 53,
+     "lo": 40,
+     "rain_pct": 42,
+     "rain_in": 0.016,
+     "code": 51,
+     "wind_max_mph": 11,
+     "rain_hours": []
     },
     {
      "date": "2026-11-14",
      "hi": 44,
-     "lo": 32,
-     "rain_pct": 22,
-     "rain_in": 0.028,
-     "code": 73,
-     "wind_max_mph": 12,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-15",
-     "hi": 46,
-     "lo": 37,
-     "rain_pct": 0,
+     "lo": 34,
+     "rain_pct": 6,
      "rain_in": 0.0,
      "code": 3,
      "wind_max_mph": 13,
      "rain_hours": []
     },
     {
-     "date": "2026-11-16",
-     "hi": 49,
-     "lo": 35,
-     "rain_pct": 0,
-     "rain_in": 0.0,
-     "code": 0,
-     "wind_max_mph": 10,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-17",
-     "hi": 52,
-     "lo": 36,
-     "rain_pct": 0,
-     "rain_in": 0.0,
-     "code": 0,
-     "wind_max_mph": 6,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-18",
-     "hi": 55,
-     "lo": 40,
-     "rain_pct": 0,
-     "rain_in": 0.0,
-     "code": 0,
-     "wind_max_mph": 5,
-     "rain_hours": []
-    }
-   ]
-  },
-  "chatham": {
-   "name": "Chatham",
-   "days": [
-    {
-     "date": "2026-11-12",
-     "hi": 58,
-     "lo": 46,
-     "rain_pct": 97,
-     "rain_in": 0.555,
-     "code": 65,
-     "wind_max_mph": 14,
-     "rain_hours": [
-      "14:00",
-      "15:00",
-      "16:00",
-      "17:00",
-      "18:00",
-      "19:00"
-     ]
-    },
-    {
-     "date": "2026-11-13",
-     "hi": 46,
-     "lo": 36,
-     "rain_pct": 89,
-     "rain_in": 0.783,
-     "code": 71,
-     "wind_max_mph": 14,
-     "rain_hours": [
-      "03:00",
-      "04:00",
-      "05:00",
-      "06:00",
-      "07:00",
-      "08:00",
-      "09:00",
-      "10:00",
-      "11:00",
-      "12:00",
-      "13:00",
-      "14:00",
-      "15:00",
-      "16:00",
-      "17:00"
-     ]
-    },
-    {
-     "date": "2026-11-14",
-     "hi": 43,
-     "lo": 33,
-     "rain_pct": 28,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 12,
-     "rain_hours": []
-    },
-    {
      "date": "2026-11-15",
-     "hi": 46,
-     "lo": 38,
-     "rain_pct": 0,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 12,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-16",
      "hi": 50,
-     "lo": 38,
-     "rain_pct": 0,
-     "rain_in": 0.0,
-     "code": 0,
-     "wind_max_mph": 9,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-17",
-     "hi": 53,
-     "lo": 38,
-     "rain_pct": 0,
-     "rain_in": 0.0,
-     "code": 0,
-     "wind_max_mph": 6,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-18",
-     "hi": 56,
-     "lo": 40,
-     "rain_pct": 0,
-     "rain_in": 0.0,
-     "code": 0,
-     "wind_max_mph": 6,
-     "rain_hours": []
-    }
-   ]
-  },
-  "stoneharbor": {
-   "name": "Stone Harbor",
-   "days": [
-    {
-     "date": "2026-11-12",
-     "hi": 64,
-     "lo": 51,
-     "rain_pct": 28,
-     "rain_in": 0.016,
-     "code": 51,
-     "wind_max_mph": 18,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-13",
-     "hi": 51,
-     "lo": 35,
-     "rain_pct": 61,
-     "rain_in": 0.524,
-     "code": 73,
-     "wind_max_mph": 15,
-     "rain_hours": [
-      "15:00",
-      "16:00"
-     ]
-    },
-    {
-     "date": "2026-11-14",
-     "hi": 47,
-     "lo": 35,
-     "rain_pct": 17,
-     "rain_in": 0.031,
-     "code": 51,
-     "wind_max_mph": 18,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-15",
-     "hi": 49,
      "lo": 38,
      "rain_pct": 0,
      "rain_in": 0.0,
@@ -244,18 +36,28 @@
     },
     {
      "date": "2026-11-16",
-     "hi": 50,
-     "lo": 34,
+     "hi": 51,
+     "lo": 36,
      "rain_pct": 0,
      "rain_in": 0.0,
      "code": 0,
-     "wind_max_mph": 10,
+     "wind_max_mph": 11,
      "rain_hours": []
     },
     {
      "date": "2026-11-17",
-     "hi": 52,
-     "lo": 36,
+     "hi": 55,
+     "lo": 37,
+     "rain_pct": 0,
+     "rain_in": 0.0,
+     "code": 0,
+     "wind_max_mph": 8,
+     "rain_hours": []
+    },
+    {
+     "date": "2026-11-18",
+     "hi": 57,
+     "lo": 40,
      "rain_pct": 0,
      "rain_in": 0.0,
      "code": 0,
@@ -263,12 +65,12 @@
      "rain_hours": []
     },
     {
-     "date": "2026-11-18",
-     "hi": 56,
-     "lo": 40,
-     "rain_pct": 0,
+     "date": "2026-11-19",
+     "hi": 57,
+     "lo": 44,
+     "rain_pct": 1,
      "rain_in": 0.0,
-     "code": 0,
+     "code": 2,
      "wind_max_mph": 7,
      "rain_hours": []
     }
@@ -278,22 +80,6 @@
  "surf": {
   "spot": "Stone Harbor, NJ",
   "days": [
-   {
-    "date": "2026-11-12",
-    "best": {
-     "score": 2,
-     "label": "Poor",
-     "hour": "15:00",
-     "ft": 3.0,
-     "period_s": 5,
-     "wind_mph": 7,
-     "wind": "cross"
-    },
-    "max_ft": 3.4,
-    "sunrise": "06:38",
-    "sunset": "16:47",
-    "water_f": 60
-   },
    {
     "date": "2026-11-13",
     "best": {
@@ -334,7 +120,7 @@
      "hour": "06:00",
      "ft": 2.8,
      "period_s": 4,
-     "wind_mph": 14,
+     "wind_mph": 16,
      "wind": "offshore"
     },
     "max_ft": 2.8,
@@ -350,7 +136,7 @@
      "hour": "06:00",
      "ft": 1.8,
      "period_s": 4,
-     "wind_mph": 8,
+     "wind_mph": 10,
      "wind": "offshore"
     },
     "max_ft": 1.8,
@@ -366,7 +152,7 @@
      "hour": "09:00",
      "ft": 1.1,
      "period_s": 5,
-     "wind_mph": 7,
+     "wind_mph": 8,
      "wind": "offshore"
     },
     "max_ft": 1.2,
@@ -389,29 +175,25 @@
     "sunrise": "06:45",
     "sunset": "16:42",
     "water_f": 56
+   },
+   {
+    "date": "2026-11-19",
+    "best": {
+     "score": 0,
+     "label": "Flat",
+     "hour": "06:00",
+     "ft": 0.6,
+     "period_s": 8,
+     "wind_mph": 5,
+     "wind": "light"
+    },
+    "max_ft": 0.6,
+    "sunrise": "06:46",
+    "sunset": "16:41",
+    "water_f": 56
    }
   ],
   "tides": [
-   {
-    "t": "2026-11-12 02:29",
-    "ft": 0.5,
-    "type": "L"
-   },
-   {
-    "t": "2026-11-12 08:58",
-    "ft": 4.9,
-    "type": "H"
-   },
-   {
-    "t": "2026-11-12 15:27",
-    "ft": 0.5,
-    "type": "L"
-   },
-   {
-    "t": "2026-11-12 21:22",
-    "ft": 3.5,
-    "type": "H"
-   },
    {
     "t": "2026-11-13 03:07",
     "ft": 0.7,
@@ -525,6 +307,26 @@
    {
     "t": "2026-11-18 20:19",
     "ft": 0.6,
+    "type": "L"
+   },
+   {
+    "t": "2026-11-19 02:39",
+    "ft": 3.8,
+    "type": "H"
+   },
+   {
+    "t": "2026-11-19 08:40",
+    "ft": 0.9,
+    "type": "L"
+   },
+   {
+    "t": "2026-11-19 14:50",
+    "ft": 4.0,
+    "type": "H"
+   },
+   {
+    "t": "2026-11-19 21:06",
+    "ft": 0.4,
     "type": "L"
    }
   ]
