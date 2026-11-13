@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13T13:28:35Z",
+ "updated": "2026-11-13T17:21:36Z",
  "events": [
   {
    "id": "o05af8945fa",
@@ -566,18 +566,6 @@
    "feed": "outlook#2"
   },
   {
-   "id": "o6e40cea6b9",
-   "src": "outlook",
-   "title": "Quiz 9",
-   "start": "2026-11-12T11:30-05:00",
-   "end": "2026-11-12T12:45-05:00",
-   "allDay": false,
-   "location": "",
-   "notes": "",
-   "cal": "Physics",
-   "feed": "outlook#6"
-  },
-  {
    "id": "of778330e15",
    "src": "outlook",
    "title": "Macroeconomics",
@@ -672,6 +660,18 @@
    "notes": "",
    "cal": "Calendar",
    "feed": "outlook#2"
+  },
+  {
+   "id": "oac1cace571",
+   "src": "outlook",
+   "title": "Quiz 9",
+   "start": "2026-11-17T11:30-05:00",
+   "end": "2026-11-17T12:45-05:00",
+   "allDay": false,
+   "location": "",
+   "notes": "",
+   "cal": "Physics",
+   "feed": "outlook#6"
   },
   {
    "id": "oc72fc206a3",
@@ -1267,7 +1267,7 @@
    "ok": true,
    "count": 105,
    "feeds": 12,
-   "at": "2026-11-13T13:28:38Z"
+   "at": "2026-11-13T17:21:40Z"
   },
   "brightspace": {
    "ok": false,
