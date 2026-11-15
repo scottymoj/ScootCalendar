@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15T08:24:09Z",
+ "updated": "2026-11-15T15:50:39Z",
  "events": [
   {
    "id": "o8ab331f8ce",
@@ -1264,10 +1264,11 @@
  ],
  "sources": {
   "outlook": {
-   "ok": true,
+   "ok": false,
    "count": 105,
    "feeds": 12,
-   "at": "2026-11-15T08:24:11Z"
+   "at": "2026-11-15T15:51:35Z",
+   "note": "7 of 12 calendars failed to load"
   },
   "brightspace": {
    "ok": false,
