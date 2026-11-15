@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-14",
-  "written_at": "2026-11-14T11:36:32Z",
-  "headline": "Free Saturday: start prepping for Thursday's Econ and Stats exams",
-  "summary": "Nothing on the calendar today, cloudy and dry at Villanova, high 43. Next Thursday has Econ Exam 2, Stats Exam 3 and Physics Quiz 10, so use the weekend.",
+  "date": "2026-11-15",
+  "written_at": "2026-11-15T11:36:04Z",
+  "headline": "Last full weekend day before Thursday's Econ and Stats exams",
+  "summary": "Quiet Sunday at Villanova: no classes, just sending emails and calling Dad. Cloudy, high 45, dry. Thursday stacks Econ Exam 2, Stats Exam 3 and Physics Quiz 10, so study blocks today matter.",
   "today": [
-    "No classes or meetings on the calendar today",
-    "Weather: cloudy, 43 high, 35 low, wind up to 12 mph, no rain",
-    "Open block for studying and an easy run"
+    "Coffee Chats: Send Emails",
+    "Coffee Chats: Call Dad",
+    "Weather: cloudy, high 45, low 38, wind up to 12 mph, no rain",
+    "No classes or meetings scheduled"
   ],
   "heads_up": [
-    "Coffee Chats \"Send Emails\" from Thu Nov 12 is not checked off",
-    "Stats Unit 8 Homework is due Mon Nov 16",
-    "Mon: Mr. Dowd coffee chat 4:00 to 5:00 PM overlaps Stats class at 4:45 PM",
-    "Econ is at 89% now but needs about 85 on Exam 2 and the final to hold B+"
+    "Mon: Mr. Dowd Coffee Chat 4:00 to 5:00 PM overlaps Business Statistics at 4:45 PM",
+    "Stats Unit 8 Homework is due Mon and is not checked off on the calendar",
+    "Thu Nov 19 has three graded events: Physics Quiz 10, Econ Exam 2, Stats Exam 3"
   ],
   "upcoming": [
-    "Mon Nov 16: Stats Unit 8 HW due; Mr. Dowd Coffee Chat 4:00 PM (Zoom)",
-    "Tue Nov 17: Physics Quiz 9 at 11:30 AM",
-    "Thu Nov 19: Physics Quiz 10, Econ Exam 2 at 2:30 PM, Stats Exam 3 at 4:00 PM",
-    "Fri Nov 20: History Quiz 5 at 11:45 AM",
+    "Mon Nov 16: Stats Unit 8 Homework due; Mr. Dowd Coffee Chat 4:00 PM",
+    "Tue Nov 17: Physics Quiz 9, 11:30 AM",
+    "Thu Nov 19: Physics Quiz 10 11:30 AM, Econ Exam 2 2:30 PM, Stats Exam 3 4:00 PM",
+    "Fri Nov 20: History Quiz 5, 11:45 AM",
     "Sat Nov 28: Mr. Artiglere Coffee Chat 9:45 AM, Dunkin' Hickory Tree",
-    "Wed Dec 2: Physics Make up Lab; Thu Dec 3: MSE Project and Stats Unit 9 HW due"
+    "Mon Nov 30: Stats Unit 9 Data Collection due"
   ],
   "recommendations": [
-    "Today: 2 hours on Econ Exam 2. Midterm 1 was 80.2, so rework what you missed there.",
-    "Send the coffee chat emails from Thursday today, they are two days overdue.",
-    "Sunday: finish Stats Unit 8 HW, then 90 minutes on Stats Exam 3 practice problems.",
-    "Split the week: Mon night Econ, Tue night Stats, Wed night light review of both.",
-    "Plan Monday's overlap: end the Dowd chat by 4:40 PM or tell Stats you'll be late."
+    "Spend 2 hours on Econ Exam 2 today; Midterm 1 was 80.2 and Econ sits near 89%",
+    "Confirm Stats Unit 8 Homework is submitted tonight, then check it off",
+    "Do the coffee chat emails and call Dad this morning so the afternoon is for studying",
+    "Sort out Monday's overlap: ask Mr. Dowd to end by 4:40 PM or plan to arrive late to Stats",
+    "Split the week: Econ today and Tue night, Stats Exam 3 Mon and Wed, Physics review Mon"
   ],
   "activity": {
     "pick": "Run",
     "title": "Easy 4-mile run late morning",
-    "why": "Your day is open and dry, and no runs are logged since August, so keep it easy in the 40s chill."
+    "why": "Free day, dry and 45 degrees, and 8.1 hours of sleep last night means you can handle it."
   }
 }
