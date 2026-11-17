@@ -1,42 +1,6 @@
 {
- "updated": "2026-11-17T02:02:05Z",
+ "updated": "2026-11-17T10:32:44Z",
  "events": [
-  {
-   "id": "o8ab331f8ce",
-   "src": "outlook",
-   "title": "Advisor Meeting",
-   "start": "2026-10-26T10:30-04:00",
-   "end": "2026-10-26T11:00-04:00",
-   "allDay": false,
-   "location": "128 SAC",
-   "notes": "",
-   "cal": "Event",
-   "feed": "outlook#3"
-  },
-  {
-   "id": "oefc8fda924",
-   "src": "outlook",
-   "title": "World History",
-   "start": "2026-10-26T11:45-04:00",
-   "end": "2026-10-26T12:35-04:00",
-   "allDay": false,
-   "location": "Tolentine Hall 212",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
-  {
-   "id": "oc4cb98c615",
-   "src": "outlook",
-   "title": "Business Statitsics",
-   "start": "2026-10-26T16:45-04:00",
-   "end": "2026-10-26T18:00-04:00",
-   "allDay": false,
-   "location": "Mendel Hall 258",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
   {
    "id": "o41318c7877",
    "src": "outlook",
@@ -1277,9 +1241,9 @@
  "sources": {
   "outlook": {
    "ok": true,
-   "count": 106,
+   "count": 103,
    "feeds": 12,
-   "at": "2026-11-17T02:02:11Z"
+   "at": "2026-11-17T10:32:50Z"
   },
   "brightspace": {
    "ok": false,
