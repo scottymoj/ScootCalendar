@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T18:21:37Z",
+ "updated": "2026-11-17T02:02:05Z",
  "events": [
   {
    "id": "o8ab331f8ce",
@@ -638,6 +638,18 @@
    "feed": "outlook#2"
   },
   {
+   "id": "od2d7e55e4e",
+   "src": "outlook",
+   "title": "Email Mr. Dowd",
+   "start": "2026-11-17",
+   "end": "2026-11-18",
+   "allDay": true,
+   "location": "",
+   "notes": "",
+   "cal": "Coffee Chats",
+   "feed": "outlook#11"
+  },
+  {
    "id": "ob4cd77677e",
    "src": "outlook",
    "title": "Physics",
@@ -1265,9 +1277,9 @@
  "sources": {
   "outlook": {
    "ok": true,
-   "count": 105,
+   "count": 106,
    "feeds": 12,
-   "at": "2026-11-16T18:21:40Z"
+   "at": "2026-11-17T02:02:11Z"
   },
   "brightspace": {
    "ok": false,
