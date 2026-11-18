@@ -1,42 +1,6 @@
 {
- "updated": "2026-11-18T01:50:27Z",
+ "updated": "2026-11-18T10:03:55Z",
  "events": [
-  {
-   "id": "o41318c7877",
-   "src": "outlook",
-   "title": "Physics Lab",
-   "start": "2026-10-27T08:30-04:00",
-   "end": "2026-10-27T11:20-04:00",
-   "allDay": false,
-   "location": "Mendel Hall 247",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
-  {
-   "id": "o04fe2effe0",
-   "src": "outlook",
-   "title": "Physics",
-   "start": "2026-10-27T11:30-04:00",
-   "end": "2026-10-27T12:45-04:00",
-   "allDay": false,
-   "location": "John Berry Hall 213",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
-  {
-   "id": "o1b3154f796",
-   "src": "outlook",
-   "title": "Macroeconomics",
-   "start": "2026-10-27T14:30-04:00",
-   "end": "2026-10-27T15:45-04:00",
-   "allDay": false,
-   "location": "Bartley Hall 2044",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
   {
    "id": "o96184ff85f",
    "src": "outlook",
@@ -1205,9 +1169,9 @@
  "sources": {
   "outlook": {
    "ok": true,
-   "count": 100,
+   "count": 97,
    "feeds": 12,
-   "at": "2026-11-18T01:50:34Z"
+   "at": "2026-11-18T10:03:58Z"
   },
   "brightspace": {
    "ok": false,
