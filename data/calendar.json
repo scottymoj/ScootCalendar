@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T20:36:02Z",
+ "updated": "2026-11-18T01:50:27Z",
  "events": [
   {
    "id": "o41318c7877",
@@ -674,18 +674,6 @@
    "feed": "outlook#2"
   },
   {
-   "id": "oa68d25be25",
-   "src": "outlook",
-   "title": "VIA Meeting",
-   "start": "2026-11-18T18:30-05:00",
-   "end": "2026-11-18T19:30-05:00",
-   "allDay": false,
-   "location": "",
-   "notes": "",
-   "cal": "Wildcat Fund",
-   "feed": "outlook#8"
-  },
-  {
    "id": "obc204e02ac",
    "src": "outlook",
    "title": "Physics",
@@ -950,18 +938,6 @@
    "feed": "outlook#2"
   },
   {
-   "id": "o2849fabe8c",
-   "src": "outlook",
-   "title": "VIA Meeting",
-   "start": "2026-12-02T18:30-05:00",
-   "end": "2026-12-02T19:30-05:00",
-   "allDay": false,
-   "location": "",
-   "notes": "",
-   "cal": "Wildcat Fund",
-   "feed": "outlook#8"
-  },
-  {
    "id": "ofcc4525ac8",
    "src": "outlook",
    "title": "MSE Project Due",
@@ -1118,18 +1094,6 @@
    "feed": "outlook#2"
   },
   {
-   "id": "oa346a550bc",
-   "src": "outlook",
-   "title": "VIA Meeting",
-   "start": "2026-12-09T18:30-05:00",
-   "end": "2026-12-09T19:30-05:00",
-   "allDay": false,
-   "location": "",
-   "notes": "",
-   "cal": "Wildcat Fund",
-   "feed": "outlook#8"
-  },
-  {
    "id": "o9abde6b678",
    "src": "outlook",
    "title": "Unit 10 Homework",
@@ -1241,9 +1205,9 @@
  "sources": {
   "outlook": {
    "ok": true,
-   "count": 103,
+   "count": 100,
    "feeds": 12,
-   "at": "2026-11-17T20:36:07Z"
+   "at": "2026-11-18T01:50:34Z"
   },
   "brightspace": {
    "ok": false,
