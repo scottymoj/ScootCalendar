@@ -1,213 +1,47 @@
 {
- "updated": "2026-11-19T08:41:37Z",
+ "updated": "2026-11-19T15:08:14Z",
  "places": {
   "villanova": {
    "name": "Villanova",
    "days": [
     {
      "date": "2026-11-19",
-     "hi": 64,
-     "lo": 40,
-     "rain_pct": 0,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 7,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-20",
-     "hi": 65,
-     "lo": 42,
-     "rain_pct": 0,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 9,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-21",
      "hi": 62,
-     "lo": 47,
+     "lo": 37,
      "rain_pct": 0,
      "rain_in": 0.0,
      "code": 3,
-     "wind_max_mph": 5,
+     "wind_max_mph": 6,
      "rain_hours": []
     },
     {
-     "date": "2026-11-22",
-     "hi": 56,
-     "lo": 49,
-     "rain_pct": 51,
-     "rain_in": 0.949,
-     "code": 63,
-     "wind_max_mph": 9,
-     "rain_hours": [
-      "20:00",
-      "21:00",
-      "22:00",
-      "23:00"
-     ]
-    },
-    {
-     "date": "2026-11-23",
-     "hi": 59,
-     "lo": 42,
-     "rain_pct": 51,
-     "rain_in": 0.461,
-     "code": 63,
-     "wind_max_mph": 14,
-     "rain_hours": [
-      "00:00",
-      "01:00"
-     ]
-    },
-    {
-     "date": "2026-11-24",
-     "hi": 42,
-     "lo": 31,
-     "rain_pct": 1,
-     "rain_in": 0.0,
-     "code": 1,
-     "wind_max_mph": 13,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-25",
-     "hi": 41,
-     "lo": 29,
-     "rain_pct": 17,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 9,
-     "rain_hours": []
-    }
-   ]
-  },
-  "chatham": {
-   "name": "Chatham",
-   "days": [
-    {
-     "date": "2026-11-19",
+     "date": "2026-11-20",
      "hi": 65,
-     "lo": 36,
+     "lo": 42,
      "rain_pct": 0,
      "rain_in": 0.0,
      "code": 3,
-     "wind_max_mph": 7,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-20",
-     "hi": 67,
-     "lo": 40,
-     "rain_pct": 0,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 7,
+     "wind_max_mph": 8,
      "rain_hours": []
     },
     {
      "date": "2026-11-21",
-     "hi": 60,
-     "lo": 48,
+     "hi": 61,
+     "lo": 44,
      "rain_pct": 0,
      "rain_in": 0.0,
      "code": 3,
-     "wind_max_mph": 6,
+     "wind_max_mph": 7,
      "rain_hours": []
     },
     {
      "date": "2026-11-22",
-     "hi": 58,
-     "lo": 49,
-     "rain_pct": 56,
-     "rain_in": 0.799,
-     "code": 63,
-     "wind_max_mph": 8,
-     "rain_hours": [
-      "20:00",
-      "21:00",
-      "22:00",
-      "23:00"
-     ]
-    },
-    {
-     "date": "2026-11-23",
      "hi": 59,
-     "lo": 43,
-     "rain_pct": 56,
-     "rain_in": 0.787,
-     "code": 63,
-     "wind_max_mph": 14,
-     "rain_hours": [
-      "00:00",
-      "01:00"
-     ]
-    },
-    {
-     "date": "2026-11-24",
-     "hi": 43,
-     "lo": 31,
-     "rain_pct": 1,
-     "rain_in": 0.0,
-     "code": 0,
-     "wind_max_mph": 14,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-25",
-     "hi": 40,
-     "lo": 31,
-     "rain_pct": 14,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 8,
-     "rain_hours": []
-    }
-   ]
-  },
-  "stoneharbor": {
-   "name": "Stone Harbor",
-   "days": [
-    {
-     "date": "2026-11-19",
-     "hi": 61,
-     "lo": 36,
-     "rain_pct": 0,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 7,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-20",
-     "hi": 64,
-     "lo": 39,
-     "rain_pct": 0,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 6,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-21",
-     "hi": 61,
-     "lo": 48,
-     "rain_pct": 1,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 8,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-22",
-     "hi": 61,
-     "lo": 54,
-     "rain_pct": 66,
-     "rain_in": 1.343,
-     "code": 81,
-     "wind_max_mph": 16,
+     "lo": 50,
+     "rain_pct": 68,
+     "rain_in": 1.685,
+     "code": 82,
+     "wind_max_mph": 13,
      "rain_hours": [
       "14:00",
       "15:00",
@@ -223,12 +57,196 @@
     },
     {
      "date": "2026-11-23",
+     "hi": 59,
+     "lo": 41,
+     "rain_pct": 68,
+     "rain_in": 0.378,
+     "code": 63,
+     "wind_max_mph": 15,
+     "rain_hours": [
+      "00:00",
+      "01:00"
+     ]
+    },
+    {
+     "date": "2026-11-24",
+     "hi": 41,
+     "lo": 31,
+     "rain_pct": 1,
+     "rain_in": 0.0,
+     "code": 1,
+     "wind_max_mph": 15,
+     "rain_hours": []
+    },
+    {
+     "date": "2026-11-25",
+     "hi": 41,
+     "lo": 30,
+     "rain_pct": 35,
+     "rain_in": 0.0,
+     "code": 3,
+     "wind_max_mph": 8,
+     "rain_hours": []
+    }
+   ]
+  },
+  "chatham": {
+   "name": "Chatham",
+   "days": [
+    {
+     "date": "2026-11-19",
+     "hi": 65,
+     "lo": 34,
+     "rain_pct": 0,
+     "rain_in": 0.0,
+     "code": 3,
+     "wind_max_mph": 6,
+     "rain_hours": []
+    },
+    {
+     "date": "2026-11-20",
+     "hi": 67,
+     "lo": 40,
+     "rain_pct": 0,
+     "rain_in": 0.0,
+     "code": 3,
+     "wind_max_mph": 7,
+     "rain_hours": []
+    },
+    {
+     "date": "2026-11-21",
      "hi": 60,
-     "lo": 44,
-     "rain_pct": 66,
-     "rain_in": 0.858,
+     "lo": 39,
+     "rain_pct": 0,
+     "rain_in": 0.0,
+     "code": 3,
+     "wind_max_mph": 5,
+     "rain_hours": []
+    },
+    {
+     "date": "2026-11-22",
+     "hi": 58,
+     "lo": 49,
+     "rain_pct": 71,
+     "rain_in": 1.154,
      "code": 82,
-     "wind_max_mph": 20,
+     "wind_max_mph": 12,
+     "rain_hours": [
+      "14:00",
+      "15:00",
+      "16:00",
+      "17:00",
+      "18:00",
+      "19:00",
+      "20:00",
+      "21:00",
+      "22:00",
+      "23:00"
+     ]
+    },
+    {
+     "date": "2026-11-23",
+     "hi": 59,
+     "lo": 42,
+     "rain_pct": 71,
+     "rain_in": 1.232,
+     "code": 82,
+     "wind_max_mph": 15,
+     "rain_hours": [
+      "00:00",
+      "01:00",
+      "02:00",
+      "03:00",
+      "04:00",
+      "05:00",
+      "06:00",
+      "07:00"
+     ]
+    },
+    {
+     "date": "2026-11-24",
+     "hi": 42,
+     "lo": 32,
+     "rain_pct": 2,
+     "rain_in": 0.0,
+     "code": 3,
+     "wind_max_mph": 14,
+     "rain_hours": []
+    },
+    {
+     "date": "2026-11-25",
+     "hi": 41,
+     "lo": 31,
+     "rain_pct": 28,
+     "rain_in": 0.0,
+     "code": 3,
+     "wind_max_mph": 7,
+     "rain_hours": []
+    }
+   ]
+  },
+  "stoneharbor": {
+   "name": "Stone Harbor",
+   "days": [
+    {
+     "date": "2026-11-19",
+     "hi": 61,
+     "lo": 35,
+     "rain_pct": 0,
+     "rain_in": 0.0,
+     "code": 3,
+     "wind_max_mph": 6,
+     "rain_hours": []
+    },
+    {
+     "date": "2026-11-20",
+     "hi": 65,
+     "lo": 39,
+     "rain_pct": 0,
+     "rain_in": 0.0,
+     "code": 3,
+     "wind_max_mph": 6,
+     "rain_hours": []
+    },
+    {
+     "date": "2026-11-21",
+     "hi": 60,
+     "lo": 40,
+     "rain_pct": 0,
+     "rain_in": 0.0,
+     "code": 3,
+     "wind_max_mph": 8,
+     "rain_hours": []
+    },
+    {
+     "date": "2026-11-22",
+     "hi": 62,
+     "lo": 55,
+     "rain_pct": 75,
+     "rain_in": 1.205,
+     "code": 81,
+     "wind_max_mph": 17,
+     "rain_hours": [
+      "14:00",
+      "15:00",
+      "16:00",
+      "17:00",
+      "18:00",
+      "19:00",
+      "20:00",
+      "21:00",
+      "22:00",
+      "23:00"
+     ]
+    },
+    {
+     "date": "2026-11-23",
+     "hi": 62,
+     "lo": 44,
+     "rain_pct": 75,
+     "rain_in": 0.28,
+     "code": 80,
+     "wind_max_mph": 18,
      "rain_hours": [
       "00:00",
       "01:00",
@@ -247,17 +265,17 @@
      "rain_pct": 2,
      "rain_in": 0.0,
      "code": 0,
-     "wind_max_mph": 15,
+     "wind_max_mph": 18,
      "rain_hours": []
     },
     {
      "date": "2026-11-25",
      "hi": 49,
      "lo": 30,
-     "rain_pct": 24,
+     "rain_pct": 39,
      "rain_in": 0.0,
      "code": 3,
-     "wind_max_mph": 14,
+     "wind_max_mph": 12,
      "rain_hours": []
     }
    ]
@@ -273,9 +291,9 @@
      "label": "Flat",
      "hour": "06:00",
      "ft": 0.9,
-     "period_s": 7,
-     "wind_mph": 6,
-     "wind": "offshore"
+     "period_s": 8,
+     "wind_mph": 3,
+     "wind": "light"
     },
     "max_ft": 0.9,
     "sunrise": "06:46",
@@ -303,13 +321,13 @@
     "best": {
      "score": 3,
      "label": "Fun",
-     "hour": "08:00",
+     "hour": "07:00",
      "ft": 1.6,
-     "period_s": 7,
-     "wind_mph": 5,
+     "period_s": 8,
+     "wind_mph": 6,
      "wind": "light"
     },
-    "max_ft": 1.9,
+    "max_ft": 2.0,
     "sunrise": "06:48",
     "sunset": "16:40",
     "water_f": 56
@@ -317,18 +335,18 @@
    {
     "date": "2026-11-22",
     "best": {
-     "score": 3,
-     "label": "Fun",
-     "hour": "10:00",
-     "ft": 3.5,
+     "score": 2,
+     "label": "Poor",
+     "hour": "06:00",
+     "ft": 3.0,
      "period_s": 6,
-     "wind_mph": 12,
-     "wind": "cross"
+     "wind_mph": 9,
+     "wind": "onshore"
     },
-    "max_ft": 4.5,
+    "max_ft": 4.8,
     "sunrise": "06:49",
     "sunset": "16:40",
-    "water_f": 57
+    "water_f": 56
    },
    {
     "date": "2026-11-23",
@@ -336,12 +354,12 @@
      "score": 4,
      "label": "Good",
      "hour": "13:00",
-     "ft": 4.3,
+     "ft": 4.5,
      "period_s": 8,
      "wind_mph": 16,
      "wind": "offshore"
     },
-    "max_ft": 6.1,
+    "max_ft": 5.3,
     "sunrise": "06:50",
     "sunset": "16:39",
     "water_f": 57
@@ -349,12 +367,12 @@
    {
     "date": "2026-11-24",
     "best": {
-     "score": 5,
-     "label": "Great",
-     "hour": "09:00",
-     "ft": 3.7,
-     "period_s": 8,
-     "wind_mph": 14,
+     "score": 4,
+     "label": "Good",
+     "hour": "06:00",
+     "ft": 4.1,
+     "period_s": 7,
+     "wind_mph": 12,
      "wind": "offshore"
     },
     "max_ft": 4.3,
@@ -368,12 +386,12 @@
      "score": 3,
      "label": "Fun",
      "hour": "06:00",
-     "ft": 2.2,
+     "ft": 4.3,
      "period_s": 6,
-     "wind_mph": 11,
-     "wind": "cross"
+     "wind_mph": 8,
+     "wind": "offshore"
     },
-    "max_ft": 2.5,
+    "max_ft": 6.8,
     "sunrise": "06:53",
     "sunset": "16:38",
     "water_f": 55
