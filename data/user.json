@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1795100921262,
+ "updatedAt": 1795100926607,
  "place": "auto",
  "places": [],
  "here": {
@@ -359,7 +359,7 @@
      "scores": [
       {
        "name": "#1",
-       "pts": "85",
+       "pts": "100",
        "max": "100"
       }
      ]
