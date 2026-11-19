@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1795100941957,
+ "updatedAt": 1795100946716,
  "place": "auto",
  "places": [],
  "here": {
@@ -350,13 +350,7 @@
      "id": "f3fszsltc0",
      "name": "Final Exam",
      "weight": "25",
-     "scores": [
-      {
-       "name": "#1",
-       "pts": "80",
-       "max": "100"
-      }
-     ]
+     "scores": []
     }
    ],
    "guides": []
