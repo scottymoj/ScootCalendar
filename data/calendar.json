@@ -1,66 +1,6 @@
 {
- "updated": "2026-11-20T00:52:32Z",
+ "updated": "2026-11-20T08:24:36Z",
  "events": [
-  {
-   "id": "o71c5c0eb8a",
-   "src": "outlook",
-   "title": "Physics",
-   "start": "2026-10-29T11:30-04:00",
-   "end": "2026-10-29T12:45-04:00",
-   "allDay": false,
-   "location": "John Berry Hall 213",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
-  {
-   "id": "of8610782eb",
-   "src": "outlook",
-   "title": "Quiz 8",
-   "start": "2026-10-29T11:30-04:00",
-   "end": "2026-10-29T12:45-04:00",
-   "allDay": false,
-   "location": "",
-   "notes": "",
-   "cal": "Physics",
-   "feed": "outlook#6"
-  },
-  {
-   "id": "o1fa218dd6f",
-   "src": "outlook",
-   "title": "Macroeconomics",
-   "start": "2026-10-29T14:30-04:00",
-   "end": "2026-10-29T15:45-04:00",
-   "allDay": false,
-   "location": "Bartley Hall 2044",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
-  {
-   "id": "o3a08df1507",
-   "src": "outlook",
-   "title": "Business Statistics",
-   "start": "2026-10-29T16:00-04:00",
-   "end": "2026-10-29T16:50-04:00",
-   "allDay": false,
-   "location": "Tolentine Hall 303B",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
-  {
-   "id": "oa0a0f24aeb",
-   "src": "outlook",
-   "title": "Exam 2",
-   "start": "2026-10-29T16:00-04:00",
-   "end": "2026-10-29T16:50-04:00",
-   "allDay": false,
-   "location": "",
-   "notes": "",
-   "cal": "Statistics",
-   "feed": "outlook#10"
-  },
   {
    "id": "o61a8a6d98a",
    "src": "outlook",
@@ -1145,9 +1085,9 @@
  "sources": {
   "outlook": {
    "ok": true,
-   "count": 95,
+   "count": 90,
    "feeds": 12,
-   "at": "2026-11-20T00:52:35Z"
+   "at": "2026-11-20T08:24:38Z"
   },
   "brightspace": {
    "ok": false,
