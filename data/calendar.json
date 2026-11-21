@@ -1,18 +1,6 @@
 {
- "updated": "2026-11-21T05:44:15Z",
+ "updated": "2026-11-21T12:57:14Z",
  "events": [
-  {
-   "id": "o61a8a6d98a",
-   "src": "outlook",
-   "title": "World History",
-   "start": "2026-10-30T11:45-04:00",
-   "end": "2026-10-30T12:35-04:00",
-   "allDay": false,
-   "location": "Tolentine Hall 212",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
   {
    "id": "o4b516f7976",
    "src": "outlook",
@@ -1084,11 +1072,10 @@
  ],
  "sources": {
   "outlook": {
-   "ok": false,
-   "count": 90,
+   "ok": true,
+   "count": 89,
    "feeds": 12,
-   "at": "2026-11-21T04:14:34Z",
-   "note": "12 of 12 calendars failed to load"
+   "at": "2026-11-21T12:57:17Z"
   },
   "brightspace": {
    "ok": false,
