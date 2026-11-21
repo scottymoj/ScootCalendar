@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updatedAt": 1795239886634,
+ "updatedAt": 1795239900729,
  "place": "auto",
  "places": [],
  "here": {
@@ -257,13 +257,7 @@
      "id": "2e072b5wfu",
      "name": "Quiz 3",
      "weight": "20",
-     "scores": [
-      {
-       "name": "#1",
-       "pts": "83",
-       "max": "100"
-      }
-     ]
+     "scores": []
     },
     {
      "id": "7g3ljeg3i6",
