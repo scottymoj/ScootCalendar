@@ -1,250 +1,57 @@
 {
- "updated": "2026-11-22T07:22:07Z",
+ "updated": "2026-11-22T15:36:55Z",
  "places": {
   "villanova": {
    "name": "Villanova",
    "days": [
     {
      "date": "2026-11-22",
-     "hi": 61,
+     "hi": 63,
      "lo": 50,
-     "rain_pct": 28,
-     "rain_in": 0.091,
-     "code": 53,
-     "wind_max_mph": 12,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-23",
-     "hi": 60,
-     "lo": 47,
-     "rain_pct": 20,
+     "rain_pct": 12,
      "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 12,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-24",
-     "hi": 47,
-     "lo": 38,
-     "rain_pct": 0,
-     "rain_in": 0.0,
-     "code": 1,
-     "wind_max_mph": 11,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-25",
-     "hi": 49,
-     "lo": 36,
-     "rain_pct": 9,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 13,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-26",
-     "hi": 61,
-     "lo": 47,
-     "rain_pct": 74,
-     "rain_in": 1.854,
-     "code": 80,
-     "wind_max_mph": 25,
-     "rain_hours": [
-      "08:00",
-      "09:00",
-      "10:00",
-      "11:00",
-      "12:00",
-      "13:00",
-      "14:00",
-      "15:00",
-      "16:00",
-      "17:00",
-      "18:00",
-      "19:00",
-      "20:00",
-      "21:00",
-      "22:00",
-      "23:00"
-     ]
-    },
-    {
-     "date": "2026-11-27",
-     "hi": 58,
-     "lo": 46,
-     "rain_pct": 58,
-     "rain_in": 0.354,
-     "code": 80,
-     "wind_max_mph": 17,
-     "rain_hours": [
-      "00:00",
-      "01:00"
-     ]
-    },
-    {
-     "date": "2026-11-28",
-     "hi": 51,
-     "lo": 46,
-     "rain_pct": 13,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 14,
-     "rain_hours": []
-    }
-   ]
-  },
-  "chatham": {
-   "name": "Chatham",
-   "days": [
-    {
-     "date": "2026-11-22",
-     "hi": 61,
-     "lo": 49,
-     "rain_pct": 61,
-     "rain_in": 0.185,
-     "code": 61,
+     "code": 45,
      "wind_max_mph": 9,
-     "rain_hours": [
-      "20:00",
-      "21:00"
-     ]
+     "rain_hours": []
     },
     {
      "date": "2026-11-23",
      "hi": 62,
-     "lo": 46,
-     "rain_pct": 38,
-     "rain_in": 0.031,
-     "code": 51,
-     "wind_max_mph": 11,
+     "lo": 45,
+     "rain_pct": 16,
+     "rain_in": 0.0,
+     "code": 45,
+     "wind_max_mph": 12,
      "rain_hours": []
     },
     {
      "date": "2026-11-24",
      "hi": 46,
-     "lo": 37,
+     "lo": 38,
      "rain_pct": 0,
      "rain_in": 0.0,
-     "code": 0,
+     "code": 3,
      "wind_max_mph": 12,
      "rain_hours": []
     },
     {
      "date": "2026-11-25",
-     "hi": 47,
-     "lo": 35,
-     "rain_pct": 5,
+     "hi": 50,
+     "lo": 36,
+     "rain_pct": 7,
      "rain_in": 0.0,
      "code": 3,
-     "wind_max_mph": 11,
+     "wind_max_mph": 12,
      "rain_hours": []
     },
     {
      "date": "2026-11-26",
      "hi": 58,
-     "lo": 44,
-     "rain_pct": 72,
-     "rain_in": 1.878,
-     "code": 65,
-     "wind_max_mph": 24,
-     "rain_hours": [
-      "08:00",
-      "09:00",
-      "10:00",
-      "11:00",
-      "12:00",
-      "13:00",
-      "14:00",
-      "15:00",
-      "16:00",
-      "17:00",
-      "18:00",
-      "19:00",
-      "20:00",
-      "21:00",
-      "22:00",
-      "23:00"
-     ]
-    },
-    {
-     "date": "2026-11-27",
-     "hi": 57,
-     "lo": 48,
-     "rain_pct": 65,
-     "rain_in": 0.236,
-     "code": 55,
-     "wind_max_mph": 18,
-     "rain_hours": [
-      "00:00",
-      "01:00"
-     ]
-    },
-    {
-     "date": "2026-11-28",
-     "hi": 50,
      "lo": 46,
-     "rain_pct": 13,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 12,
-     "rain_hours": []
-    }
-   ]
-  },
-  "stoneharbor": {
-   "name": "Stone Harbor",
-   "days": [
-    {
-     "date": "2026-11-22",
-     "hi": 62,
-     "lo": 54,
-     "rain_pct": 49,
-     "rain_in": 0.909,
-     "code": 65,
-     "wind_max_mph": 15,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-23",
-     "hi": 63,
-     "lo": 49,
-     "rain_pct": 19,
-     "rain_in": 0.016,
-     "code": 51,
-     "wind_max_mph": 13,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-24",
-     "hi": 49,
-     "lo": 37,
-     "rain_pct": 0,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 15,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-25",
-     "hi": 54,
-     "lo": 37,
-     "rain_pct": 22,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 22,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-26",
-     "hi": 64,
-     "lo": 54,
-     "rain_pct": 81,
-     "rain_in": 2.0,
+     "rain_pct": 77,
+     "rain_in": 1.787,
      "code": 81,
-     "wind_max_mph": 38,
+     "wind_max_mph": 24,
      "rain_hours": [
       "02:00",
       "03:00",
@@ -272,12 +79,12 @@
     },
     {
      "date": "2026-11-27",
-     "hi": 58,
-     "lo": 47,
-     "rain_pct": 54,
-     "rain_in": 0.106,
-     "code": 51,
-     "wind_max_mph": 26,
+     "hi": 55,
+     "lo": 45,
+     "rain_pct": 68,
+     "rain_in": 0.28,
+     "code": 81,
+     "wind_max_mph": 18,
      "rain_hours": [
       "00:00",
       "01:00"
@@ -286,8 +93,210 @@
     {
      "date": "2026-11-28",
      "hi": 53,
+     "lo": 45,
+     "rain_pct": 6,
+     "rain_in": 0.0,
+     "code": 3,
+     "wind_max_mph": 14,
+     "rain_hours": []
+    }
+   ]
+  },
+  "chatham": {
+   "name": "Chatham",
+   "days": [
+    {
+     "date": "2026-11-22",
+     "hi": 65,
+     "lo": 49,
+     "rain_pct": 20,
+     "rain_in": 0.0,
+     "code": 45,
+     "wind_max_mph": 7,
+     "rain_hours": []
+    },
+    {
+     "date": "2026-11-23",
+     "hi": 66,
+     "lo": 39,
+     "rain_pct": 16,
+     "rain_in": 0.0,
+     "code": 3,
+     "wind_max_mph": 12,
+     "rain_hours": []
+    },
+    {
+     "date": "2026-11-24",
+     "hi": 46,
+     "lo": 35,
+     "rain_pct": 0,
+     "rain_in": 0.0,
+     "code": 3,
+     "wind_max_mph": 12,
+     "rain_hours": []
+    },
+    {
+     "date": "2026-11-25",
+     "hi": 46,
+     "lo": 35,
+     "rain_pct": 3,
+     "rain_in": 0.0,
+     "code": 3,
+     "wind_max_mph": 11,
+     "rain_hours": []
+    },
+    {
+     "date": "2026-11-26",
+     "hi": 56,
+     "lo": 43,
+     "rain_pct": 78,
+     "rain_in": 1.583,
+     "code": 65,
+     "wind_max_mph": 24,
+     "rain_hours": [
+      "08:00",
+      "09:00",
+      "10:00",
+      "11:00",
+      "12:00",
+      "13:00",
+      "14:00",
+      "15:00",
+      "16:00",
+      "17:00",
+      "18:00",
+      "19:00",
+      "20:00",
+      "21:00",
+      "22:00",
+      "23:00"
+     ]
+    },
+    {
+     "date": "2026-11-27",
+     "hi": 56,
+     "lo": 46,
+     "rain_pct": 78,
+     "rain_in": 0.217,
+     "code": 80,
+     "wind_max_mph": 16,
+     "rain_hours": [
+      "00:00",
+      "01:00",
+      "02:00",
+      "03:00",
+      "04:00",
+      "05:00",
+      "06:00",
+      "07:00"
+     ]
+    },
+    {
+     "date": "2026-11-28",
+     "hi": 55,
+     "lo": 46,
+     "rain_pct": 5,
+     "rain_in": 0.0,
+     "code": 3,
+     "wind_max_mph": 12,
+     "rain_hours": []
+    }
+   ]
+  },
+  "stoneharbor": {
+   "name": "Stone Harbor",
+   "days": [
+    {
+     "date": "2026-11-22",
+     "hi": 63,
+     "lo": 54,
+     "rain_pct": 22,
+     "rain_in": 0.0,
+     "code": 3,
+     "wind_max_mph": 14,
+     "rain_hours": []
+    },
+    {
+     "date": "2026-11-23",
+     "hi": 66,
+     "lo": 50,
+     "rain_pct": 39,
+     "rain_in": 0.047,
+     "code": 51,
+     "wind_max_mph": 10,
+     "rain_hours": []
+    },
+    {
+     "date": "2026-11-24",
+     "hi": 50,
+     "lo": 38,
+     "rain_pct": 5,
+     "rain_in": 0.0,
+     "code": 3,
+     "wind_max_mph": 16,
+     "rain_hours": []
+    },
+    {
+     "date": "2026-11-25",
+     "hi": 54,
+     "lo": 38,
+     "rain_pct": 17,
+     "rain_in": 0.0,
+     "code": 3,
+     "wind_max_mph": 22,
+     "rain_hours": []
+    },
+    {
+     "date": "2026-11-26",
+     "hi": 63,
+     "lo": 54,
+     "rain_pct": 86,
+     "rain_in": 1.602,
+     "code": 81,
+     "wind_max_mph": 40,
+     "rain_hours": [
+      "02:00",
+      "03:00",
+      "04:00",
+      "05:00",
+      "06:00",
+      "07:00",
+      "08:00",
+      "09:00",
+      "10:00",
+      "11:00",
+      "12:00",
+      "13:00",
+      "14:00",
+      "15:00",
+      "16:00",
+      "17:00",
+      "18:00",
+      "19:00",
+      "20:00",
+      "21:00",
+      "22:00",
+      "23:00"
+     ]
+    },
+    {
+     "date": "2026-11-27",
+     "hi": 57,
+     "lo": 48,
+     "rain_pct": 51,
+     "rain_in": 0.173,
+     "code": 81,
+     "wind_max_mph": 23,
+     "rain_hours": [
+      "00:00",
+      "01:00"
+     ]
+    },
+    {
+     "date": "2026-11-28",
+     "hi": 52,
      "lo": 47,
-     "rain_pct": 19,
+     "rain_pct": 9,
      "rain_in": 0.0,
      "code": 3,
      "wind_max_mph": 21,
@@ -302,15 +311,15 @@
    {
     "date": "2026-11-22",
     "best": {
-     "score": 2,
-     "label": "Poor",
-     "hour": "06:00",
-     "ft": 3.0,
-     "period_s": 6,
-     "wind_mph": 9,
-     "wind": "onshore"
+     "score": 3,
+     "label": "Fun",
+     "hour": "13:00",
+     "ft": 4.8,
+     "period_s": 8,
+     "wind_mph": 13,
+     "wind": "cross"
     },
-    "max_ft": 4.4,
+    "max_ft": 4.9,
     "sunrise": "06:49",
     "sunset": "16:40",
     "water_f": 56
@@ -320,13 +329,13 @@
     "best": {
      "score": 5,
      "label": "Great",
-     "hour": "13:00",
+     "hour": "11:00",
      "ft": 4.5,
      "period_s": 9,
-     "wind_mph": 12,
+     "wind_mph": 9,
      "wind": "offshore"
     },
-    "max_ft": 5.1,
+    "max_ft": 5.0,
     "sunrise": "06:50",
     "sunset": "16:39",
     "water_f": 57
@@ -337,12 +346,12 @@
      "score": 4,
      "label": "Good",
      "hour": "06:00",
-     "ft": 3.4,
-     "period_s": 7,
-     "wind_mph": 12,
+     "ft": 3.5,
+     "period_s": 6,
+     "wind_mph": 10,
      "wind": "offshore"
     },
-    "max_ft": 3.4,
+    "max_ft": 3.5,
     "sunrise": "06:51",
     "sunset": "16:39",
     "water_f": 56
@@ -353,12 +362,12 @@
      "score": 2,
      "label": "Poor",
      "hour": "06:00",
-     "ft": 3.7,
+     "ft": 3.8,
      "period_s": 6,
      "wind_mph": 10,
      "wind": "cross"
     },
-    "max_ft": 5.0,
+    "max_ft": 5.4,
     "sunrise": "06:53",
     "sunset": "16:38",
     "water_f": 56
@@ -369,12 +378,12 @@
      "score": 1,
      "label": "Too big",
      "hour": "06:00",
-     "ft": 9.0,
+     "ft": 9.3,
      "period_s": 8,
-     "wind_mph": 29,
+     "wind_mph": 32,
      "wind": "onshore"
     },
-    "max_ft": 11.5,
+    "max_ft": 12.3,
     "sunrise": "06:54",
     "sunset": "16:38",
     "water_f": 55
@@ -382,31 +391,31 @@
    {
     "date": "2026-11-27",
     "best": {
-     "score": 4,
-     "label": "Good",
-     "hour": "13:00",
-     "ft": 5.4,
-     "period_s": 9,
-     "wind_mph": 24,
-     "wind": "offshore"
+     "score": 1,
+     "label": "Too big",
+     "hour": "06:00",
+     "ft": 8.1,
+     "period_s": 10,
+     "wind_mph": 21,
+     "wind": "cross"
     },
-    "max_ft": 7.0,
+    "max_ft": 8.1,
     "sunrise": "06:55",
     "sunset": "16:38",
-    "water_f": 54
+    "water_f": 55
    },
    {
     "date": "2026-11-28",
     "best": {
-     "score": 5,
-     "label": "Great",
+     "score": 4,
+     "label": "Good",
      "hour": "06:00",
-     "ft": 2.5,
-     "period_s": 9,
-     "wind_mph": 17,
+     "ft": 4.1,
+     "period_s": 7,
+     "wind_mph": 18,
      "wind": "offshore"
     },
-    "max_ft": 2.5,
+    "max_ft": 4.1,
     "sunrise": "06:56",
     "sunset": "16:37",
     "water_f": 54
