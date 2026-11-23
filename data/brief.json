@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-22",
-  "written_at": "2026-11-22T11:36:38Z",
-  "headline": "Free Sunday: clear three overdue tasks and start the MSE Project",
-  "summary": "Nothing on the calendar today and Chatham stays mild at 61 until rain arrives around 8 PM. Use the open day to catch up and get ahead before a short class week.",
+  "date": "2026-11-23",
+  "written_at": "2026-11-23T11:36:09Z",
+  "headline": "Two classes today and three follow ups still overdue",
+  "summary": "A light Monday with World History at 11:45 AM and Stats at 4:45 PM, and dry, mild weather. Your app has you in Chatham, so plan the drive if you're heading to campus.",
   "today": [
-    "No classes or meetings on the calendar today",
+    "11:45 AM World History, Tolentine Hall 212",
+    "4:45 PM Business Statistics, Mendel Hall 258",
     "Still open: Call Dad, Email Mr. Dowd, Send Emails",
-    "Chatham: high 61, low 49, light wind, rain likely 8 PM to 10 PM",
-    "Tomorrow: World History 11:45 AM, Tolentine Hall 212",
-    "Tomorrow: Business Statistics 4:45 PM, Mendel Hall 258"
+    "Chatham: overcast, high 68, low 43, dry, wind up to 12 mph",
+    "Tomorrow: Physics 11:30 AM and Macroeconomics 2:30 PM; cold, high 46"
   ],
   "heads_up": [
-    "Call Dad (Nov 15), Email Mr. Dowd (Nov 17), Send Emails (Nov 20) not checked off",
-    "History is at 82 on logged quizzes, under your B+; you need about 95 on what's left",
-    "Thu Nov 26: heavy rain all day, close to 2 inches, wind up to 24 mph"
+    "Overdue: Call Dad (Nov 15), Email Mr. Dowd (Nov 17), Send Emails (Nov 20)",
+    "History is at 82 vs your B+ target; you need about 95 on Quiz 4 and the final",
+    "Thu Nov 26: heavy rain from 2 PM in Chatham, about 1.2 inches, wind to 25 mph"
   ],
   "upcoming": [
-    "Mon Nov 23: Great surf at Stone Harbor, 4.5 ft offshore around 1 PM",
-    "Sat Nov 28: Great surf, 2.5 ft offshore at 6 AM; Mr. Artiglere Coffee Chat 9:45 AM",
+    "Sat Nov 28: Mr. Artiglere Coffee Chat 9:45 AM, Dunkin' Hickory Tree",
+    "Sat Nov 28: Good surf at Stone Harbor, 4.4 ft offshore at 9 AM; Sun Nov 29: Fun, 2.7 ft",
     "Mon Nov 30: Stats Unit 9 Data Collection due",
-    "Wed Dec 2: Physics Make up Lab 8 PM to 10 PM, Mendel Hall observatory, then a paper",
-    "Thu Dec 3: Physics MSE Project due and Stats Unit 9 Homework due"
+    "Wed Dec 2: Physics Make up Lab 8 PM to 10 PM, Mendel observatory, plus a 3 to 5 page paper",
+    "Thu Dec 3: Physics MSE Project due"
   ],
   "recommendations": [
-    "This morning: send the Mr. Dowd follow up and your other emails, call Dad, check them off",
-    "Block 2 hours today on the Physics MSE Project; it's 11% of the grade and due Dec 3",
-    "Log Econ Exam 2, Stats Exam 3 and History Quizzes 4 and 5 so your grades are accurate",
-    "Start History final review this week; you need near 95 on the rest to reach a B+",
-    "Finish Stats Unit 9 Data Collection by Wednesday so Nov 30 isn't a scramble"
+    "Before 11:45 AM: email Mr. Dowd, send your other emails, call Dad, then check them off",
+    "Tonight: 2 hours on the Physics MSE Project; it's 11% of the grade and due Dec 3",
+    "Finish Stats Unit 9 Data Collection by Saturday; it's worth 20% and due Mon Nov 30",
+    "Log Econ Exam 2, Stats Exams 2 and 3, and History Quizzes 4 and 5 so your grades are real",
+    "Start History final prep with 30 minutes a day; it's Dec 14 and you need about 95"
   ],
   "activity": {
     "pick": "Run",
-    "title": "Easy 3 mile run before 6 PM",
-    "why": "Open day, dry and 61 until evening rain, and your last logged workout was the Nov 15 run."
+    "title": "Easy 3 mile run this afternoon",
+    "why": "It's dry and 68 before a cold Tuesday, and your last logged workout was the short Nov 15 run, so ease back in."
   }
 }
