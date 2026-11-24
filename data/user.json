@@ -1,11 +1,11 @@
 {
  "v": 1,
- "updatedAt": 1795240033420,
+ "updatedAt": 1795527963163,
  "place": "auto",
  "places": [],
  "here": {
-  "name": "Chatham",
-  "at": "2026-11-21"
+  "name": "Stone Harbor",
+  "at": "2026-11-24"
  },
  "classes": [
   {
@@ -257,13 +257,7 @@
      "id": "2e072b5wfu",
      "name": "Quiz 3",
      "weight": "20",
-     "scores": [
-      {
-       "name": "#1",
-       "pts": "70",
-       "max": "100"
-      }
-     ]
+     "scores": []
     },
     {
      "id": "7g3ljeg3i6",
