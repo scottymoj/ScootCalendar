@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T04:05:40Z",
+ "updated": "2026-11-26T13:49:00Z",
  "ok": true,
  "errors": [],
  "activities": [
@@ -75,39 +75,6 @@
   }
  ],
  "days": [
-  {
-   "date": "2026-10-27",
-   "steps_goal": 8650,
-   "floors": 0,
-   "floors_goal": 10,
-   "floors_down": 0,
-   "cal": 1154,
-   "cal_active": 0,
-   "cal_rest": 1154,
-   "hr_min": 69,
-   "hr_max": 72,
-   "rhr": 69,
-   "im_mod": 0,
-   "im_vig": 0,
-   "im_goal": 150,
-   "stress": 66,
-   "stress_max": 66,
-   "stress_q": "unknown",
-   "stress_med_m": 2,
-   "bb_high": 54,
-   "bb_low": 53,
-   "bb_now": 53,
-   "bb_charged": 0,
-   "bb_drained": 1,
-   "bb_feedback": "NO_DATA",
-   "resp": 22,
-   "resp_min": 20,
-   "resp_max": 23,
-   "hrv_week": 89,
-   "hrv_status": "BALANCED",
-   "hrv_base_low": 74,
-   "hrv_base_high": 113
-  },
   {
    "date": "2026-10-30",
    "steps": 4007,
@@ -1247,10 +1214,6 @@
    "hrv_status": "BALANCED",
    "hrv_base_low": 79,
    "hrv_base_high": 114
-  },
-  {
-   "date": "2026-11-19",
-   "sleep_need_m": 510
   }
  ],
  "weight": [

@@ -1,66 +1,6 @@
 {
- "updated": "2026-11-26T04:05:47Z",
+ "updated": "2026-11-26T13:49:06Z",
  "events": [
-  {
-   "id": "o541b0c32f7",
-   "src": "outlook",
-   "title": "World History",
-   "start": "2026-11-04T11:45-05:00",
-   "end": "2026-11-04T12:35-05:00",
-   "allDay": false,
-   "location": "Tolentine Hall 212",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
-  {
-   "id": "od22c95134c",
-   "src": "outlook",
-   "title": "Quiz 4",
-   "start": "2026-11-04T11:45-05:00",
-   "end": "2026-11-04T12:35-05:00",
-   "allDay": false,
-   "location": "",
-   "notes": "",
-   "cal": "History",
-   "feed": "outlook#5"
-  },
-  {
-   "id": "o2dd5765cc6",
-   "src": "outlook",
-   "title": "Study Abroad First Step Information Session",
-   "start": "2026-11-04T14:00-05:00",
-   "end": "2026-11-04T15:00-05:00",
-   "allDay": false,
-   "location": "Garey Hall Top Floor",
-   "notes": "",
-   "cal": "Event",
-   "feed": "outlook#3"
-  },
-  {
-   "id": "o94cf308e5b",
-   "src": "outlook",
-   "title": "Business Statitsics",
-   "start": "2026-11-04T16:45-05:00",
-   "end": "2026-11-04T18:00-05:00",
-   "allDay": false,
-   "location": "Mendel Hall 258",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
-  {
-   "id": "o29035bc964",
-   "src": "outlook",
-   "title": "VIA Meeting",
-   "start": "2026-11-04T18:30-05:00",
-   "end": "2026-11-04T19:30-05:00",
-   "allDay": false,
-   "location": "",
-   "notes": "",
-   "cal": "Wildcat Fund",
-   "feed": "outlook#8"
-  },
   {
    "id": "o8f7c0acc1a",
    "src": "outlook",
@@ -1013,9 +953,9 @@
  "sources": {
   "outlook": {
    "ok": true,
-   "count": 84,
+   "count": 79,
    "feeds": 12,
-   "at": "2026-11-26T04:05:50Z"
+   "at": "2026-11-26T13:49:09Z"
   },
   "brightspace": {
    "ok": false,
