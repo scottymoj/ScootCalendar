@@ -1,78 +1,6 @@
 {
- "updated": "2026-11-27T04:58:37Z",
+ "updated": "2026-11-27T14:54:50Z",
  "events": [
-  {
-   "id": "o8f7c0acc1a",
-   "src": "outlook",
-   "title": "Problem Set 4",
-   "start": "2026-11-05",
-   "end": "2026-11-06",
-   "allDay": true,
-   "location": "",
-   "notes": "",
-   "cal": "Economics",
-   "feed": "outlook#9"
-  },
-  {
-   "id": "o8e96a6886e",
-   "src": "outlook",
-   "title": "Unit 7 Homework",
-   "start": "2026-11-05",
-   "end": "2026-11-06",
-   "allDay": true,
-   "location": "",
-   "notes": "",
-   "cal": "Statistics",
-   "feed": "outlook#10"
-  },
-  {
-   "id": "o09b30b1b21",
-   "src": "outlook",
-   "title": "Physics",
-   "start": "2026-11-05T11:30-05:00",
-   "end": "2026-11-05T12:45-05:00",
-   "allDay": false,
-   "location": "John Berry Hall 213",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
-  {
-   "id": "oc93bdb1932",
-   "src": "outlook",
-   "title": "Test 2",
-   "start": "2026-11-05T11:30-05:00",
-   "end": "2026-11-05T12:45-05:00",
-   "allDay": false,
-   "location": "",
-   "notes": "",
-   "cal": "Physics",
-   "feed": "outlook#6"
-  },
-  {
-   "id": "of43ff656f7",
-   "src": "outlook",
-   "title": "Macroeconomics",
-   "start": "2026-11-05T14:30-05:00",
-   "end": "2026-11-05T15:45-05:00",
-   "allDay": false,
-   "location": "Bartley Hall 2044",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
-  {
-   "id": "o9a6bad85aa",
-   "src": "outlook",
-   "title": "Business Statistics",
-   "start": "2026-11-05T16:00-05:00",
-   "end": "2026-11-05T16:50-05:00",
-   "allDay": false,
-   "location": "Tolentine Hall 303B",
-   "notes": "",
-   "cal": "Calendar",
-   "feed": "outlook#2"
-  },
   {
    "id": "o2b62b1a9cc",
    "src": "outlook",
@@ -953,9 +881,9 @@
  "sources": {
   "outlook": {
    "ok": true,
-   "count": 79,
+   "count": 73,
    "feeds": 12,
-   "at": "2026-11-27T04:58:39Z"
+   "at": "2026-11-27T14:54:53Z"
   },
   "brightspace": {
    "ok": false,
