@@ -1,38 +1,37 @@
 {
-  "date": "2026-11-26",
-  "written_at": "2026-11-26T11:36:11Z",
-  "headline": "Storm day: stay in and clear your overdue tasks",
-  "summary": "Nothing on the calendar today, and Stone Harbor gets almost 4 inches of rain with 44 mph wind. Good day to clear old to dos and get real work done on the MSE Project.",
+  "date": "2026-11-27",
+  "written_at": "2026-11-27T11:36:35Z",
+  "headline": "Free day: clear 3 overdue to dos, then start the MSE Project",
+  "summary": "No classes or events today. Use the open day to clear old to dos and get ahead on Physics and Stats before a heavy week of deadlines.",
   "today": [
     "No classes or events on the calendar today",
     "Still open: Call Dad (Nov 15), Email Mr. Dowd (Nov 17), Send Emails (Nov 20)",
-    "Stone Harbor: heavy rain 2 AM to 7 PM, about 3.8 in, wind to 44 mph, high 63",
-    "Surf: Too big, 10 ft and onshore; stay out of the water"
+    "No weather or surf data came through today; check outside before you head out"
   ],
   "heads_up": [
-    "Three to dos are 6 to 11 days overdue: Call Dad, Email Mr. Dowd, Send Emails",
+    "Three to dos are 7 to 12 days overdue: Call Dad, Email Mr. Dowd, Send Emails",
     "Stats Unit 9 Data Collection is due Mon Nov 30 and is 20% of the grade",
-    "History sits at 88 on graded work, just above your B+ line; Quiz 5 isn't logged yet",
-    "Mon Nov 30: rain 2 AM to 7 AM in Stone Harbor if you drive back to campus early"
+    "History is at 88 on graded work, just above a B+; only 2 of 5 parts are scored",
+    "Econ Midterm 1 was an 80.2; Midterm 2 isn't logged and the final is 25%"
   ],
   "upcoming": [
     "Sat Nov 28: Mr. Artiglere Coffee Chat 9:45 AM, Dunkin' Hickory Tree",
-    "Sun Nov 29: Fun surf, 1.8 ft with light wind at 6 AM; best day for you",
     "Mon Nov 30: Stats Unit 9 Data Collection due",
-    "Wed Dec 2: Physics Make up Lab 8 PM to 10 PM, plus a 3 to 5 page paper",
+    "Wed Dec 2: Physics Make up Lab 8 PM to 10 PM, Mendel Hall 4th Floor Observatory",
     "Thu Dec 3: Physics MSE Project due; Stats Unit 9 Homework due",
-    "Wed Dec 9: Mr. Brandmeyer Coffee Chat 3:00 PM; Physics Final Sat Dec 12 8:30 AM"
+    "Wed Dec 9: Mr. Brandmeyer Coffee Chat 3:00 PM; Thu Dec 10: Stats Unit 10 Homework",
+    "Sat Dec 12: Physics Final 8:30 AM; History Final Mon Dec 14 8:00 AM"
   ],
   "recommendations": [
-    "This morning: email Mr. Dowd, send the other emails, call Dad, then check all 3 off",
-    "Spend 2 to 3 hours on the Physics MSE Project; it's 11% and due Thu Dec 3",
-    "Get Stats Unit 9 Data Collection done by Saturday so Sunday stays free",
-    "Log Econ Exam 2, Stats Exam 3 and History Quiz 5 scores in the app",
-    "Write 3 questions for Mr. Artiglere and plan your drive for the 9:45 AM Saturday chat"
+    "This morning: call Dad, email Mr. Dowd, send the other emails, then check all 3 off",
+    "Finish Stats Unit 9 Data Collection today or Saturday so it's done before Monday",
+    "Put 2 to 3 hours into the Physics MSE Project; it's 11% and due Thu Dec 3",
+    "Write 3 questions for Mr. Artiglere tonight and plan the drive for 9:45 AM Saturday",
+    "Log Econ Exam 2, Stats Exams 2 and 3, and your History quiz scores in the app"
   ],
   "activity": {
-    "pick": "Lift",
-    "title": "45 minute indoor lift or bodyweight circuit",
-    "why": "Heavy rain and 44 mph wind all day rule out running and surfing, and your last logged workout was the short Nov 15 run."
+    "pick": "Run",
+    "title": "Easy 3 mile run this morning",
+    "why": "The day is wide open and your last logged workout was a short run on Nov 15, so ease back in."
   }
 }
