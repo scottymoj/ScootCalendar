@@ -1,111 +1,20 @@
 {
- "updated": "2026-11-27T14:54:49Z",
+ "updated": "2026-11-27T17:19:07Z",
  "places": {
-  "villanova": {
-   "name": "Villanova",
-   "days": [
-    {
-     "date": "2026-11-27",
-     "hi": 56,
-     "lo": 40,
-     "rain_pct": 51,
-     "rain_in": 0.047,
-     "code": 51,
-     "wind_max_mph": 15,
-     "rain_hours": [
-      "04:00"
-     ]
-    },
-    {
-     "date": "2026-11-28",
-     "hi": 48,
-     "lo": 36,
-     "rain_pct": 6,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 15,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-11-29",
-     "hi": 52,
-     "lo": 35,
-     "rain_pct": 73,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 12,
-     "rain_hours": [
-      "20:00",
-      "21:00",
-      "22:00",
-      "23:00"
-     ]
-    },
-    {
-     "date": "2026-11-30",
-     "hi": 53,
-     "lo": 39,
-     "rain_pct": 91,
-     "rain_in": 0.512,
-     "code": 63,
-     "wind_max_mph": 21,
-     "rain_hours": [
-      "00:00",
-      "01:00",
-      "02:00",
-      "03:00",
-      "04:00",
-      "05:00",
-      "06:00",
-      "07:00"
-     ]
-    },
-    {
-     "date": "2026-12-01",
-     "hi": 45,
-     "lo": 36,
-     "rain_pct": 0,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 10,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-12-02",
-     "hi": 48,
-     "lo": 39,
-     "rain_pct": 1,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 6,
-     "rain_hours": []
-    },
-    {
-     "date": "2026-12-03",
-     "hi": 55,
-     "lo": 41,
-     "rain_pct": 3,
-     "rain_in": 0.0,
-     "code": 3,
-     "wind_max_mph": 10,
-     "rain_hours": []
-    }
-   ]
-  },
   "chatham": {
    "name": "Chatham",
    "days": [
     {
      "date": "2026-11-27",
      "hi": 53,
-     "lo": 40,
-     "rain_pct": 55,
-     "rain_in": 0.114,
-     "code": 61,
+     "lo": 39,
+     "rain_pct": 57,
+     "rain_in": 0.075,
+     "code": 53,
      "wind_max_mph": 14,
      "rain_hours": [
       "04:00",
-      "16:00"
+      "15:00"
      ]
     },
     {
@@ -159,7 +68,7 @@
      "date": "2026-12-02",
      "hi": 48,
      "lo": 39,
-     "rain_pct": 3,
+     "rain_pct": 0,
      "rain_in": 0.0,
      "code": 3,
      "wind_max_mph": 6,
@@ -169,7 +78,7 @@
      "date": "2026-12-03",
      "hi": 53,
      "lo": 40,
-     "rain_pct": 3,
+     "rain_pct": 2,
      "rain_in": 0.0,
      "code": 3,
      "wind_max_mph": 9,
@@ -184,10 +93,10 @@
      "date": "2026-11-27",
      "hi": 59,
      "lo": 42,
-     "rain_pct": 5,
+     "rain_pct": 4,
      "rain_in": 0.0,
      "code": 3,
-     "wind_max_mph": 20,
+     "wind_max_mph": 19,
      "rain_hours": []
     },
     {
@@ -251,7 +160,7 @@
      "date": "2026-12-03",
      "hi": 55,
      "lo": 44,
-     "rain_pct": 4,
+     "rain_pct": 2,
      "rain_in": 0.0,
      "code": 3,
      "wind_max_mph": 10,
